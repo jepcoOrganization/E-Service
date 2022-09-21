@@ -1,0 +1,109 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <UserSecretsId>e0eceae1-e660-48da-8fb5-5fc34242f59b</UserSecretsId>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.7.0" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.7.0" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.7.0" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Connected Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="C:\Users\LG-Halsarabi\.nuget\packages\tesseract\4.1.1\build\\..\x64\leptonica-1.80.0.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="C:\Users\LG-Halsarabi\.nuget\packages\tesseract\4.1.1\build\\..\x64\tesseract41.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="C:\Users\LG-Halsarabi\.nuget\packages\tesseract\4.1.1\build\\..\x86\leptonica-1.80.0.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="C:\Users\LG-Halsarabi\.nuget\packages\tesseract\4.1.1\build\\..\x86\tesseract41.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\LG-Halsarabi\.nuget\packages\tesseract\4.1.1\build\\..\x64\leptonica-1.80.0.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\LG-Halsarabi\.nuget\packages\tesseract\4.1.1\build\\..\x64\tesseract41.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\LG-Halsarabi\.nuget\packages\tesseract\4.1.1\build\\..\x86\leptonica-1.80.0.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\LG-Halsarabi\.nuget\packages\tesseract\4.1.1\build\\..\x86\tesseract41.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\LG-Halsarabi\.nuget\packages\tesseract\4.1.1\build\\..\x64\leptonica-1.80.0.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\LG-Halsarabi\.nuget\packages\tesseract\4.1.1\build\\..\x64\tesseract41.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JepcoBackEndSystemProject.Data\JepcoBackEndSystemProject.Data.csproj" />
+    <ProjectReference Include="..\JepcoBackEndSystemProject.Models\JepcoBackEndSystemProject.Models.csproj" />
+    <ProjectReference Include="..\JepcoBackEndSysytemProject.LoggerService\JepcoBackEndSysytemProject.LoggerService.csproj" />
+    <ProjectReference Include="..\JepcoBackEndSysytemProject.ResourcesFiles\JepcoBackEndSysytemProject.ResourcesFiles.csproj" />
+  </ItemGroup>
+
+
+</Project>
