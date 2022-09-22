@@ -102,9 +102,9 @@ namespace JWTAuthentication.Controllers
 
             //Validate the User Credentials    
             
-            if (login.username == _config["Jwt:MeterPortalUserName"] && login.password == _config["Jwt:MeterPortalPassword"])
+            if (login.username == _config["Jwt:EmergancyAppUserName"] && login.password == _config["Jwt:EmergancyAppPassword"])
             {
-                user = new UserModel { username = "Meter Portal Integration User", Emails = "MeterPortal@JEPCO.com.jo" };
+                user = new UserModel { username = "Emergancy App Integration User", Emails = "EmergancyApp@JEPCO.com.jo" };
             }
            
             return user;
