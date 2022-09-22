@@ -6,13 +6,15 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace JepcoBackEndSystemProject.Data.Cities
+namespace JepcoBackEndSystemProject.Data.RepairingStatus
 {
-   public interface ICitiesLookupRepository: IRepositoryBase<TbCitiesLookup>
+    //public interface IRepairingStatusRepository
+    //{
+    //}
+    public interface IRepairingStatusRepository : IRepositoryBase<tb_RepairingStatus>
     {
 
-        Task<IEnumerable<TbCitiesLookup>> GetAllCities(params Expression<Func<TbCitiesLookup, object>>[] navigationProperties);
+        Task<IEnumerable<tb_RepairingStatus>> GetAllStatus(params Expression<Func<tb_RepairingStatus, object>>[] navigationProperties);
 
         /// <summary>
         /// Gets the list.
@@ -20,7 +22,7 @@ namespace JepcoBackEndSystemProject.Data.Cities
         /// <param name="where">The where.</param>
         /// <param name="navigationProperties">The navigation properties.</param>
         /// <returns>List of type T.</returns>
-        Task<IEnumerable<TbCitiesLookup>> GetListOfCities(Expression<Func<TbCitiesLookup, bool>> where, params Expression<Func<TbCitiesLookup, object>>[] navigationProperties);
+        Task<IEnumerable<tb_RepairingStatus>> GetListOfStatus(Expression<Func<tb_RepairingStatus, bool>> where, params Expression<Func<tb_RepairingStatus, object>>[] navigationProperties);
 
         /// <summary>
         /// Gets the single.
@@ -28,23 +30,23 @@ namespace JepcoBackEndSystemProject.Data.Cities
         /// <param name="where">The where.</param>
         /// <param name="navigationProperties">The navigation properties.</param>
         /// <returns>Generic of type T.</returns>
-        Task<TbCitiesLookup> GetSingleCity(Expression<Func<TbCitiesLookup, bool>> where, params Expression<Func<TbCitiesLookup, object>>[] navigationProperties);
+        Task<tb_RepairingStatus> GetSingleStatus(Expression<Func<tb_RepairingStatus, bool>> where, params Expression<Func<tb_RepairingStatus, object>>[] navigationProperties);
         /// <summary>
         /// Adds City items.
         /// </summary>
         /// <param name="cities">The cities.</param>
-        void AddCities(params TbCitiesLookup[] cities);
+        void AddStatus(params tb_RepairingStatus[] Status);
 
         /// <summary>
         /// Updates City items.
         /// </summary>
         /// <param name="cities">The cities.</param>
-        void UpdateCities(string[] excludedProperties, params TbCitiesLookup[] cities);
+        void UpdateStatus(string[] excludedProperties, params tb_RepairingStatus[] Status);
 
         ///// <summary>
         ///// Removes City items.
         ///// </summary>
         ///// <param name="cities">The cities.</param>
-        void RemoveCities(params TbCitiesLookup[] cities);
+        void RemoveStatus(params tb_RepairingStatus[] Status);
     }
 }
