@@ -1,14 +1,14 @@
 {
   "ExtendedData": {
     "inputs": [
-      "http://192.168.91.24/xml/issue.asmx?wsdl"
+      "https://mobile.jepco.com.jo:8443/SAPIntegration/CallCenterNew.svc?wsdl"
     ],
     "collectionTypes": [
       "System.Collections.Generic.Dictionary`2",
       "System.Collections.Generic.List`1"
     ],
     "namespaceMappings": [
-      "*, T"
+      "*, MenaTrackService"
     ],
     "targetFramework": "net6.0",
     "typeReuseMode": "None"
