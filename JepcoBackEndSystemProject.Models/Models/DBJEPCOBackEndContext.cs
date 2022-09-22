@@ -16,9 +16,15 @@ namespace JepcoBackEndSystemProject.Models.Models
         }
 
 
-        public virtual DbSet<TbBranchesLookup> tb_BranchesLookup { get; set; }
-        public virtual DbSet<TbCitiesLookup> tb_CitiesLookup { get; set; }
-      
+       
+        public virtual DbSet<tb_ElectricalFaultStatus> tb_ElectricalFaultStatus { get; set; }
+        public virtual DbSet<tb_Fault_Compliants> tb_Fault_Compliants { get; set; }
+        public virtual DbSet<tb_FaultDetails> tb_FaultDetails { get; set; }
+        public virtual DbSet<tb_RepairingStatus> tb_RepairingStatus { get; set; }
+        public virtual DbSet<tb_UserAccessRegister> tb_UserAccessRegister { get; set; }
+
+     
+
 
 
 
@@ -28,29 +34,30 @@ namespace JepcoBackEndSystemProject.Models.Models
 
             base.OnModelCreating(modelBuilder);
 
+     
 
-
-
-            modelBuilder.Entity<TbBranchesLookup>(entity =>
+            modelBuilder.Entity<tb_ElectricalFaultStatus>(entity =>
             {
-                entity.HasKey(e => new { e.BranchID });
-
-                entity.ToTable("tb_BranchesLookup");
-
+                entity.HasKey(e => new { e.FaultStatusID });
+                entity.HasMany(e => e.tb_Fault_Compliants);
+                entity.ToTable("tb_ElectricalFaultStatus");
+                
 
 
             });
 
-           
-
-
-            modelBuilder.Entity<TbCitiesLookup>(entity =>
+            modelBuilder.Entity<tb_Fault_Compliants>(entity =>
             {
-                entity.HasKey(e => new { e.ID  });
+                entity.HasKey(e => new { e.FaultComplaintID });
+                entity.HasMany(e => e.tb_FaultDetails);
+                entity.ToTable("tb_Fault_Compliants");
 
-                entity.ToTable("tb_CitiesLookup");
+            });
 
-
+            modelBuilder.Entity<tb_RepairingStatus>(entity =>
+            {
+                entity.HasKey(e => new { e.RepairingStatusID });
+                entity.ToTable("tb_RepairingStatus");
 
             });
 

@@ -14,12 +14,11 @@ namespace JepcoBackEndSystemProject.Data
         private readonly DBJEPCOBackEndContext _repoContext;
         private readonly ILoggerManager _logger;
        
-        private Branches.IBranchesLookupRepository _branch;
-        private Cities.ICitiesLookupRepository _city;
+     
+        private RepairingStatus.IRepairingStatusRepository _status;
 
-      
-        
-       
+
+
 
         public RepositoryWrapper(DBJEPCOBackEndContext repositoryContext, ILoggerManager logger)
         {
@@ -54,34 +53,22 @@ namespace JepcoBackEndSystemProject.Data
 
       
 
-        public Branches.IBranchesLookupRepository Branch
+        
+     
+        public RepairingStatus.IRepairingStatusRepository Status
         {
             get
             {
-                if (_branch == null)
+                if (_status == null)
                 {
-                    _branch = new Branches.BranchesLookupRepository(_repoContext, _logger);
+                    _status = new RepairingStatus.RepairingStatusRepository(_repoContext, _logger);
                 }
 
-                return _branch;
+                return _status;
             }
         }
-        public Cities.ICitiesLookupRepository City
-        {
-            get
-            {
-                if (_city == null)
-                {
-                    _city = new Cities.CitiesLookupRepository(_repoContext, _logger );
-                }
 
-                return _city;
-            }
-        }
-      
-      
 
-       
 
 
 

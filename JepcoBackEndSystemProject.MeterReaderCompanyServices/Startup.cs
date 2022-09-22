@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using FirebaseAdmin;
-using JepcoBackEndSystemProject.Data.Branches;
-using JepcoBackEndSystemProject.Data.Cities;
 using JepcoBackEndSystemProject.Services.Extensions;
 using JepcoBackEndSysytemProject.LoggerService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

@@ -1,6 +1,5 @@
 ﻿using JepcoBackEndSystemProject.Data;
-using JepcoBackEndSystemProject.Data.Branches;
-using JepcoBackEndSystemProject.Data.Cities;
+
 
 using JepcoBackEndSystemProject.Models.Models;
 using JepcoBackEndSysytemProject.LoggerService;

@@ -9,11 +9,10 @@ namespace JepcoBackEndSystemProject.Data
 {
     public interface IRepositoryWrapper
     {
-        Branches.IBranchesLookupRepository Branch { get; }
-        Cities.ICitiesLookupRepository City { get; }
-        
+   
+        RepairingStatus.IRepairingStatusRepository Status { get; }
 
-       
+
 
         Task SaveAsync();
     }
