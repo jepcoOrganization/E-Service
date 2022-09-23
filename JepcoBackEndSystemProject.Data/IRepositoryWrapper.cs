@@ -10,12 +10,12 @@ namespace JepcoBackEndSystemProject.Data
     public interface IRepositoryWrapper
     {
    
-        RepairingStatus.IRepairingStatusRepository Status { get; }
+RepairingStatus.IRepairingStatusRepository Status { get; }
 FaultCompliants.IFaultCompliantsLookupRepository FaultCompliantsLookupRepository { get; }
 UserAccessRegister.IUserAccessRegisterLookupRepository UserAccessRegisterLookupRepository { get; }
+FaultDetails.IFaultDetailsRepository FaultDetailsRepository { get; }
 
 
-
-        Task SaveAsync();
+    Task SaveAsync();
     }
 }

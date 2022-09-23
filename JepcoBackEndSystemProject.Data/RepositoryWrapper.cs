@@ -18,7 +18,9 @@ namespace JepcoBackEndSystemProject.Data
         private RepairingStatus.IRepairingStatusRepository _status;
         private FaultCompliants.IFaultCompliantsLookupRepository _FaultCompliantsLookupRepository;
         private UserAccessRegister.IUserAccessRegisterLookupRepository _UserAccessRegisterLookupRepository;
+        private FaultDetails.IFaultDetailsRepository _faultDetailsRepository;
 
+      
 
 
 
@@ -100,11 +102,22 @@ namespace JepcoBackEndSystemProject.Data
         }
 
 
+        public FaultDetails.IFaultDetailsRepository FaultDetailsRepository
+        {
+            get
+            {
+                if (_faultDetailsRepository == null)
+                {
+                    _faultDetailsRepository = new FaultDetails.FaultDetailsRepository(_repoContext, _logger);
+                }
+
+                return _faultDetailsRepository;
+            }
+        }
 
 
 
 
-        
 
 
 

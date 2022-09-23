@@ -12,6 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ElectricalFaultStatus\**" />
+    <EmbeddedResource Remove="ElectricalFaultStatus\**" />
+    <None Remove="ElectricalFaultStatus\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FirebaseAdmin" Version="1.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
@@ -49,10 +55,6 @@
     <None Update="Connected Services\SAPReference\ConnectedService.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ElectricalFaultStatus\" />
   </ItemGroup>
 
 </Project>

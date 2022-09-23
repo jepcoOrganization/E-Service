@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JepcoBackEndSystemProject.Data;
 using JepcoBackEndSystemProject.Data.CommonReturn;
+using JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.FaultComplaint;
 using JepcoBackEndSystemProject.EMRCServices.DataTransferObject;
 using JepcoBackEndSystemProject.Models;
 using JepcoBackEndSystemProject.Models.Models;
@@ -239,5 +240,81 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
 
         }
+
+        //----------------------------------------------------------------------------------------------------------
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "GetFaultCompliantDetails")]
+        [Route("GetFaultCompliantDetails")]
+        // BranchId from BranchesModelResource in Resource project to hide value
+        public async Task<ActionResult<CommonReturnResult>> GetChildFaultCompliantDetails([FromBody] ComplaintFaultDetailsRequestDto ComplaintFaultDetailsRequest)
+        {
+
+            try
+            {
+                if (ComplaintFaultDetailsRequest == null)
+                {
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ComplaintFaultDetailsRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ComplaintFaultDetailsRequest.LanguageId, " Complaint object sent from client is null")));
+                }
+                if (!ModelState.IsValid) { 
+         
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ComplaintFaultDetailsRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ComplaintFaultDetailsRequest.LanguageId, "Invalid Complaint object sent from client")));
+                }
+
+                tb_FaultDetails ComplaintFaultDetails = await _repository.FaultDetailsRepository.GetSingleFaultDetails(faultDetails => faultDetails.FaultComplaintID == ComplaintFaultDetailsRequest.FaultComplaintID).ConfigureAwait(false);
+
+
+                if (ComplaintFaultDetails == null)
+                {
+                    //   _logger.LogError($"Branch with id: {Branch.Id}, hasn't been found in db.");
+
+                    //Call API for add error log inside TbErrorLogs
+
+                    return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ComplaintFaultDetailsRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ComplaintFaultDetailsRequest.LanguageId, "Complaint with id hasn't been found in db") + ComplaintFaultDetailsRequest.FaultComplaintID));
+
+                }
+                else
+                {
+                    //BranchesReturnDto BranchResult = _mapper.Map<BranchesReturnDto>(branch);
+                    //    // _logger.LogInfo($"Returned Branch with id: {Branch.Id}");
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ComplaintFaultDetailsRequest.LanguageId, "Returned Complaint with id") + ComplaintFaultDetails.FaultComplaintID, ComplaintFaultDetails));
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetComplaintByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+
+                //Call API for add error log inside TbErrorLogs
+
+                // _common.AddErrorLog(_repository,"Branches", "GetBranchByID", $"Something went wrong inside GetBranchByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace }", ex.StackTrace, ex.Message, "400");
+
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ComplaintFaultDetailsRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ComplaintFaultDetailsRequest.LanguageId, "Internal server error")));
+
+            }
+        }
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

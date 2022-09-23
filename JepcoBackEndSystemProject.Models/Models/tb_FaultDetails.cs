@@ -64,7 +64,9 @@ namespace JepcoBackEndSystemProject.Models.Models
         public string RepairingImage3 { get; set; }
 
         public string TechnicationNote { get; set; }
+        public string FaultReason { get; set; }
+        public string FaultDescription { get; set; }
 
-       
+
     }
 }
