@@ -9,7 +9,6 @@ namespace JepcoBackEndSystemProject.Models.Models
 {
     public partial class tb_Fault_Compliants
     {
-        [Key]
         public long FaultComplaintID { get; set; }
 
         [Required]
@@ -32,15 +31,15 @@ namespace JepcoBackEndSystemProject.Models.Models
         [StringLength(255)]
         public string ComplaintDescription { get; set; }
 
-        [Required]
+      
         [StringLength(50)]
         public string GovernateName { get; set; }
 
-        public int GovernateId { get; set; }
+        public int? GovernateId { get; set; }
 
-        public int DistrictID { get; set; }
+        public int? DistrictID { get; set; }
 
-        [Required]
+       
         [StringLength(50)]
         public string DistrictName { get; set; }
 
@@ -85,8 +84,24 @@ namespace JepcoBackEndSystemProject.Models.Models
 
         public DateTime UpdateDate { get; set; }
 
-        public virtual tb_ElectricalFaultStatus tb_ElectricalFaultStatus { get; set; }
+        [StringLength(50)]
+        public string MenaTrackStatusDesc { get; set; }
 
-        public virtual ICollection<tb_FaultDetails> tb_FaultDetails { get; set; }
+        public int? MenaTrackStatusID { get; set; }
+
+        public int? PiorityID { get; set; }
+        [StringLength(50)]
+
+        public string PiorityDesc { get; set; }
+        [Required]
+        public int UserID { get; set; }
+        [Required]
+        public decimal IssueID { get; set; }
+        [Required]
+        public int BranchID { get; set; }
+
+
+
+        
     }
 }

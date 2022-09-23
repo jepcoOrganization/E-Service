@@ -180,6 +180,9 @@
   <data name="Returned Branch with id" xml:space="preserve">
     <value>Returned Branch with id</value>
   </data>
+  <data name="Someting Wrong in  LogOut" xml:space="preserve">
+    <value>Someting Wrong in  LogOut</value>
+  </data>
   <data name="The user name or password is incorrect" xml:space="preserve">
     <value>The user name or password is incorrect</value>
   </data>
@@ -206,5 +209,8 @@
   </data>
   <data name="You are successfully logged in" xml:space="preserve">
     <value>You are successfully logged in</value>
+  </data>
+  <data name="You are successfully logged Out" xml:space="preserve">
+    <value>You are successfully logged Out</value>
   </data>
 </root>

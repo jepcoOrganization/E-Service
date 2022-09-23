@@ -229,9 +229,13 @@ namespace MenaTrackService
         
         private string PriorityDescField;
         
+        private System.Nullable<int> PriorityIDField;
+        
         private string RefcodeField;
         
         private string StatusDescField;
+        
+        private System.Nullable<int> StatusIDField;
         
         private string StreetField;
         
@@ -504,6 +508,19 @@ namespace MenaTrackService
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> PriorityID
+        {
+            get
+            {
+                return this.PriorityIDField;
+            }
+            set
+            {
+                this.PriorityIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Refcode
         {
             get
@@ -526,6 +543,19 @@ namespace MenaTrackService
             set
             {
                 this.StatusDescField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> StatusID
+        {
+            get
+            {
+                return this.StatusIDField;
+            }
+            set
+            {
+                this.StatusIDField = value;
             }
         }
         
@@ -631,7 +661,7 @@ namespace MenaTrackService
         System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ParentsAsync(int UserId, int BranchID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/JEPCO_ViewRequests_Childs", ReplyAction="http://tempuri.org/ICallCenterNew/JEPCO_ViewRequests_ChildsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ChildsAsync(int IssueID, int BranchID);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ChildsAsync(long IssueID, int BranchID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
@@ -727,7 +757,7 @@ namespace MenaTrackService
             return base.Channel.JEPCO_ViewRequests_ParentsAsync(UserId, BranchID);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ChildsAsync(int IssueID, int BranchID)
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ChildsAsync(long IssueID, int BranchID)
         {
             return base.Channel.JEPCO_ViewRequests_ChildsAsync(IssueID, BranchID);
         }

@@ -15,8 +15,8 @@ namespace JepcoBackEndSystemProject.Models.Models
         [Required]
         [StringLength(50)]
         public string UserName { get; set; }
-
-        public int EmployeeNO { get; set; }
+        [Required]
+        public int UserID { get; set; }
 
         [Required]
         [StringLength(20)]

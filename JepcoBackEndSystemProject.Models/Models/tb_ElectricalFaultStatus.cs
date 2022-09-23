@@ -21,6 +21,5 @@ namespace JepcoBackEndSystemProject.Models.Models
         [StringLength(30)]
         public string FaultStatusNameEN { get; set; }
 
-        public virtual ICollection<tb_Fault_Compliants> tb_Fault_Compliants { get; set; }
     }
 }

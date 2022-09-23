@@ -145,7 +145,7 @@
     <value>Internal Error</value>
   </data>
   <data name="Internal server error" xml:space="preserve">
-    <value>خطأ داخلي في الخادم</value>
+    <value> اخطأ داخلي في الخادم</value>
   </data>
   <data name="Invalid Data object sent from client" xml:space="preserve">
     <value>خطأ في ارسال محتوى البيانات</value>
@@ -192,6 +192,9 @@
   <data name="Returned User with id" xml:space="preserve">
     <value>تم اعادة معلومات المستخدم للاسم</value>
   </data>
+  <data name="Someting Wrong in  LogOut" xml:space="preserve">
+    <value>هناك خطا بالخروج من التطبيق</value>
+  </data>
   <data name="The user name or password is incorrect" xml:space="preserve">
     <value>اسم المستخدم أو كلمة السر غير صحيحة</value>
   </data>
@@ -220,6 +223,9 @@
     <value>معلومات المستخدم للاسم غير موجوده في قاعدة البيانات</value>
   </data>
   <data name="You are successfully logged in" xml:space="preserve">
-    <value>تمت عملية الدخول الى البوابة بنجاح</value>
+    <value>تمت عملية الدخول الى التطبيق بنجاح من قبل الفني</value>
+  </data>
+  <data name="You are successfully logged Out" xml:space="preserve">
+    <value>تمت عملية الخروج من التطبيق بنجاح من قبل الفني</value>
   </data>
 </root>

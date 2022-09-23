@@ -20,6 +20,5 @@ namespace JepcoBackEndSystemProject.Models.Models
         [StringLength(50)]
         public string RepairingStatusNameEN { get; set; }
 
-        public virtual ICollection<tb_FaultDetails> tb_FaultDetails { get; set; }
     }
 }

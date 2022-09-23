@@ -12,6 +12,9 @@ namespace JepcoBackEndSystemProject.Data
    
         RepairingStatus.IRepairingStatusRepository Status { get; }
 FaultCompliants.IFaultCompliantsLookupRepository FaultCompliantsLookupRepository { get; }
+UserAccessRegister.IUserAccessRegisterLookupRepository UserAccessRegisterLookupRepository { get; }
+
+
 
         Task SaveAsync();
     }

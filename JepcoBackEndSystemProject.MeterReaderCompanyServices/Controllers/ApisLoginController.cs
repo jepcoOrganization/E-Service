@@ -79,9 +79,9 @@ namespace JWTAuthentication.Controllers
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             double expiredinMIuntes = 0;
-            if (userInfo.username == _config["Jwt:MeterPortalUserName"]) {
+            if (userInfo.username == _config["Jwt:EmergancyAppUserName"]) {
 
-                expiredinMIuntes = double.Parse(_config["Jwt:MeterPortalTokenExpirtioninMinutes"].ToString());
+                expiredinMIuntes = double.Parse(_config["Jwt:EmergancyAppTokenExpirtioninMinutes"].ToString());
 
             }
             

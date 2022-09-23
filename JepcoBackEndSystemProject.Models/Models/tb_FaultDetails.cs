@@ -12,7 +12,7 @@ namespace JepcoBackEndSystemProject.Models.Models
         [Key]
         public long FaultDetailsId { get; set; }
 
-        public long FaultComplaintD { get; set; }
+        public long FaultComplaintID { get; set; }
 
         public DateTime? DeliveredDateTime { get; set; }
 
@@ -65,8 +65,6 @@ namespace JepcoBackEndSystemProject.Models.Models
 
         public string TechnicationNote { get; set; }
 
-        public virtual tb_Fault_Compliants tb_Fault_Compliants { get; set; }
-
-        public virtual tb_RepairingStatus tb_RepairingStatus { get; set; }
+       
     }
 }

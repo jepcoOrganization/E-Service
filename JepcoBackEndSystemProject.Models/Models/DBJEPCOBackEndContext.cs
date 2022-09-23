@@ -39,7 +39,6 @@ namespace JepcoBackEndSystemProject.Models.Models
             modelBuilder.Entity<tb_ElectricalFaultStatus>(entity =>
             {
                 entity.HasKey(e => new { e.FaultStatusID });
-                entity.HasMany(e => e.tb_Fault_Compliants);
                 entity.ToTable("tb_ElectricalFaultStatus");
                 
 
@@ -49,8 +48,13 @@ namespace JepcoBackEndSystemProject.Models.Models
             modelBuilder.Entity<tb_Fault_Compliants>(entity =>
             {
                 entity.HasKey(e => new { e.FaultComplaintID });
-                entity.HasMany(e => e.tb_FaultDetails);
                 entity.ToTable("tb_Fault_Compliants");
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+                entity.Property(e => e.CompliantDateTime).HasColumnType("datetime");
+
+
 
             });
 
@@ -61,10 +65,15 @@ namespace JepcoBackEndSystemProject.Models.Models
 
             });
 
+            modelBuilder.Entity<tb_UserAccessRegister>(entity =>
+            {
+                entity.HasKey(e => new { e.ID  });
+                entity.ToTable("tb_UserAccessRegister");
+
+            });
 
 
-
-
+            
 
             OnModelCreatingPartial(modelBuilder);
         }
