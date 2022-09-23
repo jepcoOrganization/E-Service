@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
@@ -175,13 +176,38 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     _mapper.Map(ComplaintUpdate, Fault_Compliants);//Assign Updateed Fields For Orginal Model
                     _repository.FaultCompliantsLookupRepository.UpdateFaultCompliants(null, ComplaintUpdate);
                     await _repository.SaveAsync().ConfigureAwait(false);
-//-------------------------------------------------------------------------------------------------------------------------------------
+                    //-------------------------------------------------------------------------------------------------------------------------------------
+                    IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantParentRefNumber == ComplaintUpdate.ComplaintRefNumber).ConfigureAwait(false);
+                    if (lstFalutComplaintData != null)
+                    {
+                        foreach (var ComplainChildtUpdatelist in lstFalutComplaintData)
+                        {
+                            tb_Fault_Compliants ComplaintChildUpdate = new tb_Fault_Compliants();
+                            ComplaintUpdate.FaultComplaintID = ComplainChildtUpdatelist.FaultComplaintID;
+                            ComplaintUpdate.ComplaintRefNumber = ComplainChildtUpdatelist.ComplaintRefNumber;
+                            ComplaintUpdate.CompliantDateTime = ComplainChildtUpdatelist.CompliantDateTime;
+                            ComplaintUpdate.CompliantCustomerName = ComplainChildtUpdatelist.CompliantCustomerName;
+                            ComplaintUpdate.CompliantPhoneNumber = ComplainChildtUpdatelist.CompliantPhoneNumber;
+                            ComplaintUpdate.UserName = ComplainChildtUpdatelist.UserName;
+                            ComplaintUpdate.UserID = ComplainChildtUpdatelist.UserID;
+                            ComplaintUpdate.CreatedDate = ComplainChildtUpdatelist.CreatedDate;
+                            ComplaintUpdate.FaultStatusID = 2;
+                            ComplaintUpdate.UpdateDate = DateTime.Now;
+                            ComplaintUpdate.IssueID = ComplainChildtUpdatelist.IssueID;
+                            ComplaintUpdate.BranchID = ComplainChildtUpdatelist.BranchID;
+
+
+                            _mapper.Map(ComplaintChildUpdate, ComplainChildtUpdatelist);//Assign Updateed Fields For Orginal Model
+                            _repository.FaultCompliantsLookupRepository.UpdateFaultCompliants(null, ComplaintChildUpdate);
+                            await _repository.SaveAsync().ConfigureAwait(false);
+
+                        }
+                    }
 
 
 
 
-
-//------------------------------------------------------------------------------------------------------------------------------------
+                    //------------------------------------------------------------------------------------------------------------------------------------
                     return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, DelivredCompliantRequest.LanguageId, "Returned Complaint with id") + ComplaintFaultDetails.FaultComplaintID, ComplaintFaultDetails));
                 }
             }
