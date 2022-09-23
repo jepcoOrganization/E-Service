@@ -153,19 +153,35 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     _repository.FaultDetailsRepository.UpdateFaultDetails(null, ComplaintFaultDetailsUpdate);
                     await _repository.SaveAsync().ConfigureAwait(false);
 
-                    //-------------
-                    //tb_Fault_Compliants ComplaintUpdate = new tb_Fault_Compliants();
-                    //ComplaintFaultDetailsUpdate.DeliveredDateTime = DateTime.Now;
-                    //ComplaintFaultDetailsUpdate.FaultDetailsId = ComplaintFaultDetails.FaultDetailsId;
-                    //ComplaintFaultDetailsUpdate.FaultComplaintID = ComplaintFaultDetails.FaultComplaintID;
+//------------------------------------------------------------------------------------------------------------------------------------
+                    tb_Fault_Compliants ComplaintUpdate = new tb_Fault_Compliants();
+                    ComplaintUpdate.FaultComplaintID = Fault_Compliants.FaultComplaintID;
+                    ComplaintUpdate.ComplaintRefNumber = Fault_Compliants.ComplaintRefNumber;
+                    ComplaintUpdate.CompliantDateTime = Fault_Compliants.CompliantDateTime;
+                    ComplaintUpdate.CompliantCustomerName = Fault_Compliants.CompliantCustomerName;
+                    ComplaintUpdate.CompliantPhoneNumber = Fault_Compliants.CompliantPhoneNumber;
+                    ComplaintUpdate.UserName = Fault_Compliants.UserName;
+                    ComplaintUpdate.UserID = Fault_Compliants.UserID;
+                    ComplaintUpdate.CreatedDate = Fault_Compliants.CreatedDate;
+                    ComplaintUpdate.FaultStatusID = 2;
+                    ComplaintUpdate.UpdateDate = DateTime.Now;
+                    ComplaintUpdate.IssueID = Fault_Compliants.IssueID;
+                    ComplaintUpdate.BranchID = Fault_Compliants.BranchID;
 
 
 
 
-                    //_mapper.Map(ComplaintFaultDetailsUpdate, ComplaintFaultDetails);//Assign Updateed Fields For Orginal Model
-                    //_repository.FaultDetailsRepository.UpdateFaultDetails(null, ComplaintFaultDetailsUpdate);
-                    //await _repository.SaveAsync().ConfigureAwait(false);
 
+                    _mapper.Map(ComplaintUpdate, Fault_Compliants);//Assign Updateed Fields For Orginal Model
+                    _repository.FaultCompliantsLookupRepository.UpdateFaultCompliants(null, ComplaintUpdate);
+                    await _repository.SaveAsync().ConfigureAwait(false);
+//-------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------------------------
                     return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, DelivredCompliantRequest.LanguageId, "Returned Complaint with id") + ComplaintFaultDetails.FaultComplaintID, ComplaintFaultDetails));
                 }
             }

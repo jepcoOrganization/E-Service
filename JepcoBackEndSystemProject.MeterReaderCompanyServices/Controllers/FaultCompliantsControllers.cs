@@ -76,7 +76,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                         if (lstFalutComplaintData == null)
                         {
 
-                            tb_Fault_Compliants tb_Fault_Compliants = new tb_Fault_Compliants();
+                            tb_Fault_Compliants tb_Fault_Compliants =  new tb_Fault_Compliants();
                             tb_Fault_Compliants.ComplaintDescription = jEPCOViewRequest.ComplaintDescription;
                             tb_Fault_Compliants.ComplaintRefNumber = jEPCOViewRequest.Refcode;
                             tb_Fault_Compliants.ComplaintDescription = jEPCOViewRequest.ComplaintDescription.ToString();
