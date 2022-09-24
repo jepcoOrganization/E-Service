@@ -16,7 +16,6 @@ namespace JepcoBackEndSystemProject.Models.Models
 
         public DateTime? DeliveredDateTime { get; set; }
 
-        public DateTime? ArrivingDateTime { get; set; }
 
         public DateTime? ArrivingLocationDateTime { get; set; }
 
@@ -26,7 +25,7 @@ namespace JepcoBackEndSystemProject.Models.Models
         public string ArrivingLocationLatt { get; set; }
 
         [StringLength(50)]
-        public string ArrivingLocationLong { get; set; }
+        public string ArrivingLocationLong {get; set; }
 
         public int? FaultClassficationID { get; set; }
 
@@ -66,6 +65,10 @@ namespace JepcoBackEndSystemProject.Models.Models
         public string TechnicationNote { get; set; }
         public string FaultReason { get; set; }
         public string FaultDescription { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        public DateTime UpdateDate { get; set; }
 
 
     }

@@ -51,6 +51,7 @@ namespace JepcoBackEndSystemProject.Services
             services.ConfigureMsSqlContext(Configuration);
             services.ConfigureRepositoryWrapper();
             services.AddAutoMapper(typeof(Startup));
+            services.AddSwaggerGen();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
    .AddJwtBearer(options =>
    {
@@ -116,6 +117,12 @@ namespace JepcoBackEndSystemProject.Services
 
             var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
             app.UseRequestLocalization(locOptions.Value);
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Emergancy API V1");
+            });
         }
     }
 }

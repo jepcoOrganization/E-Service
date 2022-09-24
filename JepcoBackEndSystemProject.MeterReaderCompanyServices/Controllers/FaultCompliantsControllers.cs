@@ -73,7 +73,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                         IEnumerable<tb_Fault_Compliants > lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants (x => x.IssueID == jEPCOViewRequest.IssueID).ConfigureAwait(false) ;
 
-                        if (lstFalutComplaintData == null)
+                        if (lstFalutComplaintData == null || lstFalutComplaintData.ToList().Count  ==0)
                         {
 
                             tb_Fault_Compliants tb_Fault_Compliants =  new tb_Fault_Compliants();
@@ -124,8 +124,11 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                             tb_FaultDetails tb_Fault_Details = new tb_FaultDetails();
                             tb_Fault_Details.FaultComplaintID = tb_Fault_Compliants.FaultComplaintID;
-                            tb_Fault_Details.RepairingStatusID = a;
-                            tb_Fault_Details.FaultDescription = tb_Fault_Compliants.ComplaintDescription;
+                            tb_Fault_Details.CreatedDate = DateTime.Now;
+                            tb_Fault_Details.UpdateDate = DateTime.Now;
+
+                            //tb_Fault_Details.RepairingStatusID = a;
+                            //tb_Fault_Details.FaultDescription = tb_Fault_Compliants.ComplaintDescription;
                             _repository.FaultDetailsRepository.AddFaultDetails(tb_Fault_Details);
                             await _repository.SaveAsync().ConfigureAwait(false);
 
@@ -154,7 +157,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+       [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GetChildFaultCompliantList")]
         [Route("GetChildFaultCompliantList")]
         public async Task<ActionResult<CommonReturnResult>> GetChildFaultCompliantList([FromBody] ChildFaultComplaintDto FaultComplaintDto)
@@ -178,7 +181,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                         IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.IssueID == jEPCOViewRequest.IssueID).ConfigureAwait(false);
 
-                        if (lstFalutComplaintData == null)
+                        if (lstFalutComplaintData == null || lstFalutComplaintData.ToList().Count == 0 )
                         {
 
                             tb_Fault_Compliants tb_Fault_Compliants = new tb_Fault_Compliants();

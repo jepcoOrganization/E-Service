@@ -1,4 +1,5 @@
-﻿namespace JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.FaultComplaint
+﻿    namespace JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.FaultComplaint
+
 {
     public class DelivredCompliantRequestDto
     {
@@ -6,4 +7,8 @@
         public int FaultComplaintID { get; set; }
 
     }
+
+
+
+
 }

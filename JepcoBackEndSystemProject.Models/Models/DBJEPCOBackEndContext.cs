@@ -58,6 +58,24 @@ namespace JepcoBackEndSystemProject.Models.Models
 
             });
 
+
+
+            modelBuilder.Entity<tb_FaultDetails >(entity =>
+            {
+                entity.HasKey(e => new { e.FaultDetailsId  });
+                entity.ToTable("tb_FaultDetails");
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.DeliveredDateTime ).HasColumnType("datetime");
+                entity.Property(e => e.ArrivingLocationDateTime ).HasColumnType("datetime");
+                entity.Property(e => e.RepairingClosingDatetime).HasColumnType("datetime");
+
+            });
+
+
             modelBuilder.Entity<tb_RepairingStatus>(entity =>
             {
                 entity.HasKey(e => new { e.RepairingStatusID });

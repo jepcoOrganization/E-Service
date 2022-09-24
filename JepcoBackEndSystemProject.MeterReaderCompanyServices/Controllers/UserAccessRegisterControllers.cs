@@ -49,7 +49,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
         #endregion
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "TechnicianLogin")]
         [Route("TechnicianLogin")]
         public async Task<ActionResult<CommonReturnResult>> TechnicianLogin([FromBody] LoginUserAccessRegisterDto LoginUserAccessRegisterDto)
@@ -97,7 +97,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "TechnicianLogOut")]
         [Route("TechnicianLogOut")]
         public async Task<ActionResult<CommonReturnResult>> TechnicianLogOut([FromBody] LogOutUserAccessRegisterDto LogOutUserAccessRegisterDto)
