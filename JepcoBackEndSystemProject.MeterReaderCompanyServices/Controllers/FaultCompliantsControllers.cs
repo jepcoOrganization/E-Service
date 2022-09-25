@@ -76,6 +76,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                         if (lstFalutComplaintData == null || lstFalutComplaintData.ToList().Count  ==0)
                         {
 
+                            
                             tb_Fault_Compliants tb_Fault_Compliants =  new tb_Fault_Compliants();
                             tb_Fault_Compliants.ComplaintDescription = jEPCOViewRequest.ComplaintDescription;
                             tb_Fault_Compliants.ComplaintRefNumber = jEPCOViewRequest.Refcode;
@@ -111,7 +112,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                             tb_Fault_Compliants.LV_Feeder = jEPCOViewRequest.LVFeederNumber;
                             tb_Fault_Compliants.MV_Feeder  = jEPCOViewRequest.MVFeederNumber;
                             tb_Fault_Compliants.SubstationNumber  = jEPCOViewRequest.SubstationNumber;
-                            //tb_Fault_Compliants.SubstationName  = jEPCOViewRequest.s;
+                            tb_Fault_Compliants.SubstationName  = jEPCOViewRequest.SubstationName ;
 
 
 

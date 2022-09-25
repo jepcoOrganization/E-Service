@@ -241,6 +241,8 @@ namespace MenaTrackService
         
         private System.Nullable<int> StreetIDField;
         
+        private string SubstationNameField;
+        
         private string SubstationNumberField;
         
         private System.Nullable<int> ZoneIDField;
@@ -582,6 +584,19 @@ namespace MenaTrackService
             set
             {
                 this.StreetIDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SubstationName
+        {
+            get
+            {
+                return this.SubstationNameField;
+            }
+            set
+            {
+                this.SubstationNameField = value;
             }
         }
         
