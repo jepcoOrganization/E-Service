@@ -278,7 +278,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             {
 
 
-                List<tb_Fault_Compliants> myList = new List<tb_Fault_Compliants>();
+          
                 if (PushRequest != null && PushRequest.Count > 0)
                 {
                     foreach (var jEPCOViewRequest in PushRequest)
@@ -336,9 +336,9 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                             await _repository.SaveAsync().ConfigureAwait(false);
 
                        
-                            myList.Add(tb_Fault_Compliants);
+                        
                           
-                            int a = 1;
+                            //int a = 1;
                             //tb_ElectricalFaultStatus tb_ElectricalFaultStatusOBJ = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusID == a).ConfigureAwait(false);
 
                             tb_FaultDetails tb_Fault_Details = new tb_FaultDetails();
@@ -365,7 +365,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                
 
 
-                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "AR", "Save all new Fault Complaints for Technication"), myList));
+                return Ok(_common.ReturnResourceValue(_localizerAR, _localizerEN, "AR", "Save all new Fault Complaints for Technication"));
 
             }
             catch (Exception ex)
