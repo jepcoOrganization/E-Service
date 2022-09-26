@@ -223,9 +223,9 @@
     <value>معلومات المستخدم للاسم غير موجوده في قاعدة البيانات</value>
   </data>
   <data name="You are successfully logged in" xml:space="preserve">
-    <value>تمت عملية الدخول الى التطبيق بنجاح من قبل الفني</value>
+    <value>تمت عملية الدخول الى التطبيق بنجاح </value>
   </data>
   <data name="You are successfully logged Out" xml:space="preserve">
-    <value>تمت عملية الخروج من التطبيق بنجاح من قبل الفني</value>
+    <value>تمت عملية الخروج من التطبيق بنجاح </value>
   </data>
 </root>

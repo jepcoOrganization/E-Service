@@ -22,8 +22,8 @@ namespace JepcoBackEndSystemProject.Models.Models
         public virtual DbSet<tb_FaultDetails> tb_FaultDetails { get; set; }
         public virtual DbSet<tb_RepairingStatus> tb_RepairingStatus { get; set; }
         public virtual DbSet<tb_UserAccessRegister> tb_UserAccessRegister { get; set; }
+        public virtual DbSet<tb_EngineersAccessRegister> tb_EngineersAccessRegister { get; set; }
 
-     
 
 
 
@@ -91,7 +91,13 @@ namespace JepcoBackEndSystemProject.Models.Models
             });
 
 
-            
+            modelBuilder.Entity<tb_EngineersAccessRegister>(entity =>
+            {
+                entity.HasKey(e => new { e.ID });
+                entity.ToTable("tb_EngineersAccessRegister");
+
+            });
+
 
             OnModelCreatingPartial(modelBuilder);
         }
