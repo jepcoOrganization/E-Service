@@ -640,6 +640,43 @@ namespace MenaTrackService
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ClassficationLookupResponse", Namespace="http://schemas.datacontract.org/2004/07/AllservicesIntegrationJepco.Classes")]
+    public partial class ClassficationLookupResponse : object
+    {
+        
+        private string FieldDescField;
+        
+        private int FieldValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FieldDesc
+        {
+            get
+            {
+                return this.FieldDescField;
+            }
+            set
+            {
+                this.FieldDescField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FieldValue
+        {
+            get
+            {
+                return this.FieldValueField;
+            }
+            set
+            {
+                this.FieldValueField = value;
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MenaTrackService.ICallCenterNew")]
     public interface ICallCenterNew
@@ -677,6 +714,12 @@ namespace MenaTrackService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/JEPCO_ViewRequests_Childs", ReplyAction="http://tempuri.org/ICallCenterNew/JEPCO_ViewRequests_ChildsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ChildsAsync(long IssueID, int BranchID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/MainCalssfications", ReplyAction="http://tempuri.org/ICallCenterNew/MainCalssficationsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> MainCalssficationsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/SubMainCalssfications", ReplyAction="http://tempuri.org/ICallCenterNew/SubMainCalssficationsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> SubMainCalssficationsAsync(int intMainCalssficationId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
@@ -775,6 +818,16 @@ namespace MenaTrackService
         public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ChildsAsync(long IssueID, int BranchID)
         {
             return base.Channel.JEPCO_ViewRequests_ChildsAsync(IssueID, BranchID);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> MainCalssficationsAsync()
+        {
+            return base.Channel.MainCalssficationsAsync();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> SubMainCalssficationsAsync(int intMainCalssficationId)
+        {
+            return base.Channel.SubMainCalssficationsAsync(intMainCalssficationId);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

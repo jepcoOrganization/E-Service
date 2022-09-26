@@ -448,24 +448,32 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                 List<FaultClassficationResponsetDto> lstFaultClassficationResponsetDto = new List<FaultClassficationResponsetDto>();
 
-              FaultClassficationResponsetDto objFaultClassficationResponsetDto = new FaultClassficationResponsetDto();
-                objFaultClassficationResponsetDto.FaultClassficationID = 1;
-                objFaultClassficationResponsetDto.FaultClassficationName = "فردي";
-                lstFaultClassficationResponsetDto.Add (objFaultClassficationResponsetDto);
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
+
+                List<MenaTrackService.ClassficationLookupResponse > lstClassficationLookupResponse = await objCallCenterNewClient.MainCalssficationsAsync ().ConfigureAwait(false);
 
 
-                FaultClassficationResponsetDto objFaultClassficationResponsetDto1 = new FaultClassficationResponsetDto();
+                if (lstClassficationLookupResponse !=null && lstClassficationLookupResponse.Count > 0)
+                {
 
-                objFaultClassficationResponsetDto1.FaultClassficationID = 2;
-                objFaultClassficationResponsetDto1.FaultClassficationName = "جماعي";
-                lstFaultClassficationResponsetDto.Add(objFaultClassficationResponsetDto1);
+                    foreach ( var obClassficationLookupResponse in lstClassficationLookupResponse)
+                    {
+
+                        FaultClassficationResponsetDto objFaultClassficationResponsetDto = new FaultClassficationResponsetDto();
+                        objFaultClassficationResponsetDto.FaultClassficationID = obClassficationLookupResponse.FieldValue ;
+                        objFaultClassficationResponsetDto.FaultClassficationName = obClassficationLookupResponse.FieldDesc  ;
+                        lstFaultClassficationResponsetDto.Add(objFaultClassficationResponsetDto);
+
+                    }
 
 
-                FaultClassficationResponsetDto objFaultClassficationResponsetDto2 = new FaultClassficationResponsetDto();
+                }
 
-                objFaultClassficationResponsetDto2.FaultClassficationID = 3;
-                objFaultClassficationResponsetDto2.FaultClassficationName = "بلاغ خاطى";
-                lstFaultClassficationResponsetDto.Add(objFaultClassficationResponsetDto2);
+
+               
+
+
+
 
 
                 //------------------------------------------------------------------------------------------------------------------------------------
@@ -508,95 +516,45 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-                if (FaultSubClassficationRequestDto.FaultClassficationID == 1)
+                if (FaultSubClassficationRequestDto.FaultClassficationID == 1
+                    || FaultSubClassficationRequestDto.FaultClassficationID == 2
+                    || FaultSubClassficationRequestDto.FaultClassficationID == 4
+
+                    )
                 {
 
-                    FaultSubClassficationResponsetDto objFaultSubClassficationResponsetDto = new FaultSubClassficationResponsetDto();
-                    objFaultSubClassficationResponsetDto.FaultClassficationID = 1;
-                    objFaultSubClassficationResponsetDto.FaultSubClassficationID  = 1;
-
-                    objFaultSubClassficationResponsetDto.FaultSubClassficationName = "1فردي";
-                    lstFaultsubClassficationResponsetDto.Add(objFaultSubClassficationResponsetDto);
 
 
-                    FaultSubClassficationResponsetDto objFaultSubClassficationResponsetDto1 = new FaultSubClassficationResponsetDto();
-                    objFaultSubClassficationResponsetDto1.FaultClassficationID = 1;
-                    objFaultSubClassficationResponsetDto1.FaultSubClassficationID = 2;
+                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
-                    objFaultSubClassficationResponsetDto1.FaultSubClassficationName = "2فردي";
-                    lstFaultsubClassficationResponsetDto.Add(objFaultSubClassficationResponsetDto1);
-
-                    FaultSubClassficationResponsetDto objFaultSubClassficationResponsetDto2 = new FaultSubClassficationResponsetDto();
-                    objFaultSubClassficationResponsetDto2.FaultClassficationID = 1;
-                    objFaultSubClassficationResponsetDto2.FaultSubClassficationID = 3;
-
-                    objFaultSubClassficationResponsetDto2.FaultSubClassficationName = "3فردي";
-                    lstFaultsubClassficationResponsetDto.Add(objFaultSubClassficationResponsetDto2);
-                }
-                else if (FaultSubClassficationRequestDto.FaultClassficationID == 2)
-                {
-
-                    FaultSubClassficationResponsetDto objFaultSubClassficationResponsetDto = new FaultSubClassficationResponsetDto();
-                    objFaultSubClassficationResponsetDto.FaultClassficationID = 2;
-                    objFaultSubClassficationResponsetDto.FaultSubClassficationID = 4;
-
-                    objFaultSubClassficationResponsetDto.FaultSubClassficationName = "1جماعي";
-                    lstFaultsubClassficationResponsetDto.Add(objFaultSubClassficationResponsetDto);
+                    List<MenaTrackService.ClassficationLookupResponse> lstClassficationLookupResponse = await objCallCenterNewClient.SubMainCalssficationsAsync(FaultSubClassficationRequestDto.FaultClassficationID).ConfigureAwait(false);
 
 
-                    FaultSubClassficationResponsetDto objFaultSubClassficationResponsetDto1 = new FaultSubClassficationResponsetDto();
-                    objFaultSubClassficationResponsetDto1.FaultClassficationID = 2;
-                    objFaultSubClassficationResponsetDto1.FaultSubClassficationID = 5;
 
-                    objFaultSubClassficationResponsetDto1.FaultSubClassficationName = "2جماعي";
-                    lstFaultsubClassficationResponsetDto.Add(objFaultSubClassficationResponsetDto1);
+                    if (lstClassficationLookupResponse != null && lstClassficationLookupResponse.Count > 0)
+                    {
 
-                    FaultSubClassficationResponsetDto objFaultSubClassficationResponsetDto2 = new FaultSubClassficationResponsetDto();
-                    objFaultSubClassficationResponsetDto2.FaultClassficationID = 2;
-                    objFaultSubClassficationResponsetDto2.FaultSubClassficationID = 6;
+                        foreach (var obClassficationLookupResponse in lstClassficationLookupResponse)
+                        {
 
-                    objFaultSubClassficationResponsetDto2.FaultSubClassficationName = "3جماعي";
-                    lstFaultsubClassficationResponsetDto.Add(objFaultSubClassficationResponsetDto2);
+                            FaultSubClassficationResponsetDto objFaultSubClassficationResponsetDto = new FaultSubClassficationResponsetDto();
+                            objFaultSubClassficationResponsetDto.FaultClassficationID = FaultSubClassficationRequestDto.FaultClassficationID;
+                            objFaultSubClassficationResponsetDto.FaultSubClassficationID  = obClassficationLookupResponse.FieldValue ;
+
+                            objFaultSubClassficationResponsetDto.FaultSubClassficationName  = obClassficationLookupResponse.FieldDesc;
+                            lstFaultsubClassficationResponsetDto.Add(objFaultSubClassficationResponsetDto);
+
+                        }
+
+
+                    }
 
 
 
 
                 }
-                else if (FaultSubClassficationRequestDto.FaultClassficationID == 3)
-                {
-
-                    FaultSubClassficationResponsetDto objFaultSubClassficationResponsetDto = new FaultSubClassficationResponsetDto();
-                    objFaultSubClassficationResponsetDto.FaultClassficationID = 3;
-                    objFaultSubClassficationResponsetDto.FaultSubClassficationID = 7;
-
-                    objFaultSubClassficationResponsetDto.FaultSubClassficationName = "بلاغ خاطى1";
-                    lstFaultsubClassficationResponsetDto.Add(objFaultSubClassficationResponsetDto);
-
-
-                    FaultSubClassficationResponsetDto objFaultSubClassficationResponsetDto1 = new FaultSubClassficationResponsetDto();
-                    objFaultSubClassficationResponsetDto1.FaultClassficationID = 3;
-                    objFaultSubClassficationResponsetDto1.FaultSubClassficationID = 8;
-
-                    objFaultSubClassficationResponsetDto1.FaultSubClassficationName = "2بلاغ خاطى";
-                    lstFaultsubClassficationResponsetDto.Add(objFaultSubClassficationResponsetDto1);
-
-                    FaultSubClassficationResponsetDto objFaultSubClassficationResponsetDto2 = new FaultSubClassficationResponsetDto();
-                    objFaultSubClassficationResponsetDto2.FaultClassficationID = 3;
-                    objFaultSubClassficationResponsetDto2.FaultSubClassficationID = 9;
-
-                    objFaultSubClassficationResponsetDto2.FaultSubClassficationName = "3بلاغ خاطى";
-                    lstFaultsubClassficationResponsetDto.Add(objFaultSubClassficationResponsetDto2);
-
-
-
-
-                }
-
-
-
-
-
-                
+                    
+               
 
                 //------------------------------------------------------------------------------------------------------------------------------------
                 return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, FaultSubClassficationRequestDto.LanguageId, "Fault Calssfication Lookup returened Susscuflly"), lstFaultsubClassficationResponsetDto));
