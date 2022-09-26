@@ -430,6 +430,96 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "ReassignCompliant")]
+        [Route("ReassignCompliant")]
+        // BranchId from BranchesModelResource in Resource project to hide value
+        public async Task<ActionResult<CommonReturnResult>> ReassignCompliant([FromBody] ReassignCompliantDto ReassignCompliantDto)
+        {
+
+            try
+            {
+                if (ReassignCompliantDto == null)
+                {
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, " Complaint object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Invalid Complaint object sent from client")));
+                }
+                tb_Fault_Compliants Fault_Compliants = await _repository.FaultCompliantsLookupRepository.GetSingleFaultCompliant(X => X.FaultComplaintID == ReassignCompliantDto.FaultComplaintID).ConfigureAwait(false);
+                tb_FaultDetails ComplaintFaultDetails = await _repository.FaultDetailsRepository.GetSingleFaultDetails(faultDetails => faultDetails.FaultComplaintID == ReassignCompliantDto.FaultComplaintID).ConfigureAwait(false);
+
+
+                if (ComplaintFaultDetails == null || Fault_Compliants == null)
+                {
+                    //   _logger.LogError($"Branch with id: {Branch.Id}, hasn't been found in db.");
+
+                    //Call API for add error log inside TbErrorLogs
+
+                    return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Complaint with id hasn't been found in db") + ReassignCompliantDto.FaultComplaintID));
+
+                }
+                else
+                {
+                    ComplaintFaultDetails.ReassignDate  = DateTime.Now;
+                    ComplaintFaultDetails.ReassignClassficationID  = ReassignCompliantDto.ReassignClassficationID ;
+                    ComplaintFaultDetails.ReassignClassficationName  = ReassignCompliantDto.ReassignClassficationName ;
+
+                    ComplaintFaultDetails.ReassignReason   = ReassignCompliantDto.ReassignReason;
+                    
+
+                    ComplaintFaultDetails.UpdateDate = DateTime.Now;
+
+
+                    _repository.FaultDetailsRepository.UpdateFaultDetails(null, ComplaintFaultDetails);
+                    await _repository.SaveAsync().ConfigureAwait(false);
+
+                    //------------------------------------------------------------------------------------------------------------------------------------
+
+                    Fault_Compliants.FaultStatusID = 5;
+                    Fault_Compliants.UpdateDate = DateTime.Now;
+                    _repository.FaultCompliantsLookupRepository.UpdateFaultCompliants(null, Fault_Compliants);
+                    await _repository.SaveAsync().ConfigureAwait(false);
+                    //-------------------------------------------------------------------------------------------------------------------------------------
+                    IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantParentRefNumber == Fault_Compliants.ComplaintRefNumber).ConfigureAwait(false);
+                    if (lstFalutComplaintData != null)
+                    {
+                        foreach (var objComplainChildtUpdate in lstFalutComplaintData)
+                        {
+                            // tb_Fault_Compliants ComplaintChildUpdate = new tb_Fault_Compliants();
+
+                            objComplainChildtUpdate.FaultStatusID = 5;
+                            objComplainChildtUpdate.UpdateDate = DateTime.Now;
+
+                            _repository.FaultCompliantsLookupRepository.UpdateFaultCompliants(null, objComplainChildtUpdate);
+                            await _repository.SaveAsync().ConfigureAwait(false);
+
+                        }
+                    }
+
+                    //------------------------------------------------------------------------------------------------------------------------------------
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Returned Complaint with id") + ComplaintFaultDetails.FaultComplaintID, ComplaintFaultDetails));
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside ReassignCompliant action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+
+                //Call API for add error log inside TbErrorLogs
+
+                // _common.AddErrorLog(_repository,"Branches", "GetBranchByID", $"Something went wrong inside GetBranchByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace }", ex.StackTrace, ex.Message, "400");
+
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Internal server error")));
+
+            }
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
         [HttpPost(Name = "FaultClassficationLookup")]
         [Route("FaultClassficationLookup")]
@@ -574,6 +664,68 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "ReassingClassficationLookup")]
+        [Route("ReassingClassficationLookup")]
+        // BranchId from BranchesModelResource in Resource project to hide value
+        public async Task<ActionResult<CommonReturnResult>> ReassingClassficationLookup([FromBody] ReassingClassficationRequestDto ReassingClassficationRequestDto)
+        {
+
+            try
+            {
+                if (ReassingClassficationRequestDto == null)
+                {
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassingClassficationRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ReassingClassficationRequestDto.LanguageId, " FaultClassficationRequestDto object sent from client is null")));
+                }
+
+                List<ReassingClassficationResponsetDto > lstReassingClassficationResponsetDto = new List<ReassingClassficationResponsetDto>();
+
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
+
+                List<MenaTrackService.ClassficationLookupResponse> lstClassficationLookupResponse = await objCallCenterNewClient.ReassingCallsficationCalssficationsAsync ().ConfigureAwait(false);
+
+
+                if (lstClassficationLookupResponse != null && lstClassficationLookupResponse.Count > 0)
+                {
+
+                    foreach (var obClassficationLookupResponse in lstClassficationLookupResponse)
+                    {
+
+                        ReassingClassficationResponsetDto objReassingClassficationResponsetDto = new ReassingClassficationResponsetDto();
+                        objReassingClassficationResponsetDto.ReassingClassficationID  = obClassficationLookupResponse.FieldValue;
+                        objReassingClassficationResponsetDto.ReassingClassficationName  = obClassficationLookupResponse.FieldDesc;
+                        lstReassingClassficationResponsetDto.Add(objReassingClassficationResponsetDto);
+
+                    }
+
+
+                }
+
+
+
+
+
+
+
+
+                //------------------------------------------------------------------------------------------------------------------------------------
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassingClassficationRequestDto.LanguageId, "Fault Calssfication Lookup returened Susscuflly"), lstReassingClassficationResponsetDto));
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside FaultClassficationLookup action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+
+                //Call API for add error log inside TbErrorLogs
+
+                // _common.AddErrorLog(_repository,"Branches", "GetBranchByID", $"Something went wrong inside GetBranchByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace }", ex.StackTrace, ex.Message, "400");
+
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassingClassficationRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ReassingClassficationRequestDto.LanguageId, "Internal server error")));
+
+            }
+        }
 
 
 
