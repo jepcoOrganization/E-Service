@@ -228,7 +228,18 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                             _repository.FaultCompliantsLookupRepository.AddFaultCompliants(tb_Fault_Compliants);
                             await _repository.SaveAsync().ConfigureAwait(false);
+                            int a = 1;
+                            //tb_ElectricalFaultStatus tb_ElectricalFaultStatusOBJ = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusID == a).ConfigureAwait(false);
 
+                            tb_FaultDetails tb_Fault_Details = new tb_FaultDetails();
+                            tb_Fault_Details.FaultComplaintID = tb_Fault_Compliants.FaultComplaintID;
+                            tb_Fault_Details.CreatedDate = DateTime.Now;
+                            tb_Fault_Details.UpdateDate = DateTime.Now;
+
+                            //tb_Fault_Details.RepairingStatusID = a;
+                            //tb_Fault_Details.FaultDescription = tb_Fault_Compliants.ComplaintDescription;
+                            _repository.FaultDetailsRepository.AddFaultDetails(tb_Fault_Details);
+                            await _repository.SaveAsync().ConfigureAwait(false);
                         }
 
 
@@ -243,7 +254,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 var lstFalutComplaint = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserID == FaultComplaintDto.UserID && x.CompliantParentRefNumber == FaultComplaintDto.ComplaintRefCode &&   x.FaultStatusID != 4).ConfigureAwait(false);
 
 
-                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, FaultComplaintDto.LanguageId, "Returned all Fault Complaints fro Technication"), lstFalutComplaint));
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, FaultComplaintDto.LanguageId, "Returned NEW Fault Complaints fro Technication"), lstFalutComplaint));
 
             }
             catch (Exception ex)
@@ -255,8 +266,113 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
         //----------------------------------------------------------------------------------------------------------
-        
 
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "PushTicket")]
+        [Route("PushTicket")]
+        public async Task<ActionResult<CommonReturnResult>> PushTicket([FromBody] List<PushRequestDTO> PushRequest)
+        {
+
+
+            try
+            {
+          
+                if (PushRequest != null && PushRequest.Count > 0)
+                {
+                    foreach (var jEPCOViewRequest in PushRequest)
+                    {
+
+
+                        IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.IssueID == jEPCOViewRequest.IssueID).ConfigureAwait(false);
+
+                        if (lstFalutComplaintData == null || lstFalutComplaintData.ToList().Count == 0)
+                        {
+
+                            tb_Fault_Compliants tb_Fault_Compliants = new tb_Fault_Compliants();
+
+                            tb_Fault_Compliants.ComplaintDescription = jEPCOViewRequest.ComplaintDescription;
+                            tb_Fault_Compliants.ComplaintRefNumber = jEPCOViewRequest.ComplaintRefNumber;
+                            tb_Fault_Compliants.ComplaintDescription = jEPCOViewRequest.ComplaintDescription.ToString();
+                            tb_Fault_Compliants.CompliantCustomerName = jEPCOViewRequest.CompliantCustomerName;
+                            tb_Fault_Compliants.CompliantDateTime = jEPCOViewRequest.CompliantDateTime;
+                            tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CompliantPhoneNumber;
+                            tb_Fault_Compliants.SubstationNumber = jEPCOViewRequest.SubstationNumber;
+                            tb_Fault_Compliants.CompliantParentRefNumber = jEPCOViewRequest.CompliantParentRefNumber;
+                            tb_Fault_Compliants.CustomerAddress_Latt = jEPCOViewRequest.CustomerAddress_Latt;
+                            tb_Fault_Compliants.CustomerAddress_Long = jEPCOViewRequest.CustomerAddress_Long;
+
+                            tb_Fault_Compliants.DistrictID = jEPCOViewRequest.DistrictID;
+                            tb_Fault_Compliants.DistrictName = jEPCOViewRequest.DistrictName;
+                            tb_Fault_Compliants.GovernateId = jEPCOViewRequest.GovernateId;
+                            tb_Fault_Compliants.GovernateName = jEPCOViewRequest.GovernateName;
+                            tb_Fault_Compliants.ZoneID = jEPCOViewRequest.ZoneID;
+                            tb_Fault_Compliants.ZoneName = jEPCOViewRequest.ZoneName;
+
+                            tb_Fault_Compliants.StreetID = jEPCOViewRequest.StreetID;
+                            tb_Fault_Compliants.StreetName = jEPCOViewRequest.ZoneName;
+                            tb_Fault_Compliants.FaultStatusID = 1;
+                            tb_Fault_Compliants.MenaTrackStatusDesc = jEPCOViewRequest.MenaTrackStatusDesc;
+                            tb_Fault_Compliants.MenaTrackStatusID = jEPCOViewRequest.MenaTrackStatusID;
+                            tb_Fault_Compliants.IssueID = jEPCOViewRequest.IssueID;
+                            tb_Fault_Compliants.PiorityID = jEPCOViewRequest.PiorityID;
+                            tb_Fault_Compliants.PiorityDesc = jEPCOViewRequest.PiorityDesc;
+                            tb_Fault_Compliants.UserID = jEPCOViewRequest.UserID;
+                            tb_Fault_Compliants.UserName = jEPCOViewRequest.UserName;
+                            tb_Fault_Compliants.BranchID = jEPCOViewRequest.BranchID;
+                            tb_Fault_Compliants.CreatedDate = DateTime.Now;
+                            tb_Fault_Compliants.UpdateDate = DateTime.Now;
+                            tb_Fault_Compliants.LV_Feeder = jEPCOViewRequest.LV_Feeder;
+                            tb_Fault_Compliants.MV_Feeder = jEPCOViewRequest.MV_Feeder;
+                            tb_Fault_Compliants.SubstationNumber = jEPCOViewRequest.SubstationNumber;
+                            //tb_Fault_Compliants.SubstationName  = jEPCOViewRequest.s;
+
+
+
+
+
+                            _repository.FaultCompliantsLookupRepository.AddFaultCompliants(tb_Fault_Compliants);
+                            await _repository.SaveAsync().ConfigureAwait(false);
+
+                       
+                        
+                          
+                            //int a = 1;
+                            //tb_ElectricalFaultStatus tb_ElectricalFaultStatusOBJ = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusID == a).ConfigureAwait(false);
+
+                            tb_FaultDetails tb_Fault_Details = new tb_FaultDetails();
+                            tb_Fault_Details.FaultComplaintID = tb_Fault_Compliants.FaultComplaintID;
+                            tb_Fault_Details.CreatedDate = DateTime.Now;
+                            tb_Fault_Details.UpdateDate = DateTime.Now;
+
+                            //tb_Fault_Details.RepairingStatusID = a;
+                            //tb_Fault_Details.FaultDescription = tb_Fault_Compliants.ComplaintDescription;
+                            _repository.FaultDetailsRepository.AddFaultDetails(tb_Fault_Details);
+                            await _repository.SaveAsync().ConfigureAwait(false);
+
+                        }
+
+
+                    }
+
+
+
+                }
+
+
+
+               
+
+
+                return Ok(_common.ReturnResourceValue(_localizerAR, _localizerEN, "AR", "Save all new Fault Complaints for Technication"));
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetParentFaultCompliantList action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "AR", "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, "AR", "Internal server error")));
+            }
+
+        }
 
 
 

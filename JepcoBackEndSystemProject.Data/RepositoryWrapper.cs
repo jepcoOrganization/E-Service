@@ -20,8 +20,8 @@ namespace JepcoBackEndSystemProject.Data
         private UserAccessRegister.IUserAccessRegisterLookupRepository _UserAccessRegisterLookupRepository;
         private FaultDetails.IFaultDetailsRepository _faultDetailsRepository;
         private ElectricalFaultStatus.IElectricalFaultStatusRepository _electricalFaultStatusRepository;
-
-
+        private EngineersAccessRegister.IEngineersAccessRegisterRepository _engineersAccessRegisterRepository;
+    
 
 
 
@@ -130,9 +130,20 @@ namespace JepcoBackEndSystemProject.Data
             }
         }
 
+       
 
+        public EngineersAccessRegister.IEngineersAccessRegisterRepository EngineersAccessRegisterRepository
+        {
+            get
+            {
+                if (_engineersAccessRegisterRepository == null)
+                {
+                    _engineersAccessRegisterRepository = new EngineersAccessRegister.EngineersAccessRegisterRepository(_repoContext, _logger);
+                }
 
-        
+                return _engineersAccessRegisterRepository;
+            }
+        }
 
 
 

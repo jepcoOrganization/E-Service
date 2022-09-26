@@ -14,8 +14,10 @@ RepairingStatus.IRepairingStatusRepository Status { get; }
 FaultCompliants.IFaultCompliantsLookupRepository FaultCompliantsLookupRepository { get; }
 UserAccessRegister.IUserAccessRegisterLookupRepository UserAccessRegisterLookupRepository { get; }
 FaultDetails.IFaultDetailsRepository FaultDetailsRepository { get; }
- ElectricalFaultStatus.IElectricalFaultStatusRepository ElectricalFaultStatusRepository { get; }
+ElectricalFaultStatus.IElectricalFaultStatusRepository ElectricalFaultStatusRepository { get; }
+EngineersAccessRegister.IEngineersAccessRegisterRepository EngineersAccessRegisterRepository { get; }
 
-            Task SaveAsync();
+        
+                    Task SaveAsync();
     }
 }
