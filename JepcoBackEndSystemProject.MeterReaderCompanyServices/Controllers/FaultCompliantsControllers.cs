@@ -276,8 +276,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
             try
             {
-
-
           
                 if (PushRequest != null && PushRequest.Count > 0)
                 {
