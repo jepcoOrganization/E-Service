@@ -117,14 +117,45 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                         lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.UserName == GeneralTechnicianInfRequest.TechnicianName );
                     }
 
-                    tb_ElectricalFaultStatus statusDto = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusNameAR == GeneralTechnicianInfRequest.FaultStatus ).ConfigureAwait(false);
+                    //tb_ElectricalFaultStatus statusDto = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusNameAR == GeneralTechnicianInfRequest.FaultStatus ).ConfigureAwait(false);
 
-                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.FaultStatus) == false)
+                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityDesc) == false)
                     {
-                        lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.FaultStatusID == statusDto.FaultStatusID);
+                        lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.PiorityDesc == GeneralTechnicianInfRequest.PiorityDesc);
                     }
 
-                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Returned ComplaintList with id") , lstFalutComplaintData));
+                   List<GroupCountResponseDto> final= new List<GroupCountResponseDto>();
+                  ;
+
+                    var resultmultiplekeylamba = lstFalutComplaintData
+                   .GroupBy(stu => new { stu.UserName })
+                   .OrderBy(g => g.Key.UserName);
+                 
+
+                    foreach (var group in resultmultiplekeylamba)
+                    {
+                        GroupCountResponseDto GroupCountResponse = new GroupCountResponseDto();
+                        List<tb_Fault_Compliants> groupOfComp = new List<tb_Fault_Compliants>();
+                        GroupCountResponse.TotalComplaintNum= group.Count();
+                        GroupCountResponse.userName = group.Key.UserName;
+                        GroupCountResponse.NewComplaintNum=group.Count(ss => ss.FaultStatusID == 1);
+                        GroupCountResponse.DeliveredComplaintNum= group.Count(ss => ss.FaultStatusID == 2);
+                        GroupCountResponse.ArrivingLocationComplaintNum=group.Count(ss => ss.FaultStatusID == 3);
+                        GroupCountResponse.ClosedFromTechnicianComplaintNum = group.Count(ss => ss.FaultStatusID == 4);
+                        GroupCountResponse.ReAssingedComplaintNum = group.Count(ss => ss.FaultStatusID == 5);
+
+                        foreach (var _student in group)
+                        {
+                            groupOfComp.Add(_student);
+                           
+                        }
+                        GroupCountResponse.GroupOfComplaint = groupOfComp;
+
+
+                        final.Add(GroupCountResponse);
+                    }
+                    
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Returned ComplaintList with id") , final));
                 }
                 
 
