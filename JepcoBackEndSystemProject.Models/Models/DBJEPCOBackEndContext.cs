@@ -72,6 +72,9 @@ namespace JepcoBackEndSystemProject.Models.Models
                 entity.Property(e => e.DeliveredDateTime ).HasColumnType("datetime");
                 entity.Property(e => e.ArrivingLocationDateTime ).HasColumnType("datetime");
                 entity.Property(e => e.RepairingClosingDatetime).HasColumnType("datetime");
+                entity.Property(e => e.ReassignDate).HasColumnType("datetime");
+
+                
 
             });
 

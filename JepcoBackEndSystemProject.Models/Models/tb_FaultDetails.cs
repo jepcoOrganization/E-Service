@@ -70,6 +70,15 @@ namespace JepcoBackEndSystemProject.Models.Models
 
         public DateTime UpdateDate { get; set; }
 
+        public string ReassignReason { get; set; }
+
+        public int? ReassignClassficationID { get; set; }
+
+        public string ReassignClassficationName { get; set; }
+
+        public DateTime? ReassignDate { get; set; }
+
+
 
     }
 }

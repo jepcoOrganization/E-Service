@@ -720,6 +720,9 @@ namespace MenaTrackService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/SubMainCalssfications", ReplyAction="http://tempuri.org/ICallCenterNew/SubMainCalssficationsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> SubMainCalssficationsAsync(int intMainCalssficationId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/ReassingCallsficationCalssfications", ReplyAction="http://tempuri.org/ICallCenterNew/ReassingCallsficationCalssficationsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> ReassingCallsficationCalssficationsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
@@ -828,6 +831,11 @@ namespace MenaTrackService
         public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> SubMainCalssficationsAsync(int intMainCalssficationId)
         {
             return base.Channel.SubMainCalssficationsAsync(intMainCalssficationId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> ReassingCallsficationCalssficationsAsync()
+        {
+            return base.Channel.ReassingCallsficationCalssficationsAsync();
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

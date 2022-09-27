@@ -144,7 +144,9 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-                var lstFalutComplaint = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants (x => x.UserID  == FaultComplaintDto.UserID && x.FaultStatusID != 4).ConfigureAwait(false) ;
+                var lstFalutComplaint = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants (x => x.UserID  == FaultComplaintDto.UserID && 
+                (x.FaultStatusID != 4  && x.FaultStatusID != 5 ) 
+                && ( x.CompliantParentRefNumber == null || x.CompliantParentRefNumber == "") ).ConfigureAwait(false) ;
 
 
                 return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, FaultComplaintDto.LanguageId, "Returned all Fault Complaints fro Technication"), lstFalutComplaint));
@@ -251,7 +253,8 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-                var lstFalutComplaint = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserID == FaultComplaintDto.UserID && x.CompliantParentRefNumber == FaultComplaintDto.ComplaintRefCode &&   x.FaultStatusID != 4).ConfigureAwait(false);
+                var lstFalutComplaint = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserID == FaultComplaintDto.UserID && x.CompliantParentRefNumber == FaultComplaintDto.ComplaintRefCode &&
+                (x.FaultStatusID != 4 && x.FaultStatusID != 5)).ConfigureAwait(false);
 
 
                 return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, FaultComplaintDto.LanguageId, "Returned NEW Fault Complaints fro Technication"), lstFalutComplaint));
