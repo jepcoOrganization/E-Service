@@ -135,6 +135,12 @@
   <data name="Error In Integration With MenaTrack System" xml:space="preserve">
     <value>Error in  Integration with Mena Track System , please Try Later</value>
   </data>
+  <data name="Error In Integration With MenaTrack System to close Tieckt" xml:space="preserve">
+    <value>Error In Integration With MenaTrack System to close Tieckt</value>
+  </data>
+  <data name="Error In Integration With MenaTrack System to Reassign Tieckt" xml:space="preserve">
+    <value>Error In Integration With MenaTrack System to Reassign Tieckt</value>
+  </data>
   <data name="Internal Error" xml:space="preserve">
     <value>Internal Error</value>
   </data>

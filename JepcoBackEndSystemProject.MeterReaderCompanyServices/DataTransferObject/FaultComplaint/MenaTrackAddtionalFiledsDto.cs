@@ -4,14 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JepcoBackEndSystemProject.Services.DataTransferObject.Complaints
+namespace JepcoBackEndSystemProject.Services.DataTransferObject.FaultComplaint
 {
     public class MenaTrackAddtionalFiledsDto
     {
 
-        long IssueID { get; set; }
-        int BranchId { get; set; }
-        public string FieldID { get; set; }
+     
+        public int FieldID { get; set; }
      
         public string FieldValue { get; set; }
         

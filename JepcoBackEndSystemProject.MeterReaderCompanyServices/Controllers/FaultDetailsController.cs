@@ -5,6 +5,7 @@ using JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.FaultClassfi
 using JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.FaultComplaint;
 using JepcoBackEndSystemProject.Models;
 using JepcoBackEndSystemProject.Models.Models;
+using JepcoBackEndSystemProject.Services.DataTransferObject.FaultComplaint;
 using JepcoBackEndSysytemProject.LoggerService;
 using JepcoBackEndSysytemProject.ResourcesFiles.Resources;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -108,7 +110,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
         //----------------------------------------------------------------------------------------------------------------------------
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "DelivredCompliant")]
         [Route("DelivredCompliant")]
         // BranchId from BranchesModelResource in Resource project to hide value
@@ -146,11 +148,31 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 else
                 {
 
+
                     DateTime dtDelivredDate = DateTime.Now;
+
+                    List<MenaTrackAddtionalFiledsDto> lstMenaTrackAddtionalFiledsDto = new List<MenaTrackAddtionalFiledsDto>();
+
+
+                    MenaTrackAddtionalFiledsDto objMenaTrackAddtionalFiledsDto = new MenaTrackAddtionalFiledsDto();
+
+
+                    objMenaTrackAddtionalFiledsDto.FieldID = 28;
+                    objMenaTrackAddtionalFiledsDto.FieldValue = dtDelivredDate.ToString();
+
+                    lstMenaTrackAddtionalFiledsDto.Add(objMenaTrackAddtionalFiledsDto);
+
+                    string  strAddtionalFiledsjson = JsonConvert.SerializeObject(lstMenaTrackAddtionalFiledsDto.ToArray());
+
+
 
                     MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
-                    string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse( Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID ,28, dtDelivredDate.ToString() ).ConfigureAwait(false); 
+                    //  string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse( Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID ,28, dtDelivredDate.ToString() ).ConfigureAwait(false); 
+
+                     string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertBulkAsync (Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()), strAddtionalFiledsjson).ConfigureAwait(false); 
+
+
 
                     if (Status != "Success")
                     {
@@ -287,44 +309,87 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 else
                 {
                     DateTime dtArrivingDate = DateTime.Now;
+
+
+                    List<MenaTrackAddtionalFiledsDto> lstMenaTrackAddtionalFiledsDto = new List<MenaTrackAddtionalFiledsDto>();
+
+
+                    MenaTrackAddtionalFiledsDto objMenaTrackAddtionalFiledsDto = new MenaTrackAddtionalFiledsDto();
+
+
+                   
+                    objMenaTrackAddtionalFiledsDto.FieldID = 70;
+                    objMenaTrackAddtionalFiledsDto.FieldValue = dtArrivingDate.ToString();
+
+                    lstMenaTrackAddtionalFiledsDto.Add(objMenaTrackAddtionalFiledsDto);
+
+
+                    MenaTrackAddtionalFiledsDto objMenaTrackAddtionalFiledsDto1 = new MenaTrackAddtionalFiledsDto();
+
+
+                 
+                    objMenaTrackAddtionalFiledsDto1.FieldID = 71;
+                    objMenaTrackAddtionalFiledsDto1.FieldValue = ComplaintFaultDetails.ArrivingLocationLatt + "," + ComplaintFaultDetails.ArrivingLocationLong;
+
+                    lstMenaTrackAddtionalFiledsDto.Add(objMenaTrackAddtionalFiledsDto1);
+
+
+
+                    string strAddtionalFiledsjson = JsonConvert.SerializeObject(lstMenaTrackAddtionalFiledsDto.ToArray());
+
+
+
                     MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
-                    string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse(Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID, 70, dtArrivingDate.ToString()).ConfigureAwait(false);
+                    //  string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse( Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID ,28, dtDelivredDate.ToString() ).ConfigureAwait(false); 
+
+                    string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertBulkAsync(Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()), strAddtionalFiledsjson).ConfigureAwait(false);
 
                     if (Status != "Success")
                     {
 
-                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " تاريخ الوصول")));
+                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error In Integration With MenaTrack System" + "  تاريخ الوصول و أحداثيات الموقع")));
 
                     }
 
-                    if (string.IsNullOrEmpty( ComplaintFaultDetails.ArrivingLocationLatt) == false && string.IsNullOrEmpty(ComplaintFaultDetails.ArrivingLocationLong))
+                    if (string.IsNullOrEmpty(  ComplaintFaultDetails.ArrivingLocationImage)== false)
                     {
-                        string Status1 = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse(Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID, 71
-                                               , ComplaintFaultDetails.ArrivingLocationLatt + "," + ComplaintFaultDetails.ArrivingLocationLong).ConfigureAwait(false);
+                        string Status2 = await objCallCenterNewClient.JEPCO_NewAttachmentAsync(Fault_Compliants.BranchID, Fault_Compliants.UserID, long.Parse(Fault_Compliants.IssueID.ToString()), "صورة من الموقع", ComplaintFaultDetails.ArrivingLocationImage).ConfigureAwait(false);
 
-                        if (Status1 != "Success")
+                        if (Status2 != "Success")
                         {
 
-                            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " احداثيات الموقع")));
+                            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error In Integration With MenaTrack System" + "  صورة الموقع")));
 
                         }
 
                     }
 
-
-                    string Status2 = await objCallCenterNewClient.JEPCO_NewAttachmentAsync (Fault_Compliants.UserID , long.Parse(Fault_Compliants.IssueID.ToString()), "صورة من الموقع" , ComplaintFaultDetails.ArrivingLocationImage ).ConfigureAwait(false);
-
-                    if (Status2 != "Success")
-                    {
-
-                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error In Integration With MenaTrack System" + "  صورة الموقع")));
-
-                    }
+                  
 
 
+                    //string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse(Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID, 70, dtArrivingDate.ToString()).ConfigureAwait(false);
 
+                    //if (Status != "Success")
+                    //{
 
+                    //    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " تاريخ الوصول")));
+
+                    //}
+
+                    //if (string.IsNullOrEmpty( ComplaintFaultDetails.ArrivingLocationLatt) == false && string.IsNullOrEmpty(ComplaintFaultDetails.ArrivingLocationLong))
+                    //{
+                    //    string Status1 = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse(Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID, 71
+                    //                           , ComplaintFaultDetails.ArrivingLocationLatt + "," + ComplaintFaultDetails.ArrivingLocationLong).ConfigureAwait(false);
+
+                    //    if (Status1 != "Success")
+                    //    {
+
+                    //        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " احداثيات الموقع")));
+
+                    //    }
+
+                    //}
 
 
 
@@ -423,89 +488,111 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
                     DateTime dtArrivingDate = DateTime.Now;
-                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
-                    string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse(Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID, 65, RepairandCloseComplaintRequestDto.FaultClassficationID.ToString() ).ConfigureAwait(false);
 
-                    if (Status != "Success")
-                    {
 
-                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " تصنيف العطل الرئيسي")));
+                    List<MenaTrackAddtionalFiledsDto> lstMenaTrackAddtionalFiledsDto = new List<MenaTrackAddtionalFiledsDto>();
 
-                    }
+
+                    MenaTrackAddtionalFiledsDto objMenaTrackAddtionalFiledsDto = new MenaTrackAddtionalFiledsDto();
+
+
+                  
+                    objMenaTrackAddtionalFiledsDto.FieldID = 65;
+                    objMenaTrackAddtionalFiledsDto.FieldValue = RepairandCloseComplaintRequestDto.FaultClassficationID.ToString();
+
+                    lstMenaTrackAddtionalFiledsDto.Add(objMenaTrackAddtionalFiledsDto);
+
+
+                    MenaTrackAddtionalFiledsDto objMenaTrackAddtionalFiledsDto1 = new MenaTrackAddtionalFiledsDto();
+                   
+                    objMenaTrackAddtionalFiledsDto1.FieldValue = RepairandCloseComplaintRequestDto.FaultSubClassficationID.ToString();
+
 
                     if (RepairandCloseComplaintRequestDto.FaultClassficationID == 1)
                     {
 
-                        string Status2 = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse(Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID, 67, RepairandCloseComplaintRequestDto.FaultSubClassficationID.ToString()).ConfigureAwait(false);
-
-                        if (Status2 != "Success")
-                        {
-
-                            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " وصف الاغلاق الفردي")));
-
-                        }
-
+                        objMenaTrackAddtionalFiledsDto1.FieldID = 67;
 
                     }
 
                     if (RepairandCloseComplaintRequestDto.FaultClassficationID == 2)
                     {
 
-                        string Status3 = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse(Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID, 66, RepairandCloseComplaintRequestDto.FaultSubClassficationID.ToString()).ConfigureAwait(false);
-
-                        if (Status3 != "Success")
-                        {
-
-                            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " وصف الاغلاق الجماعي")));
-
-                        }
-
+                        objMenaTrackAddtionalFiledsDto1.FieldID = 66;
 
                     }
 
                     if (RepairandCloseComplaintRequestDto.FaultClassficationID == 4)
                     {
+                        objMenaTrackAddtionalFiledsDto1.FieldID = 68;
 
-                        string Status4 = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse(Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID, 68, RepairandCloseComplaintRequestDto.FaultSubClassficationID.ToString()).ConfigureAwait(false);
+                    }
 
-                        if (Status4 != "Success")
+                    lstMenaTrackAddtionalFiledsDto.Add(objMenaTrackAddtionalFiledsDto1);
+
+
+
+
+                    //MenaTrackAddtionalFiledsDto objMenaTrackAddtionalFiledsDto2 = new MenaTrackAddtionalFiledsDto();
+
+
+                    //objMenaTrackAddtionalFiledsDto2.BranchId = Fault_Compliants.BranchID;
+                    //objMenaTrackAddtionalFiledsDto2.IssueID = long.Parse(Fault_Compliants.IssueID.ToString());
+                    //objMenaTrackAddtionalFiledsDto2.FieldID = 63;
+                    //objMenaTrackAddtionalFiledsDto2.Value = RepairandCloseComplaintRequestDto.UpdateSubstationID.ToString();
+
+                    //lstMenaTrackAddtionalFiledsDto.Add(objMenaTrackAddtionalFiledsDto2);
+
+
+                    //MenaTrackAddtionalFiledsDto objMenaTrackAddtionalFiledsDto3 = new MenaTrackAddtionalFiledsDto();
+
+
+                    //objMenaTrackAddtionalFiledsDto3.BranchId = Fault_Compliants.BranchID;
+                    //objMenaTrackAddtionalFiledsDto3.IssueID = long.Parse(Fault_Compliants.IssueID.ToString());
+                    //objMenaTrackAddtionalFiledsDto3.FieldID = 64;
+                    //objMenaTrackAddtionalFiledsDto3.Value = RepairandCloseComplaintRequestDto.UpdatedLV_Feeder.ToString();
+
+                    //lstMenaTrackAddtionalFiledsDto.Add(objMenaTrackAddtionalFiledsDto3);
+
+
+
+
+                    string strAddtionalFiledsjson = JsonConvert.SerializeObject(lstMenaTrackAddtionalFiledsDto.ToArray());
+
+                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
+
+                    string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertBulkAsync(Fault_Compliants.BranchID , long.Parse(Fault_Compliants.IssueID.ToString()),strAddtionalFiledsjson).ConfigureAwait(false);
+
+                    if (Status != "Success")
+                    {
+
+                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " بيانات الاغلاق")));
+
+                    }
+
+
+                    if( string.IsNullOrEmpty(  ComplaintFaultDetails.RepairingImage1) == false ){
+
+                        string Status1 = await objCallCenterNewClient.JEPCO_NewAttachmentAsync(Fault_Compliants.BranchID, Fault_Compliants.UserID, long.Parse(Fault_Compliants.IssueID.ToString()), "صورة بعد الاصلاح", ComplaintFaultDetails.RepairingImage1).ConfigureAwait(false);
+
+                        if (Status1 != "Success")
                         {
 
-                            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " غير مرتبط بالاعطال")));
+                            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error In Integration With MenaTrack System" + "  صورة بعد الاصلاح")));
 
                         }
 
-
-                    }
-
-                    string Status5 = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse(Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID, 63, RepairandCloseComplaintRequestDto.UpdateSubstationID.ToString()).ConfigureAwait(false);
-
-                    if (Status5 != "Success")
-                    {
-
-                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " رقم المحطة الفرعي")));
-
-                    }
-
-                    string Status6 = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse(Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID, 64, RepairandCloseComplaintRequestDto.UpdatedLV_Feeder.ToString()).ConfigureAwait(false);
-
-                    if (Status6 != "Success")
-                    {
-
-                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " مغذي الضغط المنخفض")));
-
                     }
 
 
+                    string Status3 =  await objCallCenterNewClient.JEPCO_ChangeStatusAsync(Fault_Compliants.UserID, Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()) , ComplaintFaultDetails.TechnicationNote).ConfigureAwait(false);
 
 
-                    string Status7 = await objCallCenterNewClient.JEPCO_NewAttachmentAsync(Fault_Compliants.UserID, long.Parse(Fault_Compliants.IssueID.ToString()), "صورة بعد الاصلاح", ComplaintFaultDetails.RepairingImage1).ConfigureAwait(false);
-
-                    if (Status7 != "Success")
+                    if (Status3 != "Success")
                     {
 
-                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error In Integration With MenaTrack System" + "  صورة الموقع")));
+                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error In Integration With MenaTrack System to close Tieckt")));
 
                     }
 
@@ -520,7 +607,9 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     ComplaintFaultDetails.FaultSubClassficationName = RepairandCloseComplaintRequestDto.FaultSubClassficationName;
 
                     ComplaintFaultDetails.UpdatedLV_Feeder  = RepairandCloseComplaintRequestDto.UpdatedLV_Feeder;
-                    
+                    ComplaintFaultDetails.LV_Feeder_Color = RepairandCloseComplaintRequestDto.LV_Feeder_Color;
+
+
                     ComplaintFaultDetails.UpdatedSubstationLatt  = RepairandCloseComplaintRequestDto.UpdatedSubstationLatt;
                     ComplaintFaultDetails.UpdatedSubstationLong  = RepairandCloseComplaintRequestDto.UpdatedSubstationLong;
                     ComplaintFaultDetails.UpdateSubstationID  = RepairandCloseComplaintRequestDto.UpdateSubstationID;
@@ -616,6 +705,23 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 }
                 else
                 {
+
+
+                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
+
+                    string Status = await objCallCenterNewClient.JEPCO_RequestReassignToPreviousAssigneeAsync(Fault_Compliants.UserID  , Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()), ReassignCompliantDto.ReassignClassficationID , ReassignCompliantDto.ReassignReason ).ConfigureAwait(false);
+
+
+                    if (Status != "Success")
+                    {
+
+                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Error In Integration With MenaTrack System to close Tieckt")));
+
+                    }
+
+
+
+
                     ComplaintFaultDetails.ReassignDate  = DateTime.Now;
                     ComplaintFaultDetails.ReassignClassficationID  = ReassignCompliantDto.ReassignClassficationID ;
                     ComplaintFaultDetails.ReassignClassficationName  = ReassignCompliantDto.ReassignClassficationName ;
@@ -699,22 +805,21 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     foreach ( var obClassficationLookupResponse in lstClassficationLookupResponse)
                     {
 
+                        if (obClassficationLookupResponse.FieldValue == 3)
+                        {
+                            continue;
+                        }
+
                         FaultClassficationResponsetDto objFaultClassficationResponsetDto = new FaultClassficationResponsetDto();
-                        objFaultClassficationResponsetDto.FaultClassficationID = obClassficationLookupResponse.FieldValue ;
-                        objFaultClassficationResponsetDto.FaultClassficationName = obClassficationLookupResponse.FieldDesc  ;
+                        objFaultClassficationResponsetDto.FaultClassficationID = obClassficationLookupResponse.FieldValue;
+                        objFaultClassficationResponsetDto.FaultClassficationName = obClassficationLookupResponse.FieldDesc;
                         lstFaultClassficationResponsetDto.Add(objFaultClassficationResponsetDto);
+
 
                     }
 
 
                 }
-
-
-               
-
-
-
-
 
                 //------------------------------------------------------------------------------------------------------------------------------------
                 return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, FaultClassficationRequestDto.LanguageId, "Fault Calssfication Lookup returened Susscuflly") , lstFaultClassficationResponsetDto));

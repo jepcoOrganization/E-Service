@@ -79,11 +79,9 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 objtbUserAccessRegister.LoginLatt = LoginUserAccessRegisterDto.LoginLatt;
                 objtbUserAccessRegister.LoginLong  = LoginUserAccessRegisterDto.LoginLong  ;
                 objtbUserAccessRegister.UserName = LoginUserAccessRegisterDto.UserName;
-
+                objtbUserAccessRegister.VehiclePlateNumber = LoginUserAccessRegisterDto.VehiclePlateNumber ;
                 _repository.UserAccessRegisterLookupRepository.Add(objtbUserAccessRegister);
                 await _repository.SaveAsync().ConfigureAwait(false);
-
-
 
 
                 return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "You are successfully logged in"), objtbUserAccessRegister));
