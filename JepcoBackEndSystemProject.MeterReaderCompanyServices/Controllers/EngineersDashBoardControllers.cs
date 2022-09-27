@@ -70,8 +70,8 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                
                
                 IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = new tb_Fault_Compliants[] { };
-
-                if ( GeneralTechnicianInfRequest.ComplaintDateEnd == "" || GeneralTechnicianInfRequest.ComplaintDateEnd == null && GeneralTechnicianInfRequest.ComplaintDateStart == "" || GeneralTechnicianInfRequest.ComplaintTimeStart == null)
+               
+                if ( (string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintDateEnd) == true) && string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintTimeStart) == true)
                 {
                     DateTime dtScheduleDateFrom = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateStart, "yyyy-MM-dd",
                     System.Globalization.CultureInfo.InvariantCulture);
@@ -79,7 +79,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date == dtScheduleDateFrom).ConfigureAwait(false);
 
 
-                } else if (GeneralTechnicianInfRequest.ComplaintDateEnd == "" || GeneralTechnicianInfRequest.ComplaintDateEnd == null && GeneralTechnicianInfRequest.ComplaintDateStart != "" || GeneralTechnicianInfRequest.ComplaintTimeStart != null) 
+                } else if ((string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintDateEnd) == true) && string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintTimeStart) == false)
                 {
                     DateTime HourFrom = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateStart + " " + GeneralTechnicianInfRequest.ComplaintTimeStart, "yyyy-MM-dd HH:mm",
                                   System.Globalization.CultureInfo.InvariantCulture);
@@ -92,13 +92,13 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 }
                 else
                 {
-                    //DateTime dtScheduleDateFrom = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateStart, "yyyy-MM-dd",
-                    //           System.Globalization.CultureInfo.InvariantCulture);
+                    DateTime dtScheduleDateFrom = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateStart, "yyyy-MM-dd",
+                               System.Globalization.CultureInfo.InvariantCulture);
 
-                    //DateTime dtScheduleDateEnd = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateEnd , "yyyy-MM-dd",
-                    //                      System.Globalization.CultureInfo.InvariantCulture);
+                    DateTime dtScheduleDateEnd = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateEnd, "yyyy-MM-dd",
+                                          System.Globalization.CultureInfo.InvariantCulture);
 
-                    //lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= dtScheduleDateFrom.Date && x.CompliantDateTime <= dtScheduleDateEnd.Date).ConfigureAwait(false);
+                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= dtScheduleDateFrom.Date && x.CompliantDateTime <= dtScheduleDateEnd.Date).ConfigureAwait(false);
                 }
 
 
@@ -111,47 +111,59 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 {
 
 
-                    //if (lstFalutComplaintData != null && lstFalutComplaintData.ToList().Count > 0)
-                    //{
+
+                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.TechnicianName) == false )
+                    {
+                        lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.UserName == GeneralTechnicianInfRequest.TechnicianName );
+                    }
+
+                    //tb_ElectricalFaultStatus statusDto = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusNameAR == GeneralTechnicianInfRequest.FaultStatus ).ConfigureAwait(false);
+
+                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityDesc) == false)
+                    {
+                        lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.PiorityDesc == GeneralTechnicianInfRequest.PiorityDesc);
+                    }
+
+                   List<GroupCountResponseDto> final= new List<GroupCountResponseDto>();
+                  ;
+
+                    var resultmultiplekeylamba = lstFalutComplaintData
+                   .GroupBy(stu => new { stu.UserName })
+                   .OrderBy(g => g.Key.UserName);
+                 
+
+                    foreach (var group in resultmultiplekeylamba)
+                    {
+                        GroupCountResponseDto GroupCountResponse = new GroupCountResponseDto();
+                        List<tb_Fault_Compliants> groupOfComp = new List<tb_Fault_Compliants>();
+                        GroupCountResponse.TotalComplaintNum= group.Count();
+                        GroupCountResponse.userName = group.Key.UserName;
+                        GroupCountResponse.NewComplaintNum=group.Count(ss => ss.FaultStatusID == 1);
+                        GroupCountResponse.DeliveredComplaintNum= group.Count(ss => ss.FaultStatusID == 2);
+                        GroupCountResponse.ArrivingLocationComplaintNum=group.Count(ss => ss.FaultStatusID == 3);
+                        GroupCountResponse.ClosedFromTechnicianComplaintNum = group.Count(ss => ss.FaultStatusID == 4);
+                        GroupCountResponse.ReAssingedComplaintNum = group.Count(ss => ss.FaultStatusID == 5);
+
+                        foreach (var _student in group)
+                        {
+                            groupOfComp.Add(_student);
+                           
+                        }
+                        GroupCountResponse.GroupOfComplaint = groupOfComp;
 
 
-                        //DateTime internalnumber = lstFalutComplaintData.OrderByDescending(u => u.CreatedDate).FirstOrDefault().CreatedDate;
-
-                        //lstFalutComplaintData = lstFalutComplaintData.Where(a => a.CreatedDate == internalnumber).ToList();
-
-
-
-
-                        //if (string.IsNullOrEmpty(UnreadedMetersDto.ContractStatrtingDateFrom) == false && string.IsNullOrEmpty(UnreadedMetersDto.ContractStatrtingDateTo) == false)
-                        //{
-
-                        //    DateTime dtContractStatrtingDateFrom = DateTime.ParseExact(UnreadedMetersDto.ContractStatrtingDateFrom.ToString(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                        //    DateTime dtContractStatrtingDateTo = DateTime.ParseExact(UnreadedMetersDto.ContractStatrtingDateTo.ToString(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
-                        //    lstUnreadedMeters = lstUnreadedMeters.Where(ss => ss.CONTRACT_STARTING_DATE >= dtContractStatrtingDateTo && ss.CONTRACT_STARTING_DATE <= dtContractStatrtingDateTo);
-
-                        //}
-
-
-                    //}
-
-
-
-
-                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Returned Complaint with id") + lstFalutComplaintData, lstFalutComplaintData));
+                        final.Add(GroupCountResponse);
+                    }
+                    
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Returned ComplaintList with id") , final));
                 }
-                //return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Returned Complaint with id")+ lstFalutComplaintData, lstFalutComplaintData));
+                
 
-            //}
+            
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Something went wrong inside GetComplaintByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
-
-                //Call API for add error log inside TbErrorLogs
-
-                // _common.AddErrorLog(_repository,"Branches", "GetBranchByID", $"Something went wrong inside GetBranchByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace }", ex.StackTrace, ex.Message, "400");
-
                 return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Internal server error")));
 
             }
