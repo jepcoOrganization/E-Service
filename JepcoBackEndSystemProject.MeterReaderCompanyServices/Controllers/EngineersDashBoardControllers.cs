@@ -49,7 +49,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GeneralTechnicianInf")]
         [Route("GeneralTechnicianInf")]
-        // BranchId from BranchesModelResource in Resource project to hide value
+      
         public async Task<ActionResult<CommonReturnResult>> GeneralTechnicianInf([FromBody] GeneralTechnicianInfRequestDto GeneralTechnicianInfRequest)
         {
 
@@ -144,9 +144,9 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                         GroupCountResponse.ClosedFromTechnicianComplaintNum = group.Count(ss => ss.FaultStatusID == 4);
                         GroupCountResponse.ReAssingedComplaintNum = group.Count(ss => ss.FaultStatusID == 5);
 
-                        foreach (var _student in group)
+                        foreach (var _complaint in group)
                         {
-                            groupOfComp.Add(_student);
+                            groupOfComp.Add(_complaint);
                            
                         }
                         GroupCountResponse.GroupOfComplaint = groupOfComp;
@@ -155,7 +155,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                         final.Add(GroupCountResponse);
                     }
                     
-                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Returned ComplaintList with id") , final));
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Returned ComplaintList and there Num") , final));
                 }
                 
 

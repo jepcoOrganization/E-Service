@@ -116,7 +116,17 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LogOutUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LogOutUserAccessRegisterDto.LanguageId, "Someting Wrong in  LogOut")));
                 }
 
-                tb_UserAccessRegister  objUserAccessRegister = await _repository.UserAccessRegisterLookupRepository.GetSingleUserAccessRegister(x => x.ID == LogOutUserAccessRegisterDto.UserSerialID ).ConfigureAwait(false);
+                IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserID == LogOutUserAccessRegisterDto.UserID && x.FaultStatusID ==1 || x.FaultStatusID == 2 || x.FaultStatusID == 3).ConfigureAwait(false);
+
+
+                if (lstFalutComplaintData != null)
+                {
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LogOutUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LogOutUserAccessRegisterDto.LanguageId, "You must Close or ReAssinged all Compliants before you logout")));
+                }
+
+
+                tb_UserAccessRegister objUserAccessRegister = await _repository.UserAccessRegisterLookupRepository.GetSingleUserAccessRegister(x => x.ID == LogOutUserAccessRegisterDto.UserSerialID ).ConfigureAwait(false);
 
 
                 objUserAccessRegister.LogOutLatt = LogOutUserAccessRegisterDto.LogOutLatt;
