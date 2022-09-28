@@ -21,8 +21,8 @@ namespace JepcoBackEndSystemProject.Data
         private FaultDetails.IFaultDetailsRepository _faultDetailsRepository;
         private ElectricalFaultStatus.IElectricalFaultStatusRepository _electricalFaultStatusRepository;
         private EngineersAccessRegister.IEngineersAccessRegisterRepository _engineersAccessRegisterRepository;
-    
-
+        private Technical.ITechnicalRepository _technicalRepository;
+      
 
 
         public RepositoryWrapper(DBJEPCOBackEndContext repositoryContext, ILoggerManager logger)
@@ -146,6 +146,18 @@ namespace JepcoBackEndSystemProject.Data
         }
 
 
+        public Technical.ITechnicalRepository TechnicalRepository
+        {
+            get
+            {
+                if (_technicalRepository == null)
+                {
+                    _technicalRepository = new Technical.TechnicalRepository(_repoContext, _logger);
+                }
+
+                return _technicalRepository;
+            }
+        }
 
 
     }

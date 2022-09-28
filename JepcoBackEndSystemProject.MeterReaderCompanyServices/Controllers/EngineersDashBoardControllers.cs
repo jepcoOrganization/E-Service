@@ -2,6 +2,7 @@
 using JepcoBackEndSystemProject.Data;
 using JepcoBackEndSystemProject.Data.CommonReturn;
 using JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.GeneralTechnicianInf;
+using JepcoBackEndSystemProject.EMRCServices.DataTransferObject;
 using JepcoBackEndSystemProject.Models;
 using JepcoBackEndSystemProject.Models.Models;
 using JepcoBackEndSysytemProject.LoggerService;
@@ -49,7 +50,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GeneralTechnicianInf")]
         [Route("GeneralTechnicianInf")]
-      
+
         public async Task<ActionResult<CommonReturnResult>> GeneralTechnicianInf([FromBody] GeneralTechnicianInfRequestDto GeneralTechnicianInfRequest)
         {
 
@@ -57,7 +58,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             {
                 if (GeneralTechnicianInfRequest == null)
                 {
-
 
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, " Complaint object sent from client is null")));
                 }
@@ -67,11 +67,11 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                 }
 
-               
-               
+
+
                 IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = new tb_Fault_Compliants[] { };
-               
-                if ( (string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintDateEnd) == true) && string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintTimeStart) == true)
+
+                if ((string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintDateEnd) == true) && string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintTimeStart) == true)
                 {
                     DateTime dtScheduleDateFrom = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateStart, "yyyy-MM-dd",
                     System.Globalization.CultureInfo.InvariantCulture);
@@ -79,7 +79,8 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date == dtScheduleDateFrom).ConfigureAwait(false);
 
 
-                } else if ((string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintDateEnd) == true) && string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintTimeStart) == false)
+                }
+                else if ((string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintDateEnd) == true) && string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintTimeStart) == false)
                 {
                     DateTime HourFrom = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateStart + " " + GeneralTechnicianInfRequest.ComplaintTimeStart, "yyyy-MM-dd HH:mm",
                                   System.Globalization.CultureInfo.InvariantCulture);
@@ -104,7 +105,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                 if (lstFalutComplaintData == null)
                 {
-
                     return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Complaint with this date hasn't been found in db")));
                 }
                 else
@@ -112,9 +112,9 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.TechnicianName) == false )
+                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.EmployeeNumber) == false)
                     {
-                        lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.UserName == GeneralTechnicianInfRequest.TechnicianName );
+                        lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.UserName == GeneralTechnicianInfRequest.EmployeeNumber);
                     }
 
                     //tb_ElectricalFaultStatus statusDto = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusNameAR == GeneralTechnicianInfRequest.FaultStatus ).ConfigureAwait(false);
@@ -124,42 +124,61 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                         lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.PiorityDesc == GeneralTechnicianInfRequest.PiorityDesc);
                     }
 
-                   List<GroupCountResponseDto> final= new List<GroupCountResponseDto>();
-                  ;
 
-                    var resultmultiplekeylamba = lstFalutComplaintData
-                   .GroupBy(stu => new { stu.UserName })
-                   .OrderBy(g => g.Key.UserName);
-                 
 
-                    foreach (var group in resultmultiplekeylamba)
+
+
+                    if (lstFalutComplaintData == null)
                     {
-                        GroupCountResponseDto GroupCountResponse = new GroupCountResponseDto();
-                        List<tb_Fault_Compliants> groupOfComp = new List<tb_Fault_Compliants>();
-                        GroupCountResponse.TotalComplaintNum= group.Count();
-                        GroupCountResponse.userName = group.Key.UserName;
-                        GroupCountResponse.NewComplaintNum=group.Count(ss => ss.FaultStatusID == 1);
-                        GroupCountResponse.DeliveredComplaintNum= group.Count(ss => ss.FaultStatusID == 2);
-                        GroupCountResponse.ArrivingLocationComplaintNum=group.Count(ss => ss.FaultStatusID == 3);
-                        GroupCountResponse.ClosedFromTechnicianComplaintNum = group.Count(ss => ss.FaultStatusID == 4);
-                        GroupCountResponse.ReAssingedComplaintNum = group.Count(ss => ss.FaultStatusID == 5);
+                        return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Complaint with this filter hasn't been found in db")));
 
-                        foreach (var _complaint in group)
-                        {
-                            groupOfComp.Add(_complaint);
-                           
-                        }
-                        GroupCountResponse.GroupOfComplaint = groupOfComp;
-
-
-                        final.Add(GroupCountResponse);
                     }
-                    
-                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Returned ComplaintList and there Num") , final));
-                }
-                
+                    else
+                    {
 
-            
+                        List<GroupCountResponseDto> final = new List<GroupCountResponseDto>();
+
+                        var resultmultiplekeylamba = lstFalutComplaintData
+                       .GroupBy(stu => new { stu.UserName })
+                       .OrderBy(g => g.Key.UserName);
+
+
+                        foreach (var group in resultmultiplekeylamba)
+
+                        {
+                            tb_Technical technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == group.Key.UserName).ConfigureAwait(false);
+
+                            GroupCountResponseDto GroupCountResponse = new GroupCountResponseDto();
+                            List<tb_Fault_Compliants> groupOfComp = new List<tb_Fault_Compliants>();
+                            GroupCountResponse.FullName = technical.FullName;
+                            GroupCountResponse.TotalComplaintNum = group.Count();
+                            GroupCountResponse.EmployeeNumber = group.Key.UserName;                         
+                            GroupCountResponse.NewComplaintNum = group.Count(ss => ss.FaultStatusID == 1);
+                            GroupCountResponse.DeliveredComplaintNum = group.Count(ss => ss.FaultStatusID == 2);
+                            GroupCountResponse.ArrivingLocationComplaintNum = group.Count(ss => ss.FaultStatusID == 3);
+                            GroupCountResponse.ClosedFromTechnicianComplaintNum = group.Count(ss => ss.FaultStatusID == 4);
+                            GroupCountResponse.ReAssingedComplaintNum = group.Count(ss => ss.FaultStatusID == 5);
+
+                            foreach (var _complaint in group)
+                            {
+                                groupOfComp.Add(_complaint);
+
+                            }
+                            GroupCountResponse.GroupOfComplaint = groupOfComp;
+
+
+                            final.Add(GroupCountResponse);
+                        }
+                        return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Returned ComplaintList and there Num"), final));
+
+                    }
+
+
+
+
+
+                }
+
             }
             catch (Exception ex)
             {
@@ -170,40 +189,175 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
         //----------------------------------------------------------------------------------------------------------------------------
-      
-        
+
+
+        ////[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[HttpPost(Name = "TechnicianLoginHistory")]
+        //[Route("TechnicianLoginHistory")]
+
+        //public async Task<ActionResult<CommonReturnResult>> TechnicianLoginHistory([FromBody] TechnicianLoginHistoryRequestDto TechnicianLoginHistoryRequest)
+        //{
+
+        //    try
+        //    {
+        //        if (TechnicianLoginHistoryRequest == null)
+        //        {
+
+
+        //            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, " Complaint object sent from client is null")));
+        //        }
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Invalid Complaint object sent from client")));
+
+        //        }
 
 
 
+        //        IEnumerable<tb_UserAccessRegister> lstUserAccessRegisterData = new tb_UserAccessRegister[] { };
+
+
+        //        if ((string.IsNullOrEmpty(TechnicianLoginHistoryRequest.HistoryDateEnd) == true) )
+        //        {
+        //            DateTime dtScheduleDateFrom = DateTime.ParseExact(TechnicianLoginHistoryRequest.HistoryDateStart, "yyyy-MM-dd",
+        //            System.Globalization.CultureInfo.InvariantCulture);
+
+        //            lstUserAccessRegisterData = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.LoginDateTime.Date == dtScheduleDateFrom).ConfigureAwait(false);
+
+
+        //        }
+        //        else
+        //        {
+        //            DateTime dtScheduleDateFrom = DateTime.ParseExact(TechnicianLoginHistoryRequest.HistoryDateStart, "yyyy-MM-dd",
+        //                       System.Globalization.CultureInfo.InvariantCulture);
+
+        //            DateTime dtScheduleDateEnd = DateTime.ParseExact(TechnicianLoginHistoryRequest.HistoryDateEnd, "yyyy-MM-dd",
+        //                                  System.Globalization.CultureInfo.InvariantCulture);
+
+        //            lstUserAccessRegisterData = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.LoginDateTime.Date == dtScheduleDateFrom || x.LoginDateTime.Date == dtScheduleDateFrom).ConfigureAwait(false);
+        //        }
+
+
+        //        if (lstUserAccessRegisterData == null)
+        //        {
+
+        //            return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Complaint with this date hasn't been found in db")));
+        //        }
+        //        else
+        //        {
 
 
 
+        //            if (string.IsNullOrEmpty(TechnicianLoginHistoryRequest.UserID) == false)
+        //            {
+        //                lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.UserName == GeneralTechnicianInfRequest.TechnicianName);
+        //            }
+
+        //            //tb_ElectricalFaultStatus statusDto = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusNameAR == GeneralTechnicianInfRequest.FaultStatus ).ConfigureAwait(false);
+
+        //            if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityDesc) == false)
+        //            {
+        //                lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.PiorityDesc == GeneralTechnicianInfRequest.PiorityDesc);
+        //            }
+
+        //            List<GroupCountResponseDto> final = new List<GroupCountResponseDto>();
+        //            ;
+
+        //            var resultmultiplekeylamba = lstFalutComplaintData
+        //           .GroupBy(stu => new { stu.UserName })
+        //           .OrderBy(g => g.Key.UserName);
+
+
+        //            foreach (var group in resultmultiplekeylamba)
+        //            {
+        //                GroupCountResponseDto GroupCountResponse = new GroupCountResponseDto();
+        //                List<tb_Fault_Compliants> groupOfComp = new List<tb_Fault_Compliants>();
+        //                GroupCountResponse.TotalComplaintNum = group.Count();
+        //                GroupCountResponse.userName = group.Key.UserName;
+        //                GroupCountResponse.NewComplaintNum = group.Count(ss => ss.FaultStatusID == 1);
+        //                GroupCountResponse.DeliveredComplaintNum = group.Count(ss => ss.FaultStatusID == 2);
+        //                GroupCountResponse.ArrivingLocationComplaintNum = group.Count(ss => ss.FaultStatusID == 3);
+        //                GroupCountResponse.ClosedFromTechnicianComplaintNum = group.Count(ss => ss.FaultStatusID == 4);
+        //                GroupCountResponse.ReAssingedComplaintNum = group.Count(ss => ss.FaultStatusID == 5);
+
+        //                foreach (var _complaint in group)
+        //                {
+        //                    groupOfComp.Add(_complaint);
+
+        //                }
+        //                GroupCountResponse.GroupOfComplaint = groupOfComp;
+
+
+        //                final.Add(GroupCountResponse);
+        //            }
+
+        //            return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Returned ComplaintList and there Num"), final));
+        //        }
 
 
 
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Something went wrong inside GetComplaintByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+        //        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Internal server error")));
+
+        //    }
+        //}
+
+        //-------------------------------------------------------------------------------------------------------
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "TechnicalLookup")]
+        [Route("TechnicalLookup")]
+        public async Task<ActionResult<CommonReturnResult>> GetAllAllTechnical([FromBody] LanguageDto languageDto)
+        {
 
 
+            try
+            {
+                IEnumerable<tb_Technical> AllTechnical = await _repository.TechnicalRepository.GetAllTechnical().ConfigureAwait(false);
 
 
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Returned AllTechnical data from database"), AllTechnical));
 
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetAllTechnical action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Internal server error")));
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
     }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
