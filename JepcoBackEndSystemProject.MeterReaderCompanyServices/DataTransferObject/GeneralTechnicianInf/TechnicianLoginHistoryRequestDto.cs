@@ -5,7 +5,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.GeneralT
     public class TechnicianLoginHistoryRequestDto
     {
         [Required]
-        public string UserID { get; set; }
+        public string EmployeeNumber { get; set; }
 
         [Required]
         public string LanguageId { get; set; }

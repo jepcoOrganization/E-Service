@@ -191,119 +191,72 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         //----------------------------------------------------------------------------------------------------------------------------
 
 
-        ////[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        //[HttpPost(Name = "TechnicianLoginHistory")]
-        //[Route("TechnicianLoginHistory")]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "TechnicianLoginHistory")]
+        [Route("TechnicianLoginHistory")]
 
-        //public async Task<ActionResult<CommonReturnResult>> TechnicianLoginHistory([FromBody] TechnicianLoginHistoryRequestDto TechnicianLoginHistoryRequest)
-        //{
+        public async Task<ActionResult<CommonReturnResult>> TechnicianLoginHistory([FromBody] TechnicianLoginHistoryRequestDto TechnicianLoginHistoryRequest)
+        {
 
-        //    try
-        //    {
-        //        if (TechnicianLoginHistoryRequest == null)
-        //        {
-
-
-        //            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, " Complaint object sent from client is null")));
-        //        }
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Invalid Complaint object sent from client")));
-
-        //        }
+            try
+            {
+                if (TechnicianLoginHistoryRequest == null)
+                {
 
 
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, " Complaint object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Invalid Complaint object sent from client")));
 
-        //        IEnumerable<tb_UserAccessRegister> lstUserAccessRegisterData = new tb_UserAccessRegister[] { };
-
-
-        //        if ((string.IsNullOrEmpty(TechnicianLoginHistoryRequest.HistoryDateEnd) == true) )
-        //        {
-        //            DateTime dtScheduleDateFrom = DateTime.ParseExact(TechnicianLoginHistoryRequest.HistoryDateStart, "yyyy-MM-dd",
-        //            System.Globalization.CultureInfo.InvariantCulture);
-
-        //            lstUserAccessRegisterData = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.LoginDateTime.Date == dtScheduleDateFrom).ConfigureAwait(false);
-
-
-        //        }
-        //        else
-        //        {
-        //            DateTime dtScheduleDateFrom = DateTime.ParseExact(TechnicianLoginHistoryRequest.HistoryDateStart, "yyyy-MM-dd",
-        //                       System.Globalization.CultureInfo.InvariantCulture);
-
-        //            DateTime dtScheduleDateEnd = DateTime.ParseExact(TechnicianLoginHistoryRequest.HistoryDateEnd, "yyyy-MM-dd",
-        //                                  System.Globalization.CultureInfo.InvariantCulture);
-
-        //            lstUserAccessRegisterData = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.LoginDateTime.Date == dtScheduleDateFrom || x.LoginDateTime.Date == dtScheduleDateFrom).ConfigureAwait(false);
-        //        }
-
-
-        //        if (lstUserAccessRegisterData == null)
-        //        {
-
-        //            return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Complaint with this date hasn't been found in db")));
-        //        }
-        //        else
-        //        {
+                }
 
 
 
-        //            if (string.IsNullOrEmpty(TechnicianLoginHistoryRequest.UserID) == false)
-        //            {
-        //                lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.UserName == GeneralTechnicianInfRequest.TechnicianName);
-        //            }
-
-        //            //tb_ElectricalFaultStatus statusDto = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusNameAR == GeneralTechnicianInfRequest.FaultStatus ).ConfigureAwait(false);
-
-        //            if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityDesc) == false)
-        //            {
-        //                lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.PiorityDesc == GeneralTechnicianInfRequest.PiorityDesc);
-        //            }
-
-        //            List<GroupCountResponseDto> final = new List<GroupCountResponseDto>();
-        //            ;
-
-        //            var resultmultiplekeylamba = lstFalutComplaintData
-        //           .GroupBy(stu => new { stu.UserName })
-        //           .OrderBy(g => g.Key.UserName);
+                IEnumerable<tb_UserAccessRegister> lstUserAccessRegisterData = new tb_UserAccessRegister[] { };
 
 
-        //            foreach (var group in resultmultiplekeylamba)
-        //            {
-        //                GroupCountResponseDto GroupCountResponse = new GroupCountResponseDto();
-        //                List<tb_Fault_Compliants> groupOfComp = new List<tb_Fault_Compliants>();
-        //                GroupCountResponse.TotalComplaintNum = group.Count();
-        //                GroupCountResponse.userName = group.Key.UserName;
-        //                GroupCountResponse.NewComplaintNum = group.Count(ss => ss.FaultStatusID == 1);
-        //                GroupCountResponse.DeliveredComplaintNum = group.Count(ss => ss.FaultStatusID == 2);
-        //                GroupCountResponse.ArrivingLocationComplaintNum = group.Count(ss => ss.FaultStatusID == 3);
-        //                GroupCountResponse.ClosedFromTechnicianComplaintNum = group.Count(ss => ss.FaultStatusID == 4);
-        //                GroupCountResponse.ReAssingedComplaintNum = group.Count(ss => ss.FaultStatusID == 5);
+                if ((string.IsNullOrEmpty(TechnicianLoginHistoryRequest.HistoryDateEnd) == true))
+                {
+                    DateTime dtScheduleDateFrom = DateTime.ParseExact(TechnicianLoginHistoryRequest.HistoryDateStart, "yyyy-MM-dd",
+                    System.Globalization.CultureInfo.InvariantCulture);
 
-        //                foreach (var _complaint in group)
-        //                {
-        //                    groupOfComp.Add(_complaint);
-
-        //                }
-        //                GroupCountResponse.GroupOfComplaint = groupOfComp;
+                    lstUserAccessRegisterData = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.LoginDateTime.Date == dtScheduleDateFrom && x.UserName == TechnicianLoginHistoryRequest.EmployeeNumber).ConfigureAwait(false);
 
 
-        //                final.Add(GroupCountResponse);
-        //            }
+                }
+                else
+                {
+                    DateTime dtScheduleDateFrom = DateTime.ParseExact(TechnicianLoginHistoryRequest.HistoryDateStart, "yyyy-MM-dd",
+                               System.Globalization.CultureInfo.InvariantCulture);
 
-        //            return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Returned ComplaintList and there Num"), final));
-        //        }
+                    DateTime dtScheduleDateEnd = DateTime.ParseExact(TechnicianLoginHistoryRequest.HistoryDateEnd, "yyyy-MM-dd",
+                                          System.Globalization.CultureInfo.InvariantCulture);
+
+                    lstUserAccessRegisterData = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.LoginDateTime.Date >= dtScheduleDateFrom && x.LoginDateTime.Date <= dtScheduleDateEnd && x.UserName== TechnicianLoginHistoryRequest.EmployeeNumber).ConfigureAwait(false);
+                }
+
+
+    
+                
+              
 
 
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError($"Something went wrong inside GetComplaintByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
-        //        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Internal server error")));
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Returned History List and there Num"), lstUserAccessRegisterData));
+                
 
-        //    }
-        //}
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetComplaintByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Internal server error")));
+
+            }
+        }
 
         //-------------------------------------------------------------------------------------------------------
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
