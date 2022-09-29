@@ -244,7 +244,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Returned History List and there Num"), lstUserAccessRegisterData));
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Returned History List "), lstUserAccessRegisterData));
                 
 
 
@@ -268,6 +268,17 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
             try
             {
+                if (languageDto == null)
+                {
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "  object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Invalid  object sent from client")));
+
+                }
                 IEnumerable<tb_Technical> AllTechnical = await _repository.TechnicalRepository.GetAllTechnical().ConfigureAwait(false);
 
 
@@ -281,36 +292,94 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
 
         }
+        //---------------------------------------------------------------------------------------------------------
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "ActiveTechnical")]
+        [Route("ActiveTechnical")]
+        public async Task<ActionResult<CommonReturnResult>> ActiveTechnical([FromBody] ActiveTechnicalRequestDto ActiveTechnicalRequest)
+        {
+
+
+            try
+            {
+
+                if (ActiveTechnicalRequest == null)
+                {
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ActiveTechnicalRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ActiveTechnicalRequest.LanguageId, "  object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ActiveTechnicalRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ActiveTechnicalRequest.LanguageId, "Invalid  object sent from client")));
+
+                }
+
+
+
+                tb_Technical technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == ActiveTechnicalRequest.EmployeeNumber).ConfigureAwait(false);
+                if (technical.SystemActive != ActiveTechnicalRequest.ActiveStatus)
+                {
+
+                    technical.SystemActive=ActiveTechnicalRequest.ActiveStatus;
+                    _repository.TechnicalRepository.UpdateTechnical(null, technical);
+                    await _repository.SaveAsync().ConfigureAwait(false);
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ActiveTechnicalRequest.LanguageId, "Change status  for ") + technical.FullName + " to", technical.SystemActive));
+
+                }
+                else
+                {
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ActiveTechnicalRequest.LanguageId, "No Change status  for ") + technical.FullName + " it is ", technical.SystemActive));
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetAllTechnical action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ActiveTechnicalRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ActiveTechnicalRequest.LanguageId, "Internal server error")));
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
-
-    //---------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
