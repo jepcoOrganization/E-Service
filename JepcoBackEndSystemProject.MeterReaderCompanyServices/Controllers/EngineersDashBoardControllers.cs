@@ -47,7 +47,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             _environment = environment;
         }
         #endregion
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GeneralTechnicianInf")]
         [Route("GeneralTechnicianInf")]
 
@@ -182,7 +182,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside GetComplaintByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                _logger.LogError($"Something went wrong inside GeneralTechnicianInf action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
                 return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Internal server error")));
 
             }
@@ -191,7 +191,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         //----------------------------------------------------------------------------------------------------------------------------
 
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "TechnicianLoginHistory")]
         [Route("TechnicianLoginHistory")]
 
@@ -204,11 +204,11 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 {
 
 
-                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, " Complaint object sent from client is null")));
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, " History object sent from client is null")));
                 }
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Invalid Complaint object sent from client")));
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Invalid history object sent from client")));
 
                 }
 
@@ -252,14 +252,14 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside GetComplaintByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                _logger.LogError($"Something went wrong inside TechnicianLoginHistory action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
                 return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Internal server error")));
 
             }
         }
 
         //-------------------------------------------------------------------------------------------------------
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "TechnicalLookup")]
         [Route("TechnicalLookup")]
         public async Task<ActionResult<CommonReturnResult>> GetAllAllTechnical([FromBody] LanguageDto languageDto)
@@ -287,13 +287,13 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside GetAllTechnical action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                _logger.LogError($"Something went wrong inside TechnicalLookup action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
                 return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Internal server error")));
             }
 
         }
         //---------------------------------------------------------------------------------------------------------
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "ActiveTechnical")]
         [Route("ActiveTechnical")]
         public async Task<ActionResult<CommonReturnResult>> ActiveTechnical([FromBody] ActiveTechnicalRequestDto ActiveTechnicalRequest)
@@ -337,7 +337,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside GetAllTechnical action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                _logger.LogError($"Something went wrong inside ActiveTechnical action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
                 return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ActiveTechnicalRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ActiveTechnicalRequest.LanguageId, "Internal server error")));
             }
 

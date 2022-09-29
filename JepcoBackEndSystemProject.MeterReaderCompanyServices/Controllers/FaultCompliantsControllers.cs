@@ -50,7 +50,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
         #endregion
 
-       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GetParentFaultCompliantList")]
         [Route("GetParentFaultCompliantList")]
         public async Task<ActionResult<CommonReturnResult>> GetParentFaultCompliantList([FromBody] FaultComplaintDto FaultComplaintDto)
@@ -262,7 +262,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside GetParentFaultCompliantList action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                _logger.LogError($"Something went wrong inside GetChildFaultCompliantList action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
                 return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, FaultComplaintDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, FaultComplaintDto.LanguageId, "Internal server error")));
             }
 
@@ -270,7 +270,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
         //----------------------------------------------------------------------------------------------------------
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "PushTicket")]
         [Route("PushTicket")]
         public async Task<ActionResult<CommonReturnResult>> PushTicket([FromBody] List<PushRequestDTO> PushRequest)
@@ -371,7 +371,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside GetParentFaultCompliantList action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                _logger.LogError($"Something went wrong inside PushTicket action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
                 return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "AR", "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, "AR", "Internal server error")));
             }
 

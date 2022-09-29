@@ -44,7 +44,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
         #endregion
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "EngineerLogin")]
         [Route("EngineerLogin")]
         public async Task<ActionResult<CommonReturnResult>> EngineerLogin([FromBody] LoginEngineerAccessRegisterRequestDto LoginEngineerAccessRegisterRequest)
@@ -72,7 +72,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside TechnicianLogin action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                _logger.LogError($"Something went wrong inside EngineerLogin action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
                 return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "Internal server error")));
             }
 
@@ -82,7 +82,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "EngineerLogOut")]
         [Route("EngineerLogOut")]
         public async Task<ActionResult<CommonReturnResult>> EngineerLogOut([FromBody] LogoutEngineerAccessRegisterRequestDto LogoutEngineerAccessRegisterRequest)
@@ -112,7 +112,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside TechnicianLogOut action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                _logger.LogError($"Something went wrong inside EngineerLogOut action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
                 return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LogoutEngineerAccessRegisterRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LogoutEngineerAccessRegisterRequest.LanguageId, "Internal server error")));
             }
 

@@ -93,12 +93,12 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 {
                     //BranchesReturnDto BranchResult = _mapper.Map<BranchesReturnDto>(branch);
                     //    // _logger.LogInfo($"Returned Branch with id: {Branch.Id}");
-                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ComplaintFaultDetailsRequest.LanguageId, "Returned Complaint with id") + ComplaintFaultDetails.FaultComplaintID, ComplaintFaultDetails));
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ComplaintFaultDetailsRequest.LanguageId, "Returned Complaint  Details with id") + ComplaintFaultDetails.FaultComplaintID, ComplaintFaultDetails));
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside GetComplaintByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                _logger.LogError($"Something went wrong inside GetFaultCompliantDetails action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
 
                 //Call API for add error log inside TbErrorLogs
 
@@ -259,7 +259,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside GetComplaintByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                _logger.LogError($"Something went wrong inside DelivredCompliant action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
 
                 //Call API for add error log inside TbErrorLogs
 
@@ -271,7 +271,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-
         [HttpPost(Name = "ArrivingLocation")]
         [Route("ArrivingLocation")]
         // BranchId from BranchesModelResource in Resource project to hide value
@@ -447,8 +446,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "RepairandCloseComplaint")]
         [Route("RepairandCloseComplaint")]
         // BranchId from BranchesModelResource in Resource project to hide value
@@ -776,7 +774,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-
         [HttpPost(Name = "FaultClassficationLookup")]
         [Route("FaultClassficationLookup")]
         // BranchId from BranchesModelResource in Resource project to hide value
@@ -841,7 +838,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-
         [HttpPost(Name = "FaultSubClassficationLookup")]
         [Route("FaultSubClassficationLookup")]
         // BranchId from BranchesModelResource in Resource project to hide value
@@ -971,7 +967,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside FaultClassficationLookup action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                _logger.LogError($"Something went wrong inside ReassingClassficationLookup action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
 
                 //Call API for add error log inside TbErrorLogs
 
