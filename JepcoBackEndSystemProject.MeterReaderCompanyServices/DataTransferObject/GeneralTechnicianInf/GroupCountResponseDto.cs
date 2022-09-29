@@ -5,7 +5,8 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.GeneralT
 {
     public class GroupCountResponseDto
     {
-        public string userName { get; set; }
+        public string EmployeeNumber { get; set; }
+        public string FullName { get; set; }
         public int TotalComplaintNum { get; set; }
         public int NewComplaintNum { get; set; }
         public int DeliveredComplaintNum { get; set; }

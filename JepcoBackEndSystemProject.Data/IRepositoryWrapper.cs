@@ -16,8 +16,9 @@ UserAccessRegister.IUserAccessRegisterLookupRepository UserAccessRegisterLookupR
 FaultDetails.IFaultDetailsRepository FaultDetailsRepository { get; }
 ElectricalFaultStatus.IElectricalFaultStatusRepository ElectricalFaultStatusRepository { get; }
 EngineersAccessRegister.IEngineersAccessRegisterRepository EngineersAccessRegisterRepository { get; }
+Technical.ITechnicalRepository TechnicalRepository { get; }
+      
 
-        
                     Task SaveAsync();
     }
 }
