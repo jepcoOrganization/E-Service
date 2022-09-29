@@ -115,23 +115,106 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                             tb_Fault_Compliants.SubstationName  = jEPCOViewRequest.SubstationName ;
 
 
-
-
-
                              _repository.FaultCompliantsLookupRepository.AddFaultCompliants(tb_Fault_Compliants);
                              await _repository.SaveAsync().ConfigureAwait(false);
-                            int a = 1;
-                            //tb_ElectricalFaultStatus tb_ElectricalFaultStatusOBJ = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusID == a).ConfigureAwait(false);
+                           
+
+
 
                             tb_FaultDetails tb_Fault_Details = new tb_FaultDetails();
                             tb_Fault_Details.FaultComplaintID = tb_Fault_Compliants.FaultComplaintID;
                             tb_Fault_Details.CreatedDate = DateTime.Now;
                             tb_Fault_Details.UpdateDate = DateTime.Now;
-
-                            //tb_Fault_Details.RepairingStatusID = a;
-                            //tb_Fault_Details.FaultDescription = tb_Fault_Compliants.ComplaintDescription;
+                      
                             _repository.FaultDetailsRepository.AddFaultDetails(tb_Fault_Details);
                             await _repository.SaveAsync().ConfigureAwait(false);
+
+                            //----------------------getChild-------------------------
+                            MenaTrackService.CallCenterNewClient objCallCenterNewClientChild = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
+
+                            List<MenaTrackService.JEPCOViewRequestsParentsResponse> lstJEPCOViewRequestsChildsResponse = await objCallCenterNewClientChild.JEPCO_ViewRequests_ChildsAsync(long.Parse(tb_Fault_Compliants.IssueID.ToString()), tb_Fault_Compliants.BranchID).ConfigureAwait(false);
+
+
+                            if (lstJEPCOViewRequestsChildsResponse != null && lstJEPCOViewRequestsChildsResponse.Count > 0)
+                            {
+                                foreach (var jEPCOViewRequestChild in lstJEPCOViewRequestsChildsResponse)
+                                {
+
+
+                                    IEnumerable<tb_Fault_Compliants> lstFalutComplaintChildData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.IssueID == jEPCOViewRequestChild.IssueID).ConfigureAwait(false);
+
+                                    if (lstFalutComplaintChildData == null || lstFalutComplaintChildData.ToList().Count == 0)
+                                    {
+
+                                        tb_Fault_Compliants tb_Fault_CompliantsChild = new tb_Fault_Compliants();
+                                        tb_Fault_CompliantsChild.ComplaintDescription = jEPCOViewRequestChild.ComplaintDescription;
+                                        tb_Fault_CompliantsChild.ComplaintRefNumber = jEPCOViewRequestChild.Refcode;
+                                        tb_Fault_CompliantsChild.ComplaintDescription = jEPCOViewRequestChild.ComplaintDescription.ToString();
+                                        tb_Fault_CompliantsChild.CompliantCustomerName = jEPCOViewRequestChild.CustomerName;
+                                        tb_Fault_CompliantsChild.CompliantDateTime = jEPCOViewRequestChild.ComplaintDate;
+                                        tb_Fault_CompliantsChild.CompliantPhoneNumber = jEPCOViewRequestChild.CustomerMobileNumber;
+                                        tb_Fault_CompliantsChild.SubstationNumber = jEPCOViewRequestChild.SubstationNumber;
+                                        tb_Fault_CompliantsChild.CompliantParentRefNumber = jEPCOViewRequestChild.ParentRefcode;
+                                        tb_Fault_CompliantsChild.CustomerAddress_Latt = jEPCOViewRequestChild.AddressLatt;
+                                        tb_Fault_CompliantsChild.CustomerAddress_Long = jEPCOViewRequestChild.AddressLong;
+
+                                        tb_Fault_CompliantsChild.DistrictID = jEPCOViewRequestChild.DistrictID;
+                                        tb_Fault_CompliantsChild.DistrictName = jEPCOViewRequestChild.District;
+                                        tb_Fault_CompliantsChild.GovernateId = jEPCOViewRequestChild.GovernateID;
+                                        tb_Fault_CompliantsChild.GovernateName = jEPCOViewRequestChild.Governate;
+                                        tb_Fault_CompliantsChild.ZoneID = jEPCOViewRequestChild.ZoneID;
+                                        tb_Fault_CompliantsChild.ZoneName = jEPCOViewRequestChild.ZoneName;
+
+                                        tb_Fault_CompliantsChild.StreetID = jEPCOViewRequestChild.StreetID;
+                                        tb_Fault_CompliantsChild.StreetName = jEPCOViewRequestChild.Street;
+                                        tb_Fault_CompliantsChild.FaultStatusID = 1;
+                                        tb_Fault_CompliantsChild.MenaTrackStatusDesc = jEPCOViewRequestChild.StatusDesc;
+                                        tb_Fault_CompliantsChild.MenaTrackStatusID = jEPCOViewRequestChild.StatusID;
+                                        tb_Fault_CompliantsChild.IssueID = jEPCOViewRequestChild.IssueID;
+                                        tb_Fault_CompliantsChild.PiorityID = jEPCOViewRequestChild.PriorityID;
+                                        tb_Fault_CompliantsChild.PiorityDesc = jEPCOViewRequestChild.PriorityDesc;
+                                        tb_Fault_CompliantsChild.UserID = FaultComplaintDto.UserID;
+                                        tb_Fault_CompliantsChild.UserName = FaultComplaintDto.UserName;
+                                        tb_Fault_CompliantsChild.BranchID = FaultComplaintDto.BranchID;
+                                        tb_Fault_CompliantsChild.CreatedDate = DateTime.Now;
+                                        tb_Fault_CompliantsChild.UpdateDate = DateTime.Now;
+                                        tb_Fault_CompliantsChild.LV_Feeder = jEPCOViewRequestChild.LVFeederNumber;
+                                        tb_Fault_CompliantsChild.MV_Feeder = jEPCOViewRequestChild.MVFeederNumber;
+                                        tb_Fault_CompliantsChild.SubstationNumber = jEPCOViewRequestChild.SubstationNumber;
+                                        //tb_Fault_Compliants.SubstationName  = jEPCOViewRequest.s;
+
+
+
+
+
+                                        _repository.FaultCompliantsLookupRepository.AddFaultCompliants(tb_Fault_CompliantsChild);
+                                        await _repository.SaveAsync().ConfigureAwait(false);
+                                        int a = 1;
+                                        //tb_ElectricalFaultStatus tb_ElectricalFaultStatusOBJ = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusID == a).ConfigureAwait(false);
+
+                                        tb_FaultDetails tb_Fault_DetailsChild = new tb_FaultDetails();
+                                        tb_Fault_DetailsChild.FaultComplaintID = tb_Fault_Compliants.FaultComplaintID;
+                                        tb_Fault_DetailsChild.CreatedDate = DateTime.Now;
+                                        tb_Fault_DetailsChild.UpdateDate = DateTime.Now;
+
+                                        //tb_Fault_Details.RepairingStatusID = a;
+                                        //tb_Fault_Details.FaultDescription = tb_Fault_Compliants.ComplaintDescription;
+                                        _repository.FaultDetailsRepository.AddFaultDetails(tb_Fault_DetailsChild);
+                                        await _repository.SaveAsync().ConfigureAwait(false);
+                                    }
+
+
+                                }
+
+
+
+                            }
+
+
+
+
+
+
 
                         }
 
@@ -149,7 +232,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 && ( x.CompliantParentRefNumber == null || x.CompliantParentRefNumber == "") ).ConfigureAwait(false) ;
 
 
-                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, FaultComplaintDto.LanguageId, "Returned all Fault Complaints fro Technication"), lstFalutComplaint));
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, FaultComplaintDto.LanguageId, "Returned all Fault Complaints for Technication"), lstFalutComplaint));
 
             }
             catch (Exception ex)
