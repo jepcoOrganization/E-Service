@@ -70,6 +70,17 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "The user name or password is incorrect")));
                 }
 
+                tb_Technical technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == LoginUserAccessRegisterDto.UserName).ConfigureAwait(false);
+
+                if (technical.SystemActive == false)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "This User not Active")));
+                }
+
+
+
+
+
                 tb_UserAccessRegister objtbUserAccessRegister = new tb_UserAccessRegister();
 
                 objtbUserAccessRegister.UserID = objCallLoginResponses.UserID;
