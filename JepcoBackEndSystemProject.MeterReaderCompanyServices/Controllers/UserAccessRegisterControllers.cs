@@ -70,6 +70,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "The user name or password is incorrect")));
                 }
 
+
                 tb_UserAccessRegister objtbUserAccessRegister = new tb_UserAccessRegister();
 
                 objtbUserAccessRegister.UserID = objCallLoginResponses.UserID;
@@ -100,6 +101,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         [Route("TechnicianLogOut")]
         public async Task<ActionResult<CommonReturnResult>> TechnicianLogOut([FromBody] LogOutUserAccessRegisterDto LogOutUserAccessRegisterDto)
         {
+
 
 
             try
