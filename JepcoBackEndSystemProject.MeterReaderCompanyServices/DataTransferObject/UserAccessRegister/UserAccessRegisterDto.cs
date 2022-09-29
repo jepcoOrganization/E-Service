@@ -22,8 +22,12 @@ namespace JepcoBackEndSystemProject.Services.DataTransferObject.FaultComplaint
         [Required]
         public string LoginLong { get; set; }
 
+        /// <summary>
+        /// VehiclePlateNumber
+        /// </summary>
         [Required]
         public string VehiclePlateNumber { get; set; }
+
         
     }
 
