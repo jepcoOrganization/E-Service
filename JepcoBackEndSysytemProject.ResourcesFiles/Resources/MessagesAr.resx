@@ -141,6 +141,15 @@
   <data name="Error" xml:space="preserve">
     <value>خطأ</value>
   </data>
+  <data name="Error In Integration With MenaTrack System" xml:space="preserve">
+    <value>حدث خطا بالاتصال مع نظام (Mean track) بارسال</value>
+  </data>
+  <data name="Error In Integration With MenaTrack System to close Tieckt" xml:space="preserve">
+    <value>حدث خطا بالاتصال مع نظام (Mean track) لاغلاق الابلاغ</value>
+  </data>
+  <data name="Error In Integration With MenaTrack System to Reassign Tieckt" xml:space="preserve">
+    <value>حدث خطا بالاتصال مع نظام (Mean track) لاعادة توجيه الابلاغ</value>
+  </data>
   <data name="Internal Error" xml:space="preserve">
     <value>Internal Error</value>
   </data>

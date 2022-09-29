@@ -39,6 +39,10 @@ namespace JepcoBackEndSystemProject.Models.Models
 
         [StringLength(50)]
         public string LogOutLong { get; set; }
+
+        [StringLength(50)]
+        public string VehiclePlateNumber { get; set; }
+   
     }
 }
 

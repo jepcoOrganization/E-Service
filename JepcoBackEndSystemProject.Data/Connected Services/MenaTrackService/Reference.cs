@@ -723,6 +723,22 @@ namespace MenaTrackService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/ReassingCallsficationCalssfications", ReplyAction="http://tempuri.org/ICallCenterNew/ReassingCallsficationCalssficationsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> ReassingCallsficationCalssficationsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/JEPCO_NewAttachment", ReplyAction="http://tempuri.org/ICallCenterNew/JEPCO_NewAttachmentResponse")]
+        System.Threading.Tasks.Task<string> JEPCO_NewAttachmentAsync(int BranchId, int UserId, long IssueID, string AttchmentName, string AttchValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/IssueAdditionalFieldsInsert", ReplyAction="http://tempuri.org/ICallCenterNew/IssueAdditionalFieldsInsertResponse")]
+        System.Threading.Tasks.Task<string> IssueAdditionalFieldsInsertAsync(long IssueID, int BranchId, int FiledId, string Value);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/IssueAdditionalFieldsInsertBulk", ReplyAction="http://tempuri.org/ICallCenterNew/IssueAdditionalFieldsInsertBulkResponse")]
+        System.Threading.Tasks.Task<string> IssueAdditionalFieldsInsertBulkAsync(int intBranchID, long IssueID, string strAdditionalFields);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/JEPCO_RequestReassignToPreviousAssignee", ReplyAction="http://tempuri.org/ICallCenterNew/JEPCO_RequestReassignToPreviousAssigneeResponse" +
+            "")]
+        System.Threading.Tasks.Task<string> JEPCO_RequestReassignToPreviousAssigneeAsync(int UserId, int BranchId, long IssueID, int ReassignCategoryID, string ReassignReason);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/JEPCO_ChangeStatus", ReplyAction="http://tempuri.org/ICallCenterNew/JEPCO_ChangeStatusResponse")]
+        System.Threading.Tasks.Task<string> JEPCO_ChangeStatusAsync(int UserId, int BranchId, long IssueID, string ActionTaken);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
@@ -836,6 +852,31 @@ namespace MenaTrackService
         public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> ReassingCallsficationCalssficationsAsync()
         {
             return base.Channel.ReassingCallsficationCalssficationsAsync();
+        }
+        
+        public System.Threading.Tasks.Task<string> JEPCO_NewAttachmentAsync(int BranchId, int UserId, long IssueID, string AttchmentName, string AttchValue)
+        {
+            return base.Channel.JEPCO_NewAttachmentAsync(BranchId, UserId, IssueID, AttchmentName, AttchValue);
+        }
+        
+        public System.Threading.Tasks.Task<string> IssueAdditionalFieldsInsertAsync(long IssueID, int BranchId, int FiledId, string Value)
+        {
+            return base.Channel.IssueAdditionalFieldsInsertAsync(IssueID, BranchId, FiledId, Value);
+        }
+        
+        public System.Threading.Tasks.Task<string> IssueAdditionalFieldsInsertBulkAsync(int intBranchID, long IssueID, string strAdditionalFields)
+        {
+            return base.Channel.IssueAdditionalFieldsInsertBulkAsync(intBranchID, IssueID, strAdditionalFields);
+        }
+        
+        public System.Threading.Tasks.Task<string> JEPCO_RequestReassignToPreviousAssigneeAsync(int UserId, int BranchId, long IssueID, int ReassignCategoryID, string ReassignReason)
+        {
+            return base.Channel.JEPCO_RequestReassignToPreviousAssigneeAsync(UserId, BranchId, IssueID, ReassignCategoryID, ReassignReason);
+        }
+        
+        public System.Threading.Tasks.Task<string> JEPCO_ChangeStatusAsync(int UserId, int BranchId, long IssueID, string ActionTaken)
+        {
+            return base.Channel.JEPCO_ChangeStatusAsync(UserId, BranchId, IssueID, ActionTaken);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

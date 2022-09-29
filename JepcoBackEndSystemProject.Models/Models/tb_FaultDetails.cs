@@ -78,6 +78,8 @@ namespace JepcoBackEndSystemProject.Models.Models
 
         public DateTime? ReassignDate { get; set; }
 
+        public string LV_Feeder_Color { get; set; }
+
 
 
     }

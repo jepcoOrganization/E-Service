@@ -26,6 +26,8 @@
 
         public string UpdatedLV_Feeder { get; set; }
 
+        public string LV_Feeder_Color { get; set; }
+
 
         public int? RepairingStatusID { get; set; }
 
