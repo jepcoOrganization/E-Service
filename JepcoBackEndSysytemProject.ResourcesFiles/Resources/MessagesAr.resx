@@ -207,6 +207,9 @@
   <data name="The user name or password is incorrect" xml:space="preserve">
     <value>اسم المستخدم أو كلمة السر غير صحيحة</value>
   </data>
+  <data name="This User not Active" xml:space="preserve">
+    <value>لا يوجد لديك صلاحية للدخول للتطبيق ، الرجاء مراجعة المسؤول عنك لتفعيل صلاحية الدخول الى التطبيق لديك </value>
+  </data>
   <data name="Update all Branch fields in database" xml:space="preserve">
     <value>تم تعديل جميع معلومات الفرع</value>
   </data>
@@ -236,5 +239,8 @@
   </data>
   <data name="You are successfully logged Out" xml:space="preserve">
     <value>تمت عملية الخروج من التطبيق بنجاح </value>
+  </data>
+  <data name="You must Close or ReAssinged all Compliants before you logout" xml:space="preserve">
+    <value>يجب اغلاق أو اعادة توجيه جميع البلاغات الموجودة لديك قبل عمل تسجيل خروج من التطبيق</value>
   </data>
 </root>
