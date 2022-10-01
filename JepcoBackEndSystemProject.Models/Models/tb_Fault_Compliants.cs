@@ -79,6 +79,8 @@ namespace JepcoBackEndSystemProject.Models.Models
         public string UserName { get; set; }
 
         public int FaultStatusID { get; set; }
+        public string FaultStatusDesc { get; set; }
+
 
         public DateTime CreatedDate { get; set; }
 
@@ -100,8 +102,10 @@ namespace JepcoBackEndSystemProject.Models.Models
         [Required]
         public int BranchID { get; set; }
 
+        public int? ChildTicketsCount { get; set; }
 
 
-        
+
+
     }
 }

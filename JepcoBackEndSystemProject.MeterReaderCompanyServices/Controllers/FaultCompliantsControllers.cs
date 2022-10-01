@@ -99,6 +99,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                             tb_Fault_Compliants.StreetID = jEPCOViewRequest.StreetID;
                             tb_Fault_Compliants.StreetName = jEPCOViewRequest.Street;
                             tb_Fault_Compliants.FaultStatusID = 1;
+                            tb_Fault_Compliants.FaultStatusDesc = "جديدة";
                             tb_Fault_Compliants.MenaTrackStatusDesc = jEPCOViewRequest.StatusDesc;
                             tb_Fault_Compliants.MenaTrackStatusID = jEPCOViewRequest.StatusID;
                             tb_Fault_Compliants.IssueID = jEPCOViewRequest.IssueID;
@@ -192,15 +193,18 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                                         //int a = 1;
                                         //tb_ElectricalFaultStatus tb_ElectricalFaultStatusOBJ = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusID == a).ConfigureAwait(false);
 
-                                        tb_FaultDetails tb_Fault_DetailsChild = new tb_FaultDetails();
-                                        tb_Fault_DetailsChild.FaultComplaintID = tb_Fault_Compliants.FaultComplaintID;
-                                        tb_Fault_DetailsChild.CreatedDate = DateTime.Now;
-                                        tb_Fault_DetailsChild.UpdateDate = DateTime.Now;
+                                        //tb_FaultDetails tb_Fault_DetailsChild = new tb_FaultDetails();
+                                        //tb_Fault_DetailsChild.FaultComplaintID = tb_Fault_Compliants.FaultComplaintID;
+                                        //tb_Fault_DetailsChild.CreatedDate = DateTime.Now;
+                                        //tb_Fault_DetailsChild.UpdateDate = DateTime.Now;
 
-                                        //tb_Fault_Details.RepairingStatusID = a;
-                                        //tb_Fault_Details.FaultDescription = tb_Fault_Compliants.ComplaintDescription;
-                                        _repository.FaultDetailsRepository.AddFaultDetails(tb_Fault_DetailsChild);
-                                        await _repository.SaveAsync().ConfigureAwait(false);
+                                        ////tb_Fault_Details.RepairingStatusID = a;
+                                        ////tb_Fault_Details.FaultDescription = tb_Fault_Compliants.ComplaintDescription;
+                                        //_repository.FaultDetailsRepository.AddFaultDetails(tb_Fault_DetailsChild);
+                                        //await _repository.SaveAsync().ConfigureAwait(false);
+
+
+                                      
                                     }
 
 
@@ -208,9 +212,29 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
+
+                                tb_Fault_Compliants.ChildTicketsCount = lstJEPCOViewRequestsChildsResponse.Count();
+                                tb_Fault_Compliants.UpdateDate = DateTime.Now;
+                                _repository.FaultCompliantsLookupRepository.Update(null, tb_Fault_Compliants);
+                                await _repository.SaveAsync().ConfigureAwait(false);
+
+                            }
+                            else
+                            {
+                                tb_Fault_Compliants.ChildTicketsCount = 0;
+                                tb_Fault_Compliants.UpdateDate = DateTime.Now;
+                                _repository.FaultCompliantsLookupRepository.Update(null, tb_Fault_Compliants);
+                                await _repository.SaveAsync().ConfigureAwait(false);
+
                             }
 
 
+
+
+
+
+
+                          
 
 
 
@@ -257,6 +281,8 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                 List<MenaTrackService.JEPCOViewRequestsParentsResponse > lstJEPCOViewRequestsChildsResponse = await objCallCenterNewClient.JEPCO_ViewRequests_ChildsAsync(FaultComplaintDto.IssueID , FaultComplaintDto.BranchID).ConfigureAwait(false);
 
+                IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.IssueID == FaultComplaintDto.IssueID).ConfigureAwait(false);
+
 
 
                 if (lstJEPCOViewRequestsChildsResponse != null && lstJEPCOViewRequestsChildsResponse.Count > 0)
@@ -265,7 +291,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     {
 
 
-                        IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.IssueID == jEPCOViewRequest.IssueID).ConfigureAwait(false);
 
                         if (lstFalutComplaintData == null || lstFalutComplaintData.ToList().Count == 0 )
                         {
@@ -316,21 +341,32 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                             //int a = 1;
                             //tb_ElectricalFaultStatus tb_ElectricalFaultStatusOBJ = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusID == a).ConfigureAwait(false);
 
-                            tb_FaultDetails tb_Fault_Details = new tb_FaultDetails();
-                            tb_Fault_Details.FaultComplaintID = tb_Fault_Compliants.FaultComplaintID;
-                            tb_Fault_Details.CreatedDate = DateTime.Now;
-                            tb_Fault_Details.UpdateDate = DateTime.Now;
+                            //tb_FaultDetails tb_Fault_Details = new tb_FaultDetails();
+                            //tb_Fault_Details.FaultComplaintID = tb_Fault_Compliants.FaultComplaintID;
+                            //tb_Fault_Details.CreatedDate = DateTime.Now;
+                            //tb_Fault_Details.UpdateDate = DateTime.Now;
 
-                            //tb_Fault_Details.RepairingStatusID = a;
-                            //tb_Fault_Details.FaultDescription = tb_Fault_Compliants.ComplaintDescription;
-                            _repository.FaultDetailsRepository.AddFaultDetails(tb_Fault_Details);
-                            await _repository.SaveAsync().ConfigureAwait(false);
+                            ////tb_Fault_Details.RepairingStatusID = a;
+                            ////tb_Fault_Details.FaultDescription = tb_Fault_Compliants.ComplaintDescription;
+                            //_repository.FaultDetailsRepository.AddFaultDetails(tb_Fault_Details);
+                            //await _repository.SaveAsync().ConfigureAwait(false);
                         }
 
 
                     }
 
+                    lstFalutComplaintData.FirstOrDefault().ChildTicketsCount = lstJEPCOViewRequestsChildsResponse.Count();
+                    lstFalutComplaintData.FirstOrDefault().UpdateDate = DateTime.Now;
+                    _repository.FaultCompliantsLookupRepository.Update(null, lstFalutComplaintData.FirstOrDefault());
+                    await _repository.SaveAsync().ConfigureAwait(false);
 
+                }
+                else{
+
+                    lstFalutComplaintData.FirstOrDefault().ChildTicketsCount = 0;
+                    lstFalutComplaintData.FirstOrDefault().UpdateDate = DateTime.Now; 
+                    _repository.FaultCompliantsLookupRepository.Update(null, lstFalutComplaintData.FirstOrDefault());
+                    await _repository.SaveAsync().ConfigureAwait(false);
 
                 }
 

@@ -59,16 +59,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             try
             {
 
-                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
-
-                 MenaTrackService.CallLoginResponses objCallLoginResponses =   await objCallCenterNewClient.JepcoLoginAsync(LoginUserAccessRegisterDto.UserName , LoginUserAccessRegisterDto.Password).ConfigureAwait(false ) ;
-
-
-                if (objCallLoginResponses == null || objCallLoginResponses.UserID == 0)
-                {
-
-                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "The user name or password is incorrect")));
-                }
+                
 
                 tb_Technical technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == LoginUserAccessRegisterDto.UserName).ConfigureAwait(false);
 
@@ -78,6 +69,16 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 }
 
 
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
+
+                MenaTrackService.CallLoginResponses objCallLoginResponses = await objCallCenterNewClient.JepcoLoginAsync(LoginUserAccessRegisterDto.UserName, LoginUserAccessRegisterDto.Password).ConfigureAwait(false);
+
+
+                if (objCallLoginResponses == null || objCallLoginResponses.UserID == 0)
+                {
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "The user name or password is incorrect")));
+                }
 
 
 
@@ -117,17 +118,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             try
             {
 
-                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
-
-                bool objLogOut = await objCallCenterNewClient.JepcoLogoutAsync(LogOutUserAccessRegisterDto.UserID, LogOutUserAccessRegisterDto.BranchID).ConfigureAwait(false);
-
-
-                if (objLogOut == false)
-                {
-
-                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LogOutUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LogOutUserAccessRegisterDto.LanguageId, "Someting Wrong in  LogOut")));
-                }
-
                 IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserID == LogOutUserAccessRegisterDto.UserID && x.FaultStatusID ==1 || x.FaultStatusID == 2 || x.FaultStatusID == 3).ConfigureAwait(false);
 
 
@@ -148,6 +138,19 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 _repository.UserAccessRegisterLookupRepository.Update(null,objUserAccessRegister);
                 await _repository.SaveAsync().ConfigureAwait(false);
 
+
+
+
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
+
+                bool objLogOut = await objCallCenterNewClient.JepcoLogoutAsync(LogOutUserAccessRegisterDto.UserID, LogOutUserAccessRegisterDto.BranchID).ConfigureAwait(false);
+
+
+                if (objLogOut == false)
+                {
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LogOutUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LogOutUserAccessRegisterDto.LanguageId, "Someting Wrong in  LogOut")));
+                }
 
 
 

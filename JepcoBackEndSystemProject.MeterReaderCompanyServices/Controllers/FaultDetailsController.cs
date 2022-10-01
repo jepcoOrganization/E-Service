@@ -293,6 +293,8 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     //_mapper.Map(ComplaintUpdate, Fault_Compliants);//Assign Updateed Fields For Orginal Model
 
                     Fault_Compliants.FaultStatusID = 2;
+                    Fault_Compliants.FaultStatusDesc = "استلمت";
+
                     Fault_Compliants.UpdateDate = DateTime.Now;
                     _repository.FaultCompliantsLookupRepository.UpdateFaultCompliants(null, Fault_Compliants);
                     await _repository.SaveAsync().ConfigureAwait(false);
@@ -431,7 +433,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     if (string.IsNullOrEmpty(  ComplaintFaultDetails.ArrivingLocationImage)== false)
                     {
-                        string Status2 = await objCallCenterNewClient.JEPCO_NewAttachmentAsync(Fault_Compliants.BranchID, Fault_Compliants.UserID, long.Parse(Fault_Compliants.IssueID.ToString()), "صورة من الموقع", ComplaintFaultDetails.ArrivingLocationImage).ConfigureAwait(false);
+                        string Status2 = await objCallCenterNewClient.JEPCO_NewAttachmentAsync(Fault_Compliants.BranchID, Fault_Compliants.UserID, long.Parse(Fault_Compliants.IssueID.ToString()), "صورة_من_الموقع.jpg", ComplaintFaultDetails.ArrivingLocationImage).ConfigureAwait(false);
 
                         if (Status2 != "Success")
                         {
@@ -483,6 +485,8 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     //------------------------------------------------------------------------------------------------------------------------------------
 
                     Fault_Compliants.FaultStatusID = 3;
+                    Fault_Compliants.FaultStatusDesc = "تم الوصول الى الموقع";
+
                     Fault_Compliants.UpdateDate = DateTime.Now;
                      _repository.FaultCompliantsLookupRepository.UpdateFaultCompliants(null, Fault_Compliants);
                     await _repository.SaveAsync().ConfigureAwait(false);
@@ -650,7 +654,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     if( string.IsNullOrEmpty(  ComplaintFaultDetails.RepairingImage1) == false ){
 
-                        string Status1 = await objCallCenterNewClient.JEPCO_NewAttachmentAsync(Fault_Compliants.BranchID, Fault_Compliants.UserID, long.Parse(Fault_Compliants.IssueID.ToString()), "صورة بعد الاصلاح", ComplaintFaultDetails.RepairingImage1).ConfigureAwait(false);
+                        string Status1 = await objCallCenterNewClient.JEPCO_NewAttachmentAsync(Fault_Compliants.BranchID, Fault_Compliants.UserID, long.Parse(Fault_Compliants.IssueID.ToString()), "صورة_بعد_الاصلاح.jpg", ComplaintFaultDetails.RepairingImage1).ConfigureAwait(false);
 
                         if (Status1 != "Success")
                         {
@@ -706,6 +710,9 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     //------------------------------------------------------------------------------------------------------------------------------------
 
                     Fault_Compliants.FaultStatusID = 4;
+                    Fault_Compliants.FaultStatusDesc = "مغلقة";
+
+
                     Fault_Compliants.UpdateDate = DateTime.Now;
                     _repository.FaultCompliantsLookupRepository.UpdateFaultCompliants(null, Fault_Compliants);
                     await _repository.SaveAsync().ConfigureAwait(false);
@@ -814,6 +821,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     //------------------------------------------------------------------------------------------------------------------------------------
 
                     Fault_Compliants.FaultStatusID = 5;
+                    Fault_Compliants.FaultStatusDesc = "اعادة توجيه";
                     Fault_Compliants.UpdateDate = DateTime.Now;
                     _repository.FaultCompliantsLookupRepository.UpdateFaultCompliants(null, Fault_Compliants);
                     await _repository.SaveAsync().ConfigureAwait(false);

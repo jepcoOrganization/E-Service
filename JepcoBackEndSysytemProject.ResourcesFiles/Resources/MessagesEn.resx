@@ -195,6 +195,9 @@
   <data name="The user name or password is incorrect" xml:space="preserve">
     <value>The user name or password is incorrect</value>
   </data>
+  <data name="This User not Active" xml:space="preserve">
+    <value>This User not Active</value>
+  </data>
   <data name="Update all User data in database" xml:space="preserve">
     <value>Update all User data in database</value>
   </data>
@@ -221,5 +224,8 @@
   </data>
   <data name="You are successfully logged Out" xml:space="preserve">
     <value>You are successfully logged Out</value>
+  </data>
+  <data name="You must Close or ReAssinged all Compliants before you logout" xml:space="preserve">
+    <value>You must Close or ReAssinged all Compliants before you logout</value>
   </data>
 </root>
