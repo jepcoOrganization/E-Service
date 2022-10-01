@@ -189,7 +189,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                                         _repository.FaultCompliantsLookupRepository.AddFaultCompliants(tb_Fault_CompliantsChild);
                                         await _repository.SaveAsync().ConfigureAwait(false);
-                                        int a = 1;
+                                        //int a = 1;
                                         //tb_ElectricalFaultStatus tb_ElectricalFaultStatusOBJ = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusID == a).ConfigureAwait(false);
 
                                         tb_FaultDetails tb_Fault_DetailsChild = new tb_FaultDetails();
@@ -313,7 +313,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                             _repository.FaultCompliantsLookupRepository.AddFaultCompliants(tb_Fault_Compliants);
                             await _repository.SaveAsync().ConfigureAwait(false);
-                            int a = 1;
+                            //int a = 1;
                             //tb_ElectricalFaultStatus tb_ElectricalFaultStatusOBJ = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusID == a).ConfigureAwait(false);
 
                             tb_FaultDetails tb_Fault_Details = new tb_FaultDetails();
@@ -459,23 +459,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }
