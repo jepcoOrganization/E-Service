@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace JepcoBackEndSystemProject.Models.Models
 
         public DateTime? ArrivingLocationDateTime { get; set; }
 
+        [Column(TypeName = "nvarchar(MAX)")]
+        [MaxLength(int.MaxValue)]
         public string ArrivingLocationImage { get; set; }
 
         [StringLength(50)]
@@ -55,11 +58,14 @@ namespace JepcoBackEndSystemProject.Models.Models
         public DateTime? RepairingClosingDatetime { get; set; }
 
         public int? RepairingStatusID { get; set; }
-
+        [Column(TypeName = "nvarchar(MAX)")]
+        [MaxLength(int.MaxValue)]
         public string RepairingImage1 { get; set; }
-
+        [Column(TypeName = "nvarchar(MAX)")]
+        [MaxLength(int.MaxValue)]
         public string RepairingImage2 { get; set; }
-
+        [Column(TypeName = "nvarchar(MAX)")]
+        [MaxLength(int.MaxValue)]
         public string RepairingImage3 { get; set; }
 
         public string TechnicationNote { get; set; }

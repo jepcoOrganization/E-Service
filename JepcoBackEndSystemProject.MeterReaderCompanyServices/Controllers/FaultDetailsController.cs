@@ -294,6 +294,11 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Invalid Complaint object sent from client")));
                 }
+
+
+                  _logger.LogError("Image:" + ArrivingLocationCompliantRequestDto.ArrivingLocationImage );
+
+
                 tb_Fault_Compliants Fault_Compliants = await _repository.FaultCompliantsLookupRepository.GetSingleFaultCompliant(X => X.FaultComplaintID == ArrivingLocationCompliantRequestDto.FaultComplaintID).ConfigureAwait(false);
                 tb_FaultDetails ComplaintFaultDetails = await _repository.FaultDetailsRepository.GetSingleFaultDetails(faultDetails => faultDetails.FaultComplaintID == ArrivingLocationCompliantRequestDto.FaultComplaintID).ConfigureAwait(false);
 
@@ -318,7 +323,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     MenaTrackAddtionalFiledsDto objMenaTrackAddtionalFiledsDto = new MenaTrackAddtionalFiledsDto();
 
 
-                   
+
                     objMenaTrackAddtionalFiledsDto.FieldID = 70;
                     objMenaTrackAddtionalFiledsDto.FieldValue = dtArrivingDate.ToString("dd/MM/yyyy HH:mm:ss");
 
@@ -328,7 +333,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     MenaTrackAddtionalFiledsDto objMenaTrackAddtionalFiledsDto1 = new MenaTrackAddtionalFiledsDto();
 
 
-                 
+
                     objMenaTrackAddtionalFiledsDto1.FieldID = 71;
                     objMenaTrackAddtionalFiledsDto1.FieldValue = ComplaintFaultDetails.ArrivingLocationLatt + "," + ComplaintFaultDetails.ArrivingLocationLong;
 
@@ -353,7 +358,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     }
 
-                    if (string.IsNullOrEmpty(  ComplaintFaultDetails.ArrivingLocationImage)== false)
+                    if (string.IsNullOrEmpty(ComplaintFaultDetails.ArrivingLocationImage) == false)
                     {
                         string Status2 = await objCallCenterNewClient.JEPCO_NewAttachmentAsync(Fault_Compliants.BranchID, Fault_Compliants.UserID, long.Parse(Fault_Compliants.IssueID.ToString()), "صورة_من_الموقع.jpg", ComplaintFaultDetails.ArrivingLocationImage).ConfigureAwait(false);
 
@@ -365,35 +370,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                         }
 
                     }
-
-                  
-
-
-                    //string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse(Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID, 70, dtArrivingDate.ToString()).ConfigureAwait(false);
-
-                    //if (Status != "Success")
-                    //{
-
-                    //    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " تاريخ الوصول")));
-
-                    //}
-
-                    //if (string.IsNullOrEmpty( ComplaintFaultDetails.ArrivingLocationLatt) == false && string.IsNullOrEmpty(ComplaintFaultDetails.ArrivingLocationLong))
-                    //{
-                    //    string Status1 = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse(Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID, 71
-                    //                           , ComplaintFaultDetails.ArrivingLocationLatt + "," + ComplaintFaultDetails.ArrivingLocationLong).ConfigureAwait(false);
-
-                    //    if (Status1 != "Success")
-                    //    {
-
-                    //        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " احداثيات الموقع")));
-
-                    //    }
-
-                    //}
-
-
-
 
 
                     ComplaintFaultDetails.ArrivingLocationDateTime = dtArrivingDate;
