@@ -107,10 +107,10 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         //-----------------------------------------------------------------------------------------------------------
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [HttpPost(Name = "FaultCompliantDetails")]
-        [Route("FaultCompliantDetails")]
-        // BranchId from BranchesModelResource in Resource project to hide value
-        public async Task<ActionResult<CommonReturnResult>> FaultCompliantDetails([FromBody] ComplaintFaultDetailsRequestDto ComplaintFaultDetailsRequest)
+        [HttpPost(Name = "GetFaultCompliantDetailsWithOutImage")]
+        [Route("GetFaultCompliantDetailsWithOutImage")]
+       
+        public async Task<ActionResult<CommonReturnResult>> GetFaultCompliantDetailsWithOUTImage([FromBody] ComplaintFaultDetailsRequestDto ComplaintFaultDetailsRequest)
         {
 
             try
@@ -185,7 +185,69 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
             }
         }
-      
+        //---------------------------------------------------------------------------------------
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "GetFaultCompliantDetailsImage")]
+        [Route("GetFaultCompliantDetailsImage")]
+
+        public async Task<ActionResult<CommonReturnResult>> GetFaultCompliantDetailsImage([FromBody] GetFaultCompliantDetailsImageRequestDto GetFaultCompliantDetailsImageRequest)
+        {
+
+            try
+            {
+                if (GetFaultCompliantDetailsImageRequest == null)
+                {
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetFaultCompliantDetailsImageRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GetFaultCompliantDetailsImageRequest.LanguageId, " Complaint object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetFaultCompliantDetailsImageRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GetFaultCompliantDetailsImageRequest.LanguageId, "Invalid Complaint object sent from client")));
+                }
+
+                tb_FaultDetails ComplaintFaultDetails = await _repository.FaultDetailsRepository.GetSingleFaultDetails(faultDetails => faultDetails.FaultComplaintID == GetFaultCompliantDetailsImageRequest.FaultComplaintID).ConfigureAwait(false);
+
+
+                if (ComplaintFaultDetails == null)
+                {
+
+                    return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetFaultCompliantDetailsImageRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GetFaultCompliantDetailsImageRequest.LanguageId, "Complaint  with id hasn't been found in db") + GetFaultCompliantDetailsImageRequest.FaultComplaintID));
+
+                }
+                else
+                {
+                    GetFaultCompliantDetailsImageResponseDto ImageResponse = new GetFaultCompliantDetailsImageResponseDto();
+                    if (GetFaultCompliantDetailsImageRequest.Image == 1)
+                    {
+                        ImageResponse.Image = ComplaintFaultDetails.ArrivingLocationImage;
+
+
+                    }else if(GetFaultCompliantDetailsImageRequest.Image == 2)
+                    {
+                        ImageResponse.Image = ComplaintFaultDetails.RepairingImage1;
+                    }
+
+
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetFaultCompliantDetailsImageRequest.LanguageId, "Returned Complaint  Image with id ") + ComplaintFaultDetails.FaultComplaintID, ImageResponse));
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetFaultCompliantDetails action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+
+                //Call API for add error log inside TbErrorLogs
+
+                // _common.AddErrorLog(_repository,"Branches", "GetBranchByID", $"Something went wrong inside GetBranchByID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace }", ex.StackTrace, ex.Message, "400");
+
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetFaultCompliantDetailsImageRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GetFaultCompliantDetailsImageRequest.LanguageId, "Internal server error")));
+
+            }
+        }
 
         //----------------------------------------------------------------------------------------------------------------------------
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -353,7 +415,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "ArrivingLocation")]
         [Route("ArrivingLocation")]
-        // BranchId from BranchesModelResource in Resource project to hide value
+  
         public async Task<ActionResult<CommonReturnResult>> ArrivingLocation([FromBody] ArrivingLocationCompliantRequestDto ArrivingLocationCompliantRequestDto)
         {
 
@@ -372,15 +434,14 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Invalid Complaint object sent from client")));
                 }
+                
                 tb_Fault_Compliants Fault_Compliants = await _repository.FaultCompliantsLookupRepository.GetSingleFaultCompliant(X => X.FaultComplaintID == ArrivingLocationCompliantRequestDto.FaultComplaintID).ConfigureAwait(false);
                 tb_FaultDetails ComplaintFaultDetails = await _repository.FaultDetailsRepository.GetSingleFaultDetails(faultDetails => faultDetails.FaultComplaintID == ArrivingLocationCompliantRequestDto.FaultComplaintID).ConfigureAwait(false);
 
-
+            
                 if (ComplaintFaultDetails == null || Fault_Compliants == null)
                 {
-                    //   _logger.LogError($"Branch with id: {Branch.Id}, hasn't been found in db.");
-
-                    //Call API for add error log inside TbErrorLogs
+      
 
                     return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Complaint with id hasn't been found in db") + ArrivingLocationCompliantRequestDto.FaultComplaintID));
 
