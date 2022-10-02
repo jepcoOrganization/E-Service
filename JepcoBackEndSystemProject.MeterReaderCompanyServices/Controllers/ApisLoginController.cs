@@ -1,10 +1,6 @@
 ﻿using System;
-
 using Microsoft.AspNetCore.Mvc;
-
-
 using Microsoft.AspNetCore.Authorization;
-
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
