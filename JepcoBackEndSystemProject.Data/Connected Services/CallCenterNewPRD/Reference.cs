@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MenaTrackService
+namespace CallCenterNewPRD
 {
     using System.Runtime.Serialization;
     
@@ -678,51 +678,51 @@ namespace MenaTrackService
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MenaTrackService.ICallCenterNew")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CallCenterNewPRD.ICallCenterNew")]
     public interface ICallCenterNew
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/GetCities", ReplyAction="http://tempuri.org/ICallCenterNew/GetCitiesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.CallCenterResponses>> GetCitiesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.CallCenterResponses>> GetCitiesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/GetComplaintType", ReplyAction="http://tempuri.org/ICallCenterNew/GetComplaintTypeResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.CallCenterResponses>> GetComplaintTypeAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.CallCenterResponses>> GetComplaintTypeAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/GetAreas", ReplyAction="http://tempuri.org/ICallCenterNew/GetAreasResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.CallCenterResponses>> GetAreasAsync(int BranchId);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.CallCenterResponses>> GetAreasAsync(int BranchId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/GetNeighborhoods", ReplyAction="http://tempuri.org/ICallCenterNew/GetNeighborhoodsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.CallCenterResponses>> GetNeighborhoodsAsync(int BranchId, int AreaId);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.CallCenterResponses>> GetNeighborhoodsAsync(int BranchId, int AreaId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/GetStreets", ReplyAction="http://tempuri.org/ICallCenterNew/GetStreetsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.CallCenterResponses>> GetStreetsAsync(int BranchId, int NeighborhoodId);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.CallCenterResponses>> GetStreetsAsync(int BranchId, int NeighborhoodId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/SaveIssue", ReplyAction="http://tempuri.org/ICallCenterNew/SaveIssueResponse")]
-        System.Threading.Tasks.Task<MenaTrackService.CallCenterIssueResponse> SaveIssueAsync(int BranchID, string MobileNumber, string RequesterName, string MeterNumber, int ComplaintId, int AreaId, int NeighborhoodId, int StreetId, string IssueTitle, string IssueDescription, int FailureTypeID, string AttachName, string AttachValue, string AddtiionalFileds, int intIntegrationType);
+        System.Threading.Tasks.Task<CallCenterNewPRD.CallCenterIssueResponse> SaveIssueAsync(int BranchID, string MobileNumber, string RequesterName, string MeterNumber, int ComplaintId, int AreaId, int NeighborhoodId, int StreetId, string IssueTitle, string IssueDescription, int FailureTypeID, string AttachName, string AttachValue, string AddtiionalFileds, int intIntegrationType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/IssueStatus", ReplyAction="http://tempuri.org/ICallCenterNew/IssueStatusResponse")]
-        System.Threading.Tasks.Task<MenaTrackService.CallCenterIssueResponse> IssueStatusAsync(int BranchID, string ComplainRefrenceNumber, long ComplainIssueId);
+        System.Threading.Tasks.Task<CallCenterNewPRD.CallCenterIssueResponse> IssueStatusAsync(int BranchID, string ComplainRefrenceNumber, long ComplainIssueId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/JepcoLogin", ReplyAction="http://tempuri.org/ICallCenterNew/JepcoLoginResponse")]
-        System.Threading.Tasks.Task<MenaTrackService.CallLoginResponses> JepcoLoginAsync(string UserName, string Password);
+        System.Threading.Tasks.Task<CallCenterNewPRD.CallLoginResponses> JepcoLoginAsync(string UserName, string Password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/JepcoLogout", ReplyAction="http://tempuri.org/ICallCenterNew/JepcoLogoutResponse")]
         System.Threading.Tasks.Task<bool> JepcoLogoutAsync(int UserId, int BranchID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/JEPCO_ViewRequests_Parents", ReplyAction="http://tempuri.org/ICallCenterNew/JEPCO_ViewRequests_ParentsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ParentsAsync(int UserId, int BranchID);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ParentsAsync(int UserId, int BranchID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/JEPCO_ViewRequests_Childs", ReplyAction="http://tempuri.org/ICallCenterNew/JEPCO_ViewRequests_ChildsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ChildsAsync(long IssueID, int BranchID);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ChildsAsync(long IssueID, int BranchID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/MainCalssfications", ReplyAction="http://tempuri.org/ICallCenterNew/MainCalssficationsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> MainCalssficationsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.ClassficationLookupResponse>> MainCalssficationsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/SubMainCalssfications", ReplyAction="http://tempuri.org/ICallCenterNew/SubMainCalssficationsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> SubMainCalssficationsAsync(int intMainCalssficationId);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.ClassficationLookupResponse>> SubMainCalssficationsAsync(int intMainCalssficationId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/ReassingCallsficationCalssfications", ReplyAction="http://tempuri.org/ICallCenterNew/ReassingCallsficationCalssficationsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> ReassingCallsficationCalssficationsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.ClassficationLookupResponse>> ReassingCallsficationCalssficationsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICallCenterNew/JEPCO_NewAttachment", ReplyAction="http://tempuri.org/ICallCenterNew/JEPCO_NewAttachmentResponse")]
         System.Threading.Tasks.Task<string> JEPCO_NewAttachmentAsync(int BranchId, int UserId, long IssueID, string AttchmentName, string AttchValue);
@@ -742,13 +742,13 @@ namespace MenaTrackService
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    public interface ICallCenterNewChannel : MenaTrackService.ICallCenterNew, System.ServiceModel.IClientChannel
+    public interface ICallCenterNewChannel : CallCenterNewPRD.ICallCenterNew, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    public partial class CallCenterNewClient : System.ServiceModel.ClientBase<MenaTrackService.ICallCenterNew>, MenaTrackService.ICallCenterNew
+    public partial class CallCenterNewClient : System.ServiceModel.ClientBase<CallCenterNewPRD.ICallCenterNew>, CallCenterNewPRD.ICallCenterNew
     {
         
         /// <summary>
@@ -784,42 +784,42 @@ namespace MenaTrackService
         {
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.CallCenterResponses>> GetCitiesAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.CallCenterResponses>> GetCitiesAsync()
         {
             return base.Channel.GetCitiesAsync();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.CallCenterResponses>> GetComplaintTypeAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.CallCenterResponses>> GetComplaintTypeAsync()
         {
             return base.Channel.GetComplaintTypeAsync();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.CallCenterResponses>> GetAreasAsync(int BranchId)
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.CallCenterResponses>> GetAreasAsync(int BranchId)
         {
             return base.Channel.GetAreasAsync(BranchId);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.CallCenterResponses>> GetNeighborhoodsAsync(int BranchId, int AreaId)
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.CallCenterResponses>> GetNeighborhoodsAsync(int BranchId, int AreaId)
         {
             return base.Channel.GetNeighborhoodsAsync(BranchId, AreaId);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.CallCenterResponses>> GetStreetsAsync(int BranchId, int NeighborhoodId)
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.CallCenterResponses>> GetStreetsAsync(int BranchId, int NeighborhoodId)
         {
             return base.Channel.GetStreetsAsync(BranchId, NeighborhoodId);
         }
         
-        public System.Threading.Tasks.Task<MenaTrackService.CallCenterIssueResponse> SaveIssueAsync(int BranchID, string MobileNumber, string RequesterName, string MeterNumber, int ComplaintId, int AreaId, int NeighborhoodId, int StreetId, string IssueTitle, string IssueDescription, int FailureTypeID, string AttachName, string AttachValue, string AddtiionalFileds, int intIntegrationType)
+        public System.Threading.Tasks.Task<CallCenterNewPRD.CallCenterIssueResponse> SaveIssueAsync(int BranchID, string MobileNumber, string RequesterName, string MeterNumber, int ComplaintId, int AreaId, int NeighborhoodId, int StreetId, string IssueTitle, string IssueDescription, int FailureTypeID, string AttachName, string AttachValue, string AddtiionalFileds, int intIntegrationType)
         {
             return base.Channel.SaveIssueAsync(BranchID, MobileNumber, RequesterName, MeterNumber, ComplaintId, AreaId, NeighborhoodId, StreetId, IssueTitle, IssueDescription, FailureTypeID, AttachName, AttachValue, AddtiionalFileds, intIntegrationType);
         }
         
-        public System.Threading.Tasks.Task<MenaTrackService.CallCenterIssueResponse> IssueStatusAsync(int BranchID, string ComplainRefrenceNumber, long ComplainIssueId)
+        public System.Threading.Tasks.Task<CallCenterNewPRD.CallCenterIssueResponse> IssueStatusAsync(int BranchID, string ComplainRefrenceNumber, long ComplainIssueId)
         {
             return base.Channel.IssueStatusAsync(BranchID, ComplainRefrenceNumber, ComplainIssueId);
         }
         
-        public System.Threading.Tasks.Task<MenaTrackService.CallLoginResponses> JepcoLoginAsync(string UserName, string Password)
+        public System.Threading.Tasks.Task<CallCenterNewPRD.CallLoginResponses> JepcoLoginAsync(string UserName, string Password)
         {
             return base.Channel.JepcoLoginAsync(UserName, Password);
         }
@@ -829,27 +829,27 @@ namespace MenaTrackService
             return base.Channel.JepcoLogoutAsync(UserId, BranchID);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ParentsAsync(int UserId, int BranchID)
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ParentsAsync(int UserId, int BranchID)
         {
             return base.Channel.JEPCO_ViewRequests_ParentsAsync(UserId, BranchID);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ChildsAsync(long IssueID, int BranchID)
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.JEPCOViewRequestsParentsResponse>> JEPCO_ViewRequests_ChildsAsync(long IssueID, int BranchID)
         {
             return base.Channel.JEPCO_ViewRequests_ChildsAsync(IssueID, BranchID);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> MainCalssficationsAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.ClassficationLookupResponse>> MainCalssficationsAsync()
         {
             return base.Channel.MainCalssficationsAsync();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> SubMainCalssficationsAsync(int intMainCalssficationId)
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.ClassficationLookupResponse>> SubMainCalssficationsAsync(int intMainCalssficationId)
         {
             return base.Channel.SubMainCalssficationsAsync(intMainCalssficationId);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<MenaTrackService.ClassficationLookupResponse>> ReassingCallsficationCalssficationsAsync()
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<CallCenterNewPRD.ClassficationLookupResponse>> ReassingCallsficationCalssficationsAsync()
         {
             return base.Channel.ReassingCallsficationCalssficationsAsync();
         }
@@ -917,11 +917,11 @@ namespace MenaTrackService
         {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_ICallCenterNew))
             {
-                return new System.ServiceModel.EndpointAddress("http://localhost/SAPIntegration/CallCenterNew.svc");
+                return new System.ServiceModel.EndpointAddress("http://mobile.jep.local/SAPIntegration/CallCenterNew.svc");
             }
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding_ICallCenterNew))
             {
-                return new System.ServiceModel.EndpointAddress("https://mobile.jepco.com.jo:8443/SAPIntegration/CallCenterNew.svc");
+                return new System.ServiceModel.EndpointAddress("https://mobile.jepco.com.jo/SAPIntegration/CallCenterNew.svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
