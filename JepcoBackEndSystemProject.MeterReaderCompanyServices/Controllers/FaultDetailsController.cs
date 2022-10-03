@@ -430,8 +430,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 if (!ModelState.IsValid)
                 {
 
-
-
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Invalid Complaint object sent from client")));
                 }
                 

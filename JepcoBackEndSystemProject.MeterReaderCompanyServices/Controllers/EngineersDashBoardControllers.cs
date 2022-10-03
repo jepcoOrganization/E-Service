@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JepcoBackEndSystemProject.Data;
 using JepcoBackEndSystemProject.Data.CommonReturn;
+using JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.FaultComplaint;
 using JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.GeneralTechnicianInf;
 using JepcoBackEndSystemProject.EMRCServices.DataTransferObject;
 using JepcoBackEndSystemProject.Models;
@@ -346,8 +347,76 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
         }
 
+        //----------------------------------------------------------------------------------------------------------------
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "Monitor")]
+        [Route("Monitor")]
+        public async Task<ActionResult<CommonReturnResult>> Monitor([FromBody] MonitorRequestDto MonitorRequest)
+        {
 
 
+            try
+            {
+
+                if (MonitorRequest == null)
+                {
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "  object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "Invalid  object sent from client")));
+
+                }
+
+
+
+                tb_Technical technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == MonitorRequest.EmployeeNumber).ConfigureAwait(false);
+                IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserName == MonitorRequest.EmployeeNumber && x.FaultStatusID == 3).ConfigureAwait(false);
+                IEnumerable<tb_Fault_Compliants> lstFalutComplaintNew = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserName == MonitorRequest.EmployeeNumber && x.FaultStatusID == 1).ConfigureAwait(false);
+
+                if (technical == null || lstFalutComplaintData == null)
+                {
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "  object sent from client is null")));
+                }
+
+
+                tb_Fault_Compliants LastArrivecompliant = lstFalutComplaintData.First();
+                tb_FaultDetails LastComplaintFaultDetails = await _repository.FaultDetailsRepository.GetSingleFaultDetails(faultDetails => faultDetails.FaultComplaintID == lstFalutComplaintData.First().FaultComplaintID).ConfigureAwait(false);
+
+                if (lstFalutComplaintData.Count() > 1)
+                {
+
+                    foreach (var Arrivecompliant in lstFalutComplaintData)
+                    {
+                        tb_FaultDetails ComplaintFaultDetails = await _repository.FaultDetailsRepository.GetSingleFaultDetails(faultDetails => faultDetails.FaultComplaintID == Arrivecompliant.FaultComplaintID).ConfigureAwait(false);
+
+                        if (ComplaintFaultDetails.ArrivingLocationDateTime > LastComplaintFaultDetails.ArrivingLocationDateTime)
+                        {
+                            LastArrivecompliant = Arrivecompliant;
+                            LastComplaintFaultDetails = ComplaintFaultDetails;
+                        }
+
+                    }
+                }
+
+
+
+
+
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "No Change status  for ") , LastArrivecompliant));
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside ActiveTechnical action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "Internal server error")));
+            }
+
+        }
 
 
 
