@@ -50,7 +50,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
         #endregion
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GetParentFaultCompliantList")]
         [Route("GetParentFaultCompliantList")]
         public async Task<ActionResult<CommonReturnResult>> GetParentFaultCompliantList([FromBody] FaultComplaintDto FaultComplaintDto)
@@ -272,7 +272,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
         }
 
-       //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GetChildFaultCompliantList")]
         [Route("GetChildFaultCompliantList")]
         public async Task<ActionResult<CommonReturnResult>> GetChildFaultCompliantList([FromBody] ChildFaultComplaintDto FaultComplaintDto)
@@ -394,7 +394,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
         //----------------------------------------------------------------------------------------------------------
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "PushTicket")]
         [Route("PushTicket")]
         public async Task<ActionResult<CommonReturnResult>> PushTicket([FromBody] List<PushRequestDTO> PushRequest)
