@@ -123,9 +123,10 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     //tb_ElectricalFaultStatus statusDto = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusNameAR == GeneralTechnicianInfRequest.FaultStatus ).ConfigureAwait(false);
 
-                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityDesc) == false)
+                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityID) == false)
                     {
-                        lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.PiorityDesc == GeneralTechnicianInfRequest.PiorityDesc);
+
+                        lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.PiorityID == int.Parse(GeneralTechnicianInfRequest.PiorityID));
                     }
 
 

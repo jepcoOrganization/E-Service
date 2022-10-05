@@ -6,6 +6,8 @@ using JepcoBackEndSystemProject.Models;
 using JepcoBackEndSystemProject.Models.Models;
 using JepcoBackEndSysytemProject.LoggerService;
 using JepcoBackEndSysytemProject.ResourcesFiles.Resources;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

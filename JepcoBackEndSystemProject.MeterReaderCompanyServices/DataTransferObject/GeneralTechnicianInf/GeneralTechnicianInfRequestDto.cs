@@ -11,7 +11,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.GeneralT
         public string ComplaintTimeStart { get; set; }
         public string ComplaintTimeEnd { get; set; }
         public string EmployeeNumber { get; set; }
-        public string PiorityDesc { get; set; }
+        public string PiorityID { get; set; }
         [Required]
         public string LanguageId { get; set; }
     }
