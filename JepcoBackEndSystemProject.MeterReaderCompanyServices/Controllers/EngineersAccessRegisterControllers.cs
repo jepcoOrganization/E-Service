@@ -71,7 +71,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 _repository.EngineersAccessRegisterRepository.UpdateEngineersAccessRegister(null, EngineersAccessRegisterUser);
                 await _repository.SaveAsync().ConfigureAwait(false);
 
-                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "You are successfully logged in"),"UserName: "+ EngineersAccessRegisterUser.UserName));
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "You are successfully logged in"), EngineersAccessRegisterUser));
 
             }
             catch (Exception ex)

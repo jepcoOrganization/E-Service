@@ -20,6 +20,7 @@ namespace JepcoBackEndSystemProject.Models.Models
         public DateTime LoginDateTime { get; set; }
         [Required]
         public DateTime? LogoutDateTime { get; set; }
+        public string FullName { get; set; }
 
     }
 }

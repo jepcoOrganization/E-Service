@@ -412,7 +412,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
         }
 
-       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "ArrivingLocation")]
         [Route("ArrivingLocation")]
   
@@ -788,7 +788,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "ReassignCompliant")]
         [Route("ReassignCompliant")]
-        // BranchId from BranchesModelResource in Resource project to hide value
+       
         public async Task<ActionResult<CommonReturnResult>> ReassignCompliant([FromBody] ReassignCompliantDto ReassignCompliantDto)
         {
 
@@ -847,7 +847,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     
 
                     ComplaintFaultDetails.UpdateDate = DateTime.Now;
-
+                    ComplaintFaultDetails.RepairingImage1 = ReassignCompliantDto.ReassigningImage;
 
                     _repository.FaultDetailsRepository.UpdateFaultDetails(null, ComplaintFaultDetails);
                     await _repository.SaveAsync().ConfigureAwait(false);

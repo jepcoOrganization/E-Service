@@ -27,5 +27,9 @@ namespace JepcoBackEndSystemProject.Models.Models
         //[Required]
         //[StringLength(50)]
         public bool SystemActive { get; set; }
+        public String MenaTrackPassword { get; set; }
+        public String EmployeePassword { get; set; }
+        public string EmployeeMobileNumber { get; set; }
+        
     }
 }

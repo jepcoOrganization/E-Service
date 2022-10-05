@@ -272,7 +272,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
         }
 
-       [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GetChildFaultCompliantList")]
         [Route("GetChildFaultCompliantList")]
         public async Task<ActionResult<CommonReturnResult>> GetChildFaultCompliantList([FromBody] ChildFaultComplaintDto FaultComplaintDto)
