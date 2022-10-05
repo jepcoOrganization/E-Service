@@ -847,7 +847,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     
 
                     ComplaintFaultDetails.UpdateDate = DateTime.Now;
-                    ComplaintFaultDetails.RepairingImage1= ReassignCompliantDto.ReassigningImage
+                    ComplaintFaultDetails.RepairingImage1 = ReassignCompliantDto.ReassigningImage;
 
                     _repository.FaultDetailsRepository.UpdateFaultDetails(null, ComplaintFaultDetails);
                     await _repository.SaveAsync().ConfigureAwait(false);
