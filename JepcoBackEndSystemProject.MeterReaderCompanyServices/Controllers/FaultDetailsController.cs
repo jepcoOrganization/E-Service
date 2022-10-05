@@ -471,7 +471,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
                     objMenaTrackAddtionalFiledsDto1.FieldID = 71;
-                    objMenaTrackAddtionalFiledsDto1.FieldValue = "(" + ArrivingLocationCompliantRequestDto.ArrivingLocationLatt + "" + ArrivingLocationCompliantRequestDto.ArrivingLocationLong + ")";
+                    objMenaTrackAddtionalFiledsDto1.FieldValue = "(" + ArrivingLocationCompliantRequestDto.ArrivingLocationLatt + "," + ArrivingLocationCompliantRequestDto.ArrivingLocationLong + ")";
 
                     lstMenaTrackAddtionalFiledsDto.Add(objMenaTrackAddtionalFiledsDto1);
 
@@ -700,7 +700,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     }
 
 
-                    string Status3 =  await objCallCenterNewClient.JEPCO_ChangeStatusAsync(Fault_Compliants.UserID, Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()) , ComplaintFaultDetails.TechnicationNote).ConfigureAwait(false);
+                    string Status3 =  await objCallCenterNewClient.JEPCO_ChangeStatusAsync(Fault_Compliants.UserID, Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()) , RepairandCloseComplaintRequestDto.TechnicationNote).ConfigureAwait(false);
 
 
                     if (Status3 != "Success")

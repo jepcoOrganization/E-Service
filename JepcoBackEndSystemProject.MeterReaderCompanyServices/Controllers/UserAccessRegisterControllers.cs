@@ -69,7 +69,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 }
 
 
-                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew );
 
                 MenaTrackService.CallLoginResponses objCallLoginResponses = await objCallCenterNewClient.JepcoLoginAsync(LoginUserAccessRegisterDto.UserName, LoginUserAccessRegisterDto.Password).ConfigureAwait(false);
 
