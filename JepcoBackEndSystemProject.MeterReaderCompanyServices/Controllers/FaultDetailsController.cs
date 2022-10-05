@@ -54,7 +54,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GetFaultCompliantDetails")]
         [Route("GetFaultCompliantDetails")]
         // BranchId from BranchesModelResource in Resource project to hide value
@@ -106,7 +106,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
         //-----------------------------------------------------------------------------------------------------------
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GetFaultCompliantDetailsWithOutImage")]
         [Route("GetFaultCompliantDetailsWithOutImage")]
        
@@ -186,7 +186,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
         }
         //---------------------------------------------------------------------------------------
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GetFaultCompliantDetailsImage")]
         [Route("GetFaultCompliantDetailsImage")]
 
@@ -250,7 +250,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
         //----------------------------------------------------------------------------------------------------------------------------
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "DelivredCompliant")]
         [Route("DelivredCompliant")]
         // BranchId from BranchesModelResource in Resource project to hide value
@@ -562,7 +562,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "RepairandCloseComplaint")]
         [Route("RepairandCloseComplaint")]
         // BranchId from BranchesModelResource in Resource project to hide value
@@ -785,10 +785,10 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "ReassignCompliant")]
         [Route("ReassignCompliant")]
-        // BranchId from BranchesModelResource in Resource project to hide value
+       
         public async Task<ActionResult<CommonReturnResult>> ReassignCompliant([FromBody] ReassignCompliantDto ReassignCompliantDto)
         {
 
@@ -847,7 +847,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     
 
                     ComplaintFaultDetails.UpdateDate = DateTime.Now;
-
+                    ComplaintFaultDetails.RepairingImage1= ReassignCompliantDto.ReassigningImage
 
                     _repository.FaultDetailsRepository.UpdateFaultDetails(null, ComplaintFaultDetails);
                     await _repository.SaveAsync().ConfigureAwait(false);
@@ -893,7 +893,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "FaultClassficationLookup")]
         [Route("FaultClassficationLookup")]
         // BranchId from BranchesModelResource in Resource project to hide value
@@ -957,7 +957,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "FaultSubClassficationLookup")]
         [Route("FaultSubClassficationLookup")]
         // BranchId from BranchesModelResource in Resource project to hide value
@@ -1035,7 +1035,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "ReassingClassficationLookup")]
         [Route("ReassingClassficationLookup")]
         // BranchId from BranchesModelResource in Resource project to hide value

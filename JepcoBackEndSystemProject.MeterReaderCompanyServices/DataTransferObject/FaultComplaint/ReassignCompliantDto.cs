@@ -15,7 +15,9 @@
 
         public string ReassignClassficationName { get; set; }
 
-        
+        public string ReassigningImage { get; set; }
+
+
 
     }
 }

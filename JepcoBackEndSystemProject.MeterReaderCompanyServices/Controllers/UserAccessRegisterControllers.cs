@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JepcoBackEndSystemProject.Data;
 using JepcoBackEndSystemProject.Data.CommonReturn;
+using JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.UserAccessRegister;
 using JepcoBackEndSystemProject.EMRCServices.DataTransferObject;
 using JepcoBackEndSystemProject.Models;
 using JepcoBackEndSystemProject.Models.Models;
@@ -49,7 +50,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
         #endregion
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "TechnicianLogin")]
         [Route("TechnicianLogin")]
         public async Task<ActionResult<CommonReturnResult>> TechnicianLogin([FromBody] LoginUserAccessRegisterDto LoginUserAccessRegisterDto)
@@ -61,8 +62,12 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                 
 
-                tb_Technical technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == LoginUserAccessRegisterDto.UserName).ConfigureAwait(false);
+                tb_Technical technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == LoginUserAccessRegisterDto.UserName && x.EmployeePassword== LoginUserAccessRegisterDto.Password).ConfigureAwait(false);
 
+                if (technical == null)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "you have error at your password or user name")));
+                }
                 if (technical.SystemActive == false)
                 {
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "This User not Active")));
@@ -71,7 +76,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                 MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
-                MenaTrackService.CallLoginResponses objCallLoginResponses = await objCallCenterNewClient.JepcoLoginAsync(LoginUserAccessRegisterDto.UserName, LoginUserAccessRegisterDto.Password).ConfigureAwait(false);
+                MenaTrackService.CallLoginResponses objCallLoginResponses = await objCallCenterNewClient.JepcoLoginAsync(LoginUserAccessRegisterDto.UserName, technical.MenaTrackPassword).ConfigureAwait(false);
 
 
                 if (objCallLoginResponses == null || objCallLoginResponses.UserID == 0)
@@ -81,6 +86,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 }
 
 
+         
 
                 tb_UserAccessRegister objtbUserAccessRegister = new tb_UserAccessRegister();
 
@@ -107,7 +113,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "TechnicianLogOut")]
         [Route("TechnicianLogOut")]
         public async Task<ActionResult<CommonReturnResult>> TechnicianLogOut([FromBody] LogOutUserAccessRegisterDto LogOutUserAccessRegisterDto)
@@ -164,6 +170,78 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
 
         }
+
+        //---------------------------------------------------resetpassword
+
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "ResetPassword")]
+        [Route("ResetPassword")]
+        public async Task<ActionResult<CommonReturnResult>> ResetPassword([FromBody] ResetPasswordRequstDto ResetPasswordRequst)
+        {
+
+
+            try
+            {
+
+
+                tb_Technical technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == ResetPasswordRequst.UserName).ConfigureAwait(false);
+
+                if (technical == null)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ResetPasswordRequst.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ResetPasswordRequst.LanguageId, "YOU not have any user name")));
+                }
+
+
+
+                //MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
+
+                //MenaTrackService.CallLoginResponses objCallLoginResponses = await objCallCenterNewClient.JepcoLoginAsync(LoginUserAccessRegisterDto.UserName, technical.MenaTrackPassword).ConfigureAwait(false);
+
+
+                //if (objCallLoginResponses == null || objCallLoginResponses.UserID == 0)
+                //{
+
+                //    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginUserAccessRegisterDto.LanguageId, "The user name or password is incorrect")));
+                //}
+
+
+
+
+                technical.EmployeePassword = ResetPasswordRequst.Password;
+                _repository.TechnicalRepository.Update(null, technical);
+                await _repository.SaveAsync().ConfigureAwait(false);
+
+
+
+
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ResetPasswordRequst.LanguageId, "You are successfully logged in"), technical));
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside TechnicianLogin action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ResetPasswordRequst.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ResetPasswordRequst.LanguageId, "Internal server error")));
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

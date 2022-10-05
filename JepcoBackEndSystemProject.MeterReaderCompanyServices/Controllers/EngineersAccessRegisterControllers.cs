@@ -48,7 +48,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
         #endregion
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "EngineerLogin")]
         [Route("EngineerLogin")]
         public async Task<ActionResult<CommonReturnResult>> EngineerLogin([FromBody] LoginEngineerAccessRegisterRequestDto LoginEngineerAccessRegisterRequest)
@@ -71,7 +71,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 _repository.EngineersAccessRegisterRepository.UpdateEngineersAccessRegister(null, EngineersAccessRegisterUser);
                 await _repository.SaveAsync().ConfigureAwait(false);
 
-                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "You are successfully logged in"),"UserName: "+ EngineersAccessRegisterUser.UserName));
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "You are successfully logged in"), EngineersAccessRegisterUser));
 
             }
             catch (Exception ex)
@@ -86,7 +86,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "EngineerLogOut")]
         [Route("EngineerLogOut")]
         public async Task<ActionResult<CommonReturnResult>> EngineerLogOut([FromBody] LogoutEngineerAccessRegisterRequestDto LogoutEngineerAccessRegisterRequest)

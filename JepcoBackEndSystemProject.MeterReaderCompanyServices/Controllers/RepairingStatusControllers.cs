@@ -49,7 +49,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         #endregion
 
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
         [HttpPost(Name = "AllStutus")]
         [Route("AllStutus")]

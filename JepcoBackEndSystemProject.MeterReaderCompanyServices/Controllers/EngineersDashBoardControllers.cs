@@ -51,7 +51,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             _environment = environment;
         }
         #endregion
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GeneralTechnicianInf")]
         [Route("GeneralTechnicianInf")]
 
@@ -195,7 +195,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         //----------------------------------------------------------------------------------------------------------------------------
 
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "TechnicianLoginHistory")]
         [Route("TechnicianLoginHistory")]
 
@@ -263,7 +263,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
         //-------------------------------------------------------------------------------------------------------
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "TechnicalLookup")]
         [Route("TechnicalLookup")]
         public async Task<ActionResult<CommonReturnResult>> GetAllAllTechnical([FromBody] LanguageDto languageDto)
@@ -297,7 +297,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
         }
         //---------------------------------------------------------------------------------------------------------
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "ActiveTechnical")]
         [Route("ActiveTechnical")]
         public async Task<ActionResult<CommonReturnResult>> ActiveTechnical([FromBody] ActiveTechnicalRequestDto ActiveTechnicalRequest)
@@ -406,6 +406,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 DateTime timelog = catnum.Max(ss => ss.LoginDateTime);
                 catnum = catnum.Where(ss => ss.LoginDateTime == timelog);
 
+    
 
                 MonitorResponseDto MonitorResponse = new MonitorResponseDto();
                 MonitorResponse.TechnicianName = technical.FullName;
@@ -427,8 +428,40 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
 
         }
+        //-----------------------------------------------------------------------------
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[HttpPost(Name = "TechnicalLookup")]
+        //[Route("TechnicalLookup")]
+        //public async Task<ActionResult<CommonReturnResult>> GetAllAllTechnical([FromBody] LanguageDto languageDto)
+        //{
 
 
+        //    try
+        //    {
+        //        if (languageDto == null)
+        //        {
+
+
+        //            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "  object sent from client is null")));
+        //        }
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Invalid  object sent from client")));
+
+        //        }
+        //        IEnumerable<tb_Technical> AllTechnical = await _repository.TechnicalRepository.GetAllTechnical().ConfigureAwait(false);
+
+
+        //        return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Returned AllTechnical data from database"), AllTechnical));
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Something went wrong inside TechnicalLookup action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+        //        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Internal server error")));
+        //    }
+
+        //}
 
 
 
