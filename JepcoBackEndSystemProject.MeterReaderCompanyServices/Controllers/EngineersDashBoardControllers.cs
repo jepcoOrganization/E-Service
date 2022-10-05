@@ -402,11 +402,21 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     }
                 }
 
+                IEnumerable<tb_UserAccessRegister> catnum = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.UserName == MonitorRequest.EmployeeNumber ).ConfigureAwait(false);
+                DateTime timelog = catnum.Max(ss => ss.LoginDateTime);
+                catnum = catnum.Where(ss => ss.LoginDateTime == timelog);
 
 
+                MonitorResponseDto MonitorResponse = new MonitorResponseDto();
+                MonitorResponse.TechnicianName = technical.FullName;
+                MonitorResponse.TechnicianStatus = technical.SystemActive;
+                MonitorResponse.LastTechnicianPlace = LastArrivecompliant.DistrictName+"/ "+ LastArrivecompliant.ZoneName;
+                MonitorResponse.ComplaintRefNumberisworking = LastArrivecompliant.ComplaintRefNumber;
+                MonitorResponse.NewComplaintNum = lstFalutComplaintNew.Count();
+                MonitorResponse.VehiclePlateNumber = catnum.First().VehiclePlateNumber;
 
 
-                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "No Change status  for ") , LastArrivecompliant));
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "The response is ") , MonitorResponse));
 
 
             }
