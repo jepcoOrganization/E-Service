@@ -156,6 +156,9 @@
   <data name="Invalid Token" xml:space="preserve">
     <value>Invalid Token</value>
   </data>
+  <data name="MenaTrackError" xml:space="preserve">
+    <value>MenaTrackError</value>
+  </data>
   <data name="Meter reading Comany User Data has been Updated" xml:space="preserve">
     <value>Meter reading Comany User Data has been Updated successfully</value>
   </data>

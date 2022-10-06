@@ -86,6 +86,11 @@ namespace JepcoBackEndSystemProject.Services
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
             });
+
+
+
+            services.AddTransient<JepcoBackEndSystemProject.EmergancyAppApis.Controllers.FaultDetailsController , JepcoBackEndSystemProject.EmergancyAppApis.Controllers.FaultDetailsController>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

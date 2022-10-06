@@ -16,9 +16,12 @@ namespace JepcoBackEndSystemProject.Data.FaultDetails
 
     public class FaultDetailsRepository : RepositoryBase<tb_FaultDetails>, IFaultDetailsRepository
     {
+        DBJEPCOBackEndContext _repositoryContext ;
         public FaultDetailsRepository(DBJEPCOBackEndContext repositoryContext, ILoggerManager logger)
             : base(repositoryContext, logger)
         {
+
+            _repositoryContext = repositoryContext;
         }
         #region GetData
         public async Task<IEnumerable<tb_FaultDetails>> GetAllFaultDetails(params Expression<Func<tb_FaultDetails, object>>[] navigationProperties)
@@ -35,6 +38,44 @@ namespace JepcoBackEndSystemProject.Data.FaultDetails
             }
 
         }
+        public async Task<IEnumerable<tb_FaultDetails>> GetListOfFaultDetailsWithoutImages(long FaultComplaintID)
+        {
+            
+
+                 IQueryable<tb_FaultDetails> lsttb_FaultDetails  = (from a in _repositoryContext.tb_FaultDetails
+                                                              where a.FaultComplaintID  == FaultComplaintID 
+                                                              select new tb_FaultDetails  {
+                                                               FaultComplaintID  = a.FaultComplaintID, 
+                                                               ArrivingLocationDateTime  = a.ArrivingLocationDateTime,
+                                                               ArrivingLocationLatt   = a.ArrivingLocationLatt,
+                                                               ArrivingLocationLong  = a.ArrivingLocationLong,
+                                                              CreatedDate = a.CreatedDate,
+                                                              DeliveredDateTime=a.DeliveredDateTime,
+                                                              FaultClassficationID = a.FaultClassficationID,
+                                                              FaultClassficationName = a.FaultClassficationName,
+                                                              FaultDescription = a.FaultDescription,
+                                                              FaultDetailsId = a.FaultDetailsId,
+                                                              FaultReason = a.FaultReason,
+                                                              FaultSubClassficationID = a.FaultSubClassficationID,
+                                                              FaultSubClassficationName= a.FaultSubClassficationName,
+                                                              LV_Feeder_Color = a.LV_Feeder_Color,
+                                                              ReassignClassficationID = a.ReassignClassficationID,
+                                                              ReassignClassficationName = a.ReassignClassficationName,
+                                                              ReassignDate = a.ReassignDate,
+                                                              ReassignReason = a.ReassignReason,
+                                                              RepairingClosingDatetime = a.RepairingClosingDatetime,
+                                                              RepairingStatusID = a.RepairingStatusID,
+                                                              UpdateDate = a.UpdateDate,
+                                                              UpdatedLV_Feeder = a.UpdatedLV_Feeder,
+                                                              UpdatedSubstationLatt = a.UpdatedSubstationLatt,
+                                                              UpdatedSubstationLong = a.UpdatedSubstationLong,
+                                                              UpdateSubstationID = a.UpdateSubstationID,
+                                                              UpdateSubstationName = a.UpdateSubstationName,
+                                                              });
+
+            return await lsttb_FaultDetails.ToListAsync(); 
+        }
+
         public async Task<IEnumerable<tb_FaultDetails>> GetListOfFaultDetails(Expression<Func<tb_FaultDetails, bool>> where, params Expression<Func<tb_FaultDetails, object>>[] navigationProperties)
         {
             return await GetList(where, navigationProperties).ToListAsync();

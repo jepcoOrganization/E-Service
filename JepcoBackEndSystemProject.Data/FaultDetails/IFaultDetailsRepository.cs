@@ -49,5 +49,7 @@ namespace JepcoBackEndSystemProject.Data.FaultDetails
         ///// </summary>
         ///// <param name="cities">The cities.</param>
         void RemoveFaultDetails(params tb_FaultDetails[] FaultDetails);
+
+        Task<IEnumerable<tb_FaultDetails>> GetListOfFaultDetailsWithoutImages(long FaultComplaintID);
     }
 }

@@ -8987,3 +8987,1723 @@
 2022-10-05 16:13:16.3986 Trace  Scanning Property LineEnding 'Default' NLog.Targets
 2022-10-05 16:13:16.3986 Trace File Target[logfile] has 2 layouts
 2022-10-05 16:13:16.3986 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-05 17:15:09.6463 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-05 17:15:09.9179 Debug Found assembly location directory: 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2022-10-05 17:15:09.9179 Debug Auto loading based on NLog-Assembly found location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-05 17:15:09.9179 Debug Search for auto loading files in location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-05 17:15:09.9179 Debug Start auto loading, location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-05 17:15:09.9179 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-05 17:15:09.9179 Info Loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-05 17:15:10.0021 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-05 17:15:10.0021 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-05 17:15:10.0021 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-05 17:15:10.0021 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-05 17:15:10.0021 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-05 17:15:10.0021 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-05 17:15:10.0021 Debug Auto loading done
+2022-10-05 17:15:10.0021 Info Message Template Auto Format enabled
+2022-10-05 17:15:10.0252 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.0280 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-05 17:15:10.0280 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-05 17:15:10.0280 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-05 17:15:10.0280 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.0280 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-05 17:15:10.0415 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.0415 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-05 17:15:10.0415 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-05 17:15:10.0415 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-05 17:15:10.0415 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-05 17:15:10.0415 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-05 17:15:10.0415 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.0415 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2022-10-05 17:15:10.0415 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.0415 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-05 17:15:10.0415 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-05 17:15:10.0415 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-05 17:15:10.0415 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.0415 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-05 17:15:10.0415 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-05 17:15:10.0415 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.0572 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-05 17:15:10.0572 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-05 17:15:10.0572 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-05 17:15:10.0572 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.0572 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-05 17:15:10.0572 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.0572 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-05 17:15:10.0572 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-05 17:15:10.0572 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-05 17:15:10.0572 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-05 17:15:10.0572 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-05 17:15:10.0572 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.0572 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-05 17:15:10.0572 Info Adding target FileTarget(Name=logfile)
+2022-10-05 17:15:10.0572 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-05 17:15:10.0572 Trace ParseRulesElement
+2022-10-05 17:15:10.0798 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-05 17:15:10.0798 Debug --- NLog configuration dump ---
+2022-10-05 17:15:10.0798 Debug Targets:
+2022-10-05 17:15:10.0798 Debug File Target[logfile]
+2022-10-05 17:15:10.0798 Debug Rules:
+2022-10-05 17:15:10.0798 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-05 17:15:10.0798 Debug --- End of NLog configuration dump ---
+2022-10-05 17:15:10.0897 Trace FindReachableObject<System.Object>:
+2022-10-05 17:15:10.0897 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-05 17:15:10.0897 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-05 17:15:10.0897 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-05 17:15:10.0897 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-05 17:15:10.0897 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-05 17:15:10.0897 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-05 17:15:10.0897 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-05 17:15:10.0897 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-05 17:15:10.0897 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-05 17:15:10.0897 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-05 17:15:10.0897 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-05 17:15:10.0897 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-05 17:15:10.0897 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-05 17:15:10.0897 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-05 17:15:10.0897 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-05 17:15:10.0897 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-05 17:15:10.0897 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-05 17:15:10.0897 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-05 17:15:10.0897 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-05 17:15:10.0897 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-05 17:15:10.0897 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-05 17:15:10.0897 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-05 17:15:10.0897 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-05 17:15:10.0897 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-05 17:15:10.0897 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-05 17:15:10.1054 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-05 17:15:10.1054 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-05 17:15:10.1054 Trace Initializing Layout Renderer: ${message}
+2022-10-05 17:15:10.1054 Trace Initializing Layout Renderer: ${literal}
+2022-10-05 17:15:10.1054 Trace Initializing Layout Renderer: ${level}
+2022-10-05 17:15:10.1054 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-05 17:15:10.1054 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.1054 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-05 17:15:10.1054 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-05 17:15:10.1054 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-05 17:15:10.1054 Trace Initializing Layout Renderer: ${uppercase}
+2022-10-05 17:15:10.1054 Trace Initializing Layout Renderer: ${literal}
+2022-10-05 17:15:10.1054 Trace Initializing Layout Renderer: ${longdate}
+2022-10-05 17:15:10.1054 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2022-10-05 17:15:10.1197 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.1197 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-05 17:15:10.1197 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-05 17:15:10.1197 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-05 17:15:10.1197 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-05 17:15:10.1197 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-05 17:15:10.1197 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-05 17:15:10.1197 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-05 17:15:10.1197 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-05 17:15:10.1197 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-05 17:15:10.1197 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-05 17:15:10.1197 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-05 17:15:10.1197 Trace Initializing Layout Renderer: ${literal}
+2022-10-05 17:15:10.1197 Trace Initializing Layout Renderer: ${shortdate}
+2022-10-05 17:15:10.1197 Trace Initializing Layout Renderer: ${literal}
+2022-10-05 17:15:10.1197 Trace Initializing 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-05 17:15:10.1197 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-05 17:15:10.1197 Trace Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-05 17:15:10.1197 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-05 17:15:10.1197 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-05 17:15:10.1197 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-05 17:15:10.1197 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-05 17:15:10.1197 Trace Initializing File Target[logfile]
+2022-10-05 17:15:10.1197 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-10-05 17:15:10.1197 Trace Scanning FileTarget 'File Target[logfile]'
+2022-10-05 17:15:10.1197 Trace  Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-05 17:15:10.1197 Trace  Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-05 17:15:10.1197 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-05 17:15:10.1197 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-05 17:15:10.1197 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-05 17:15:10.1197 Trace File Target[logfile] has 2 layouts
+2022-10-05 17:15:10.1197 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-06 09:50:45.6666 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 09:50:46.1863 Debug Found assembly location directory: 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2022-10-06 09:50:46.1863 Debug Auto loading based on NLog-Assembly found location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 09:50:46.1863 Debug Search for auto loading files in location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 09:50:46.2011 Debug Start auto loading, location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 09:50:46.2011 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 09:50:46.2011 Info Loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 09:50:46.4067 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-06 09:50:46.4067 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 09:50:46.4067 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-06 09:50:46.4067 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 09:50:46.4162 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 09:50:46.4162 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-06 09:50:46.4162 Debug Auto loading done
+2022-10-06 09:50:46.4162 Info Message Template Auto Format enabled
+2022-10-06 09:50:46.4588 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 09:50:46.4642 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 09:50:46.4790 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 09:50:46.4790 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 09:50:46.4790 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 09:50:46.4790 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 09:50:46.4790 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 09:50:46.4790 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 09:50:46.4790 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 09:50:46.4944 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 09:50:46.4944 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 09:50:46.4944 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 09:50:46.4944 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 09:50:46.4944 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2022-10-06 09:50:46.4944 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 09:50:46.4944 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 09:50:46.5159 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-06 09:50:46.5159 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 09:50:46.5159 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 09:50:46.5159 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 09:50:46.5159 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 09:50:46.5253 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 09:50:46.5253 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 09:50:46.5253 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 09:50:46.5253 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 09:50:46.5253 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 09:50:46.5253 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 09:50:46.5253 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 09:50:46.5253 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 09:50:46.5253 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 09:50:46.5253 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 09:50:46.5253 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 09:50:46.5253 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 09:50:46.5253 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 09:50:46.5253 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 09:50:46.5253 Info Adding target FileTarget(Name=logfile)
+2022-10-06 09:50:46.5421 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-06 09:50:46.5421 Trace ParseRulesElement
+2022-10-06 09:50:46.5806 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 09:50:46.5806 Debug --- NLog configuration dump ---
+2022-10-06 09:50:46.5806 Debug Targets:
+2022-10-06 09:50:46.5806 Debug File Target[logfile]
+2022-10-06 09:50:46.5883 Debug Rules:
+2022-10-06 09:50:46.5883 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 09:50:46.5883 Debug --- End of NLog configuration dump ---
+2022-10-06 09:50:46.5883 Trace FindReachableObject<System.Object>:
+2022-10-06 09:50:46.5883 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 09:50:46.5883 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 09:50:46.6048 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 09:50:46.6048 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 09:50:46.6048 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 09:50:46.6048 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 09:50:46.6048 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 09:50:46.6048 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 09:50:46.6048 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 09:50:46.6048 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 09:50:46.6048 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 09:50:46.6048 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 09:50:46.6048 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 09:50:46.6048 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 09:50:46.6048 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 09:50:46.6048 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 09:50:46.6048 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 09:50:46.6196 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 09:50:46.6196 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 09:50:46.6196 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 09:50:46.6196 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 09:50:46.6196 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 09:50:46.6196 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 09:50:46.6196 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 09:50:46.7286 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-06 09:56:44.2365 Debug Targets for JepcoBackEndSysytemProject.LoggerService.LoggerManager by level:
+2022-10-06 09:56:44.2365 Debug Trace =>
+2022-10-06 09:56:44.2365 Debug Debug => logfile
+2022-10-06 09:56:44.2475 Debug Info => logfile
+2022-10-06 09:56:44.2475 Debug Warn => logfile
+2022-10-06 09:56:44.2475 Debug Error => logfile
+2022-10-06 09:56:44.2475 Debug Fatal => logfile
+2022-10-06 09:56:44.3126 Debug FileTarget(Name=logfile): Preparing for new file 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt'
+2022-10-06 09:56:44.3279 Debug Creating file appender: c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt
+2022-10-06 09:56:44.3279 Trace Opening c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt with allowFileSharedWriting=False
+2022-10-06 10:01:14.0454 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 10:01:14.1799 Debug Found assembly location directory: 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2022-10-06 10:01:14.1799 Debug Auto loading based on NLog-Assembly found location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 10:01:14.1844 Debug Search for auto loading files in location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 10:01:14.1844 Debug Start auto loading, location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 10:01:14.1844 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 10:01:14.1844 Info Loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 10:01:14.2182 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-06 10:01:14.2182 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 10:01:14.2182 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-06 10:01:14.2182 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 10:01:14.2182 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 10:01:14.2288 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-06 10:01:14.2288 Debug Auto loading done
+2022-10-06 10:01:14.2288 Info Message Template Auto Format enabled
+2022-10-06 10:01:14.2676 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.2676 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 10:01:14.2837 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 10:01:14.2837 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 10:01:14.2837 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.2837 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:01:14.2837 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.2837 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 10:01:14.2944 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 10:01:14.2944 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 10:01:14.2944 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:01:14.2944 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:01:14.2944 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.2944 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2022-10-06 10:01:14.2944 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.2944 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 10:01:14.3084 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-06 10:01:14.3084 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 10:01:14.3084 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.3084 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 10:01:14.3084 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 10:01:14.3084 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.3084 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 10:01:14.3084 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 10:01:14.3084 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 10:01:14.3084 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.3084 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:01:14.3084 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.3084 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 10:01:14.3084 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 10:01:14.3084 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 10:01:14.3084 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:01:14.3084 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:01:14.3084 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.3230 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 10:01:14.3230 Info Adding target FileTarget(Name=logfile)
+2022-10-06 10:01:14.3230 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-06 10:01:14.3230 Trace ParseRulesElement
+2022-10-06 10:01:14.3571 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 10:01:14.3571 Debug --- NLog configuration dump ---
+2022-10-06 10:01:14.3571 Debug Targets:
+2022-10-06 10:01:14.3571 Debug File Target[logfile]
+2022-10-06 10:01:14.3571 Debug Rules:
+2022-10-06 10:01:14.3571 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 10:01:14.3571 Debug --- End of NLog configuration dump ---
+2022-10-06 10:01:14.3779 Trace FindReachableObject<System.Object>:
+2022-10-06 10:01:14.3779 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 10:01:14.3779 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 10:01:14.3779 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 10:01:14.3779 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 10:01:14.3779 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 10:01:14.3779 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:01:14.3779 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:01:14.3779 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 10:01:14.3850 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:01:14.3850 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 10:01:14.3850 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 10:01:14.3850 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:01:14.3850 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 10:01:14.3850 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:01:14.3850 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 10:01:14.3850 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 10:01:14.3850 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 10:01:14.3850 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:01:14.3850 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:01:14.3850 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:01:14.3850 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 10:01:14.3850 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 10:01:14.3850 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 10:01:14.3850 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 10:01:14.4032 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-06 10:01:14.4032 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-06 10:01:14.4181 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-06 10:01:14.4181 Trace Initializing Layout Renderer: ${message}
+2022-10-06 10:01:14.4181 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 10:01:14.4181 Trace Initializing Layout Renderer: ${level}
+2022-10-06 10:01:14.4181 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-06 10:01:14.4181 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.4181 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 10:01:14.4181 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:01:14.4181 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:01:14.4325 Trace Initializing Layout Renderer: ${uppercase}
+2022-10-06 10:01:14.4325 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 10:01:14.4325 Trace Initializing Layout Renderer: ${longdate}
+2022-10-06 10:01:14.4325 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 10:01:14.4325 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.4325 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 10:01:14.4325 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:01:14.4325 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 10:01:14.4325 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:01:14.4325 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 10:01:14.4325 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 10:01:14.4325 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 10:01:14.4325 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:01:14.4325 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:01:14.4325 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:01:14.4325 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 10:01:14.4325 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 10:01:14.4325 Trace Initializing Layout Renderer: ${shortdate}
+2022-10-06 10:01:14.4325 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 10:01:14.4325 Trace Initializing 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 10:01:14.4325 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:01:14.4325 Trace Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 10:01:14.4325 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:01:14.4325 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:01:14.4325 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 10:01:14.4325 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:01:14.4475 Trace Initializing File Target[logfile]
+2022-10-06 10:01:14.4475 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-10-06 10:01:14.4475 Trace Scanning FileTarget 'File Target[logfile]'
+2022-10-06 10:01:14.4475 Trace  Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 10:01:14.4475 Trace  Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 10:01:14.4475 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 10:01:14.4475 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 10:01:14.4475 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 10:01:14.4475 Trace File Target[logfile] has 2 layouts
+2022-10-06 10:01:14.4475 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-06 10:01:41.2731 Debug Targets for JepcoBackEndSysytemProject.LoggerService.LoggerManager by level:
+2022-10-06 10:01:41.2731 Debug Trace =>
+2022-10-06 10:01:41.2731 Debug Debug => logfile
+2022-10-06 10:01:41.2840 Debug Info => logfile
+2022-10-06 10:01:41.2840 Debug Warn => logfile
+2022-10-06 10:01:41.2840 Debug Error => logfile
+2022-10-06 10:01:41.2840 Debug Fatal => logfile
+2022-10-06 10:01:41.3312 Debug FileTarget(Name=logfile): Preparing for new file 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt'
+2022-10-06 10:01:41.3463 Debug Creating file appender: c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt
+2022-10-06 10:01:41.3543 Trace Opening c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt with allowFileSharedWriting=False
+2022-10-06 10:55:59.8798 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 10:55:59.9837 Debug Found assembly location directory: 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2022-10-06 10:55:59.9837 Debug Auto loading based on NLog-Assembly found location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 10:55:59.9837 Debug Search for auto loading files in location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 10:55:59.9946 Debug Start auto loading, location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 10:55:59.9946 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 10:55:59.9946 Info Loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 10:56:00.0294 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-06 10:56:00.0294 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 10:56:00.0294 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-06 10:56:00.0426 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 10:56:00.0426 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 10:56:00.0426 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-06 10:56:00.0426 Debug Auto loading done
+2022-10-06 10:56:00.0426 Info Message Template Auto Format enabled
+2022-10-06 10:56:00.1028 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.1079 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 10:56:00.1204 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 10:56:00.1204 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 10:56:00.1204 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.1204 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:56:00.1204 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.1204 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 10:56:00.1204 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 10:56:00.1204 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 10:56:00.1204 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:56:00.1355 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:56:00.1355 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.1355 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2022-10-06 10:56:00.1355 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.1355 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 10:56:00.1355 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-06 10:56:00.1355 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 10:56:00.1355 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.1355 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 10:56:00.1355 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 10:56:00.1355 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.1515 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 10:56:00.1515 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 10:56:00.1515 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 10:56:00.1515 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.1515 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:56:00.1515 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.1515 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 10:56:00.1515 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 10:56:00.1515 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 10:56:00.1515 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:56:00.1515 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:56:00.1515 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.1515 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 10:56:00.1515 Info Adding target FileTarget(Name=logfile)
+2022-10-06 10:56:00.1515 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-06 10:56:00.1515 Trace ParseRulesElement
+2022-10-06 10:56:00.1935 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 10:56:00.1935 Debug --- NLog configuration dump ---
+2022-10-06 10:56:00.1979 Debug Targets:
+2022-10-06 10:56:00.1979 Debug File Target[logfile]
+2022-10-06 10:56:00.1979 Debug Rules:
+2022-10-06 10:56:00.1979 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 10:56:00.1979 Debug --- End of NLog configuration dump ---
+2022-10-06 10:56:00.2134 Trace FindReachableObject<System.Object>:
+2022-10-06 10:56:00.2134 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 10:56:00.2134 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 10:56:00.2134 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 10:56:00.2134 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 10:56:00.2134 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 10:56:00.2134 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:56:00.2134 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:56:00.2134 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 10:56:00.2134 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:56:00.2134 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 10:56:00.2134 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 10:56:00.2134 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:56:00.2134 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 10:56:00.2134 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:56:00.2134 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 10:56:00.2134 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 10:56:00.2134 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 10:56:00.2134 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:56:00.2134 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:56:00.2134 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:56:00.2134 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 10:56:00.2290 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 10:56:00.2290 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 10:56:00.2290 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 10:56:00.2290 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-06 10:56:00.2290 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-06 10:56:00.2622 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-06 10:56:00.2622 Trace Initializing Layout Renderer: ${message}
+2022-10-06 10:56:00.2622 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 10:56:00.2622 Trace Initializing Layout Renderer: ${level}
+2022-10-06 10:56:00.2622 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-06 10:56:00.2622 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.2622 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 10:56:00.2622 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:56:00.2622 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:56:00.2755 Trace Initializing Layout Renderer: ${uppercase}
+2022-10-06 10:56:00.2755 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 10:56:00.2755 Trace Initializing Layout Renderer: ${longdate}
+2022-10-06 10:56:00.2755 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 10:56:00.2755 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.2755 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 10:56:00.2755 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:56:00.2755 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 10:56:00.2755 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:56:00.2755 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 10:56:00.2755 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 10:56:00.2755 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 10:56:00.2755 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:56:00.2755 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 10:56:00.2755 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:56:00.2755 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 10:56:00.2755 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 10:56:00.2755 Trace Initializing Layout Renderer: ${shortdate}
+2022-10-06 10:56:00.2755 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 10:56:00.2755 Trace Initializing 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 10:56:00.2755 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 10:56:00.2755 Trace Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 10:56:00.2755 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 10:56:00.2755 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:56:00.2755 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 10:56:00.2755 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 10:56:00.2913 Trace Initializing File Target[logfile]
+2022-10-06 10:56:00.2913 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-10-06 10:56:00.2913 Trace Scanning FileTarget 'File Target[logfile]'
+2022-10-06 10:56:00.2913 Trace  Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 10:56:00.2913 Trace  Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 10:56:00.2913 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 10:56:00.2913 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 10:56:00.2913 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 10:56:00.2913 Trace File Target[logfile] has 2 layouts
+2022-10-06 10:56:00.2913 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-06 10:57:01.9446 Debug Targets for JepcoBackEndSysytemProject.LoggerService.LoggerManager by level:
+2022-10-06 10:57:01.9446 Debug Trace =>
+2022-10-06 10:57:01.9446 Debug Debug => logfile
+2022-10-06 10:57:01.9566 Debug Info => logfile
+2022-10-06 10:57:01.9566 Debug Warn => logfile
+2022-10-06 10:57:01.9566 Debug Error => logfile
+2022-10-06 10:57:01.9566 Debug Fatal => logfile
+2022-10-06 10:57:02.0258 Debug FileTarget(Name=logfile): Preparing for new file 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt'
+2022-10-06 10:57:02.0426 Debug Creating file appender: c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt
+2022-10-06 10:57:02.0426 Trace Opening c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt with allowFileSharedWriting=False
+2022-10-06 11:01:00.1996 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 11:01:00.4400 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.4400 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 11:01:00.4604 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 11:01:00.4604 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 11:01:00.4632 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.4632 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:01:00.4632 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.4632 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 11:01:00.4632 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 11:01:00.4632 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 11:01:00.4632 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:01:00.4632 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:01:00.4632 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.4632 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2022-10-06 11:01:00.4632 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.4632 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 11:01:00.4855 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-06 11:01:00.4855 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 11:01:00.4855 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.4855 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 11:01:00.4855 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 11:01:00.4855 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.4855 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 11:01:00.4855 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 11:01:00.4940 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 11:01:00.4940 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.4940 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:01:00.4940 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.4940 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 11:01:00.4940 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 11:01:00.4940 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 11:01:00.4940 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:01:00.4940 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:01:00.4940 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.4940 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 11:01:00.4940 Info Adding target FileTarget(Name=logfile)
+2022-10-06 11:01:00.4940 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-06 11:01:00.4940 Trace ParseRulesElement
+2022-10-06 11:01:00.5415 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 11:01:00.5415 Debug --- NLog configuration dump ---
+2022-10-06 11:01:00.5415 Debug Targets:
+2022-10-06 11:01:00.5415 Debug File Target[logfile]
+2022-10-06 11:01:00.5415 Debug Rules:
+2022-10-06 11:01:00.5415 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 11:01:00.5415 Debug --- End of NLog configuration dump ---
+2022-10-06 11:01:00.5612 Trace FindReachableObject<System.Object>:
+2022-10-06 11:01:00.5612 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 11:01:00.5612 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 11:01:00.5612 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 11:01:00.5612 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 11:01:00.5612 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 11:01:00.5612 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:01:00.5612 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:01:00.5612 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 11:01:00.5612 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:01:00.5612 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 11:01:00.5726 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 11:01:00.5726 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:01:00.5726 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 11:01:00.5726 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:01:00.5726 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 11:01:00.5726 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 11:01:00.5726 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 11:01:00.5726 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:01:00.5726 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:01:00.5726 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:01:00.5726 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 11:01:00.5726 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 11:01:00.5726 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 11:01:00.5726 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 11:01:00.5979 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-06 11:01:00.6077 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-06 11:01:00.6077 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-06 11:01:00.6077 Trace Initializing Layout Renderer: ${message}
+2022-10-06 11:01:00.6203 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 11:01:00.6203 Trace Initializing Layout Renderer: ${level}
+2022-10-06 11:01:00.6203 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-06 11:01:00.6203 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.6203 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 11:01:00.6203 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:01:00.6203 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:01:00.6346 Trace Initializing Layout Renderer: ${uppercase}
+2022-10-06 11:01:00.6346 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 11:01:00.6346 Trace Initializing Layout Renderer: ${longdate}
+2022-10-06 11:01:00.6346 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 11:01:00.6346 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.6346 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 11:01:00.6346 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:01:00.6346 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 11:01:00.6346 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:01:00.6346 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 11:01:00.6346 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 11:01:00.6346 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 11:01:00.6346 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:01:00.6346 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:01:00.6346 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:01:00.6346 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 11:01:00.6346 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 11:01:00.6346 Trace Initializing Layout Renderer: ${shortdate}
+2022-10-06 11:01:00.6346 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 11:01:00.6346 Trace Initializing 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 11:01:00.6346 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:01:00.6346 Trace Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 11:01:00.6346 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:01:00.6346 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:01:00.6346 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 11:01:00.6346 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:01:00.6511 Trace Initializing File Target[logfile]
+2022-10-06 11:01:00.6511 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-10-06 11:01:00.6511 Trace Scanning FileTarget 'File Target[logfile]'
+2022-10-06 11:01:00.6511 Trace  Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 11:01:00.6511 Trace  Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 11:01:00.6511 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 11:01:00.6511 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 11:01:00.6511 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 11:01:00.6511 Trace File Target[logfile] has 2 layouts
+2022-10-06 11:01:00.6511 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-06 11:01:59.1024 Debug Targets for JepcoBackEndSysytemProject.LoggerService.LoggerManager by level:
+2022-10-06 11:01:59.1046 Debug Trace =>
+2022-10-06 11:01:59.1046 Debug Debug => logfile
+2022-10-06 11:01:59.1046 Debug Info => logfile
+2022-10-06 11:01:59.1215 Debug Warn => logfile
+2022-10-06 11:01:59.1367 Debug Error => logfile
+2022-10-06 11:01:59.1367 Debug Fatal => logfile
+2022-10-06 11:01:59.1917 Debug FileTarget(Name=logfile): Preparing for new file 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt'
+2022-10-06 11:01:59.2054 Debug Creating file appender: c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt
+2022-10-06 11:01:59.2054 Trace Opening c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt with allowFileSharedWriting=False
+2022-10-06 11:05:03.0610 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 11:05:03.1850 Debug Found assembly location directory: 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2022-10-06 11:05:03.1850 Debug Auto loading based on NLog-Assembly found location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 11:05:03.1850 Debug Search for auto loading files in location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 11:05:03.1850 Debug Start auto loading, location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 11:05:03.1985 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 11:05:03.1985 Info Loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 11:05:03.2258 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-06 11:05:03.2258 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 11:05:03.2297 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-06 11:05:03.2297 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 11:05:03.2297 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 11:05:03.2297 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-06 11:05:03.2297 Debug Auto loading done
+2022-10-06 11:05:03.2297 Info Message Template Auto Format enabled
+2022-10-06 11:05:03.2786 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:05:03.2786 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 11:05:03.3009 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 11:05:03.3009 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 11:05:03.3009 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:05:03.3074 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:05:03.3074 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:05:03.3074 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 11:05:03.3074 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 11:05:03.3074 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 11:05:03.3074 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:05:03.3262 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:05:03.3262 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:05:03.3262 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2022-10-06 11:05:03.3262 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:05:03.3262 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 11:05:03.3394 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-06 11:05:03.3394 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 11:05:03.3394 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:05:03.3394 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 11:05:03.3394 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 11:05:03.3394 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:05:03.3394 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 11:05:03.3394 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 11:05:03.3394 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 11:05:03.3394 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:05:03.3394 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:05:03.3394 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:05:03.3394 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 11:05:03.3540 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 11:05:03.3540 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 11:05:03.3540 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:05:03.3540 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:05:03.3540 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:05:03.3540 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 11:05:03.3540 Info Adding target FileTarget(Name=logfile)
+2022-10-06 11:05:03.3540 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-06 11:05:03.3540 Trace ParseRulesElement
+2022-10-06 11:05:03.4030 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 11:05:03.4030 Debug --- NLog configuration dump ---
+2022-10-06 11:05:03.4030 Debug Targets:
+2022-10-06 11:05:03.4030 Debug File Target[logfile]
+2022-10-06 11:05:03.4030 Debug Rules:
+2022-10-06 11:05:03.4030 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 11:05:03.4030 Debug --- End of NLog configuration dump ---
+2022-10-06 11:05:03.4250 Trace FindReachableObject<System.Object>:
+2022-10-06 11:05:03.4250 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 11:05:03.4250 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 11:05:03.4250 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 11:05:03.4250 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 11:05:03.4250 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 11:05:03.4250 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:05:03.4250 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:05:03.4319 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 11:05:03.4319 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:05:03.4319 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 11:05:03.4319 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 11:05:03.4319 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:05:03.4319 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 11:05:03.4319 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:05:03.4319 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 11:05:03.4319 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 11:05:03.4319 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 11:05:03.4319 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:05:03.4319 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:05:03.4319 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:05:03.4319 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 11:05:03.4319 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 11:05:03.4319 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 11:05:03.4319 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 11:05:03.4511 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-06 11:05:03.4511 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-06 11:05:03.4701 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-06 11:05:03.4701 Trace Initializing Layout Renderer: ${message}
+2022-10-06 11:05:03.4701 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 11:05:03.4701 Trace Initializing Layout Renderer: ${level}
+2022-10-06 11:05:03.4701 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-06 11:05:03.4798 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:05:03.4798 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 11:05:03.4798 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:06:12.2903 Debug Targets for JepcoBackEndSysytemProject.LoggerService.LoggerManager by level:
+2022-10-06 11:06:12.2916 Debug Trace =>
+2022-10-06 11:06:12.2916 Debug Debug => logfile
+2022-10-06 11:06:12.2916 Debug Info => logfile
+2022-10-06 11:06:12.2916 Debug Warn => logfile
+2022-10-06 11:06:12.2916 Debug Error => logfile
+2022-10-06 11:06:12.2916 Debug Fatal => logfile
+2022-10-06 11:06:12.3596 Debug FileTarget(Name=logfile): Preparing for new file 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt'
+2022-10-06 11:06:12.3745 Debug Creating file appender: c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt
+2022-10-06 11:06:12.3745 Trace Opening c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt with allowFileSharedWriting=False
+2022-10-06 11:11:43.7636 Trace Opening c:/Projects/Blog-JepcoBackEndSystem/Project/logs/2022-10-06_EmergancyApplogfile.txt with allowFileSharedWriting=False
+2022-10-06 11:18:06.3086 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 11:18:06.4290 Debug Found assembly location directory: 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2022-10-06 11:18:06.4290 Debug Auto loading based on NLog-Assembly found location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 11:18:06.4328 Debug Search for auto loading files in location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 11:18:06.4328 Debug Start auto loading, location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 11:18:06.4328 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 11:18:06.4328 Info Loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 11:18:06.4639 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-06 11:18:06.4639 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 11:18:06.4639 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-06 11:18:06.4639 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 11:18:06.4639 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 11:18:06.4639 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-06 11:18:06.4639 Debug Auto loading done
+2022-10-06 11:18:06.4639 Info Message Template Auto Format enabled
+2022-10-06 11:18:06.6500 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 11:18:06.6527 Debug --- NLog configuration dump ---
+2022-10-06 11:18:06.6527 Debug Targets:
+2022-10-06 11:18:06.6527 Debug File Target[logfile]
+2022-10-06 11:18:06.6527 Debug Rules:
+2022-10-06 11:18:06.6527 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 11:18:06.6527 Debug --- End of NLog configuration dump ---
+2022-10-06 11:18:06.6721 Trace FindReachableObject<System.Object>:
+2022-10-06 11:18:06.6721 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 11:18:06.6721 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 11:18:06.6721 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 11:18:06.6721 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 11:18:06.6721 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 11:18:06.6721 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:18:06.6721 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:18:06.6721 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 11:18:06.6721 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:18:06.6820 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 11:18:06.6820 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 11:18:06.6820 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:18:06.6820 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 11:18:06.6820 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:18:06.6820 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 11:18:06.6820 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 11:18:06.6820 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 11:18:06.6820 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:18:06.6820 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:18:06.6820 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:18:06.6820 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 11:18:06.6820 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 11:18:06.6820 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 11:18:06.6820 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 11:18:06.6999 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-06 11:18:06.6999 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-06 11:18:06.7227 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-06 11:18:06.7227 Trace Initializing Layout Renderer: ${message}
+2022-10-06 11:18:06.7227 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 11:18:06.7227 Trace Initializing Layout Renderer: ${level}
+2022-10-06 11:18:06.7227 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-06 11:18:06.7333 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:18:06.7333 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 11:18:06.7333 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:18:06.7333 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:18:06.7333 Trace Initializing Layout Renderer: ${uppercase}
+2022-10-06 11:18:06.7333 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 11:18:06.7333 Trace Initializing Layout Renderer: ${longdate}
+2022-10-06 11:18:06.7333 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 11:18:06.7333 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:18:06.7446 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 11:18:06.7446 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:18:06.7446 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 11:18:06.7446 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:18:06.7446 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 11:18:06.7446 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 11:18:06.7446 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 11:18:06.7446 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:18:06.7446 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 11:18:06.7446 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:18:06.7446 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 11:18:06.7446 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 11:18:06.7446 Trace Initializing Layout Renderer: ${shortdate}
+2022-10-06 11:18:06.7446 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 11:18:06.7446 Trace Initializing 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 11:18:06.7446 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 11:18:06.7446 Trace Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 11:18:06.7446 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 11:18:06.7446 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:18:06.7446 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 11:18:06.7446 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 11:18:06.7446 Trace Initializing File Target[logfile]
+2022-10-06 11:18:06.7612 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-10-06 11:18:06.7612 Trace Scanning FileTarget 'File Target[logfile]'
+2022-10-06 11:18:06.7612 Trace  Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 11:18:06.7612 Trace  Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 11:18:06.7612 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 11:18:06.7612 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 11:18:06.7612 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 11:18:06.7612 Trace File Target[logfile] has 2 layouts
+2022-10-06 11:18:06.7612 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-06 12:11:19.7580 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 12:11:19.8913 Debug Found assembly location directory: 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2022-10-06 12:11:19.8913 Debug Auto loading based on NLog-Assembly found location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 12:11:19.9011 Debug Search for auto loading files in location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 12:11:19.9011 Debug Start auto loading, location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 12:11:19.9011 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 12:11:19.9011 Info Loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 12:11:19.9424 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-06 12:11:19.9424 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 12:11:19.9481 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-06 12:11:19.9481 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 12:11:19.9481 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 12:11:19.9481 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-06 12:11:19.9481 Debug Auto loading done
+2022-10-06 12:11:19.9481 Info Message Template Auto Format enabled
+2022-10-06 12:11:19.9965 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:19.9965 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 12:11:20.0159 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 12:11:20.0159 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 12:11:20.0159 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:20.0159 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 12:11:20.0159 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:20.0159 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 12:11:20.0294 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 12:11:20.0294 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 12:11:20.0294 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:11:20.0294 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 12:11:20.0294 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:20.0294 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2022-10-06 12:11:20.0294 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:20.0294 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 12:11:20.0452 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-06 12:11:20.0452 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 12:11:20.0452 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:20.0452 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 12:11:20.0452 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 12:11:20.0452 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:20.0452 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 12:11:20.0452 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 12:11:20.0452 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 12:11:20.0452 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:20.0452 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 12:11:20.0564 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:20.0564 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 12:11:20.0564 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 12:11:20.0564 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 12:11:20.0564 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:11:20.0564 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 12:11:20.0564 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:20.0564 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 12:11:20.0564 Info Adding target FileTarget(Name=logfile)
+2022-10-06 12:11:20.0564 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-06 12:11:20.0564 Trace ParseRulesElement
+2022-10-06 12:11:20.0994 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 12:11:20.0994 Debug --- NLog configuration dump ---
+2022-10-06 12:11:20.0994 Debug Targets:
+2022-10-06 12:11:20.1048 Debug File Target[logfile]
+2022-10-06 12:11:20.1048 Debug Rules:
+2022-10-06 12:11:20.1048 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 12:11:20.1048 Debug --- End of NLog configuration dump ---
+2022-10-06 12:11:20.1196 Trace FindReachableObject<System.Object>:
+2022-10-06 12:11:20.1196 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 12:11:20.1196 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 12:11:20.1196 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 12:11:20.1196 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 12:11:20.1196 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 12:11:20.1196 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:11:20.1196 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:11:20.1196 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 12:11:20.1196 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:11:20.1196 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 12:11:20.1196 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 12:11:20.1196 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:11:20.1196 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 12:11:20.1196 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:11:20.1357 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 12:11:20.1357 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 12:11:20.1357 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 12:11:20.1357 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:11:20.1357 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 12:11:20.1357 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:11:20.1357 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 12:11:20.1357 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 12:11:20.1357 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 12:11:20.1357 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 12:11:20.1514 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-06 12:11:20.1514 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-06 12:11:20.1712 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-06 12:11:20.1712 Trace Initializing Layout Renderer: ${message}
+2022-10-06 12:11:20.1712 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 12:11:20.1712 Trace Initializing Layout Renderer: ${level}
+2022-10-06 12:11:20.1712 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-06 12:11:20.1859 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:20.1859 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 12:11:20.1859 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:11:20.1859 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 12:11:20.1859 Trace Initializing Layout Renderer: ${uppercase}
+2022-10-06 12:11:20.1859 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 12:11:20.1859 Trace Initializing Layout Renderer: ${longdate}
+2022-10-06 12:11:20.1859 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 12:11:20.1859 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:20.1975 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 12:11:20.1975 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:11:20.1975 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 12:11:20.1975 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:11:20.1975 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 12:11:20.1975 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 12:11:20.1975 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 12:11:20.1975 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:11:20.1975 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 12:11:20.1975 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:11:20.1975 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 12:11:20.1975 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 12:11:20.1975 Trace Initializing Layout Renderer: ${shortdate}
+2022-10-06 12:11:20.1975 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 12:11:20.1975 Trace Initializing 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 12:11:20.1975 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:11:20.1975 Trace Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 12:11:20.1975 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:11:20.1975 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:11:20.1975 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 12:11:20.1975 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:11:20.2137 Trace Initializing File Target[logfile]
+2022-10-06 12:11:20.2137 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-10-06 12:11:20.2137 Trace Scanning FileTarget 'File Target[logfile]'
+2022-10-06 12:11:20.2137 Trace  Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 12:11:20.2137 Trace  Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 12:11:20.2137 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 12:11:20.2137 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 12:11:20.2137 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 12:11:20.2137 Trace File Target[logfile] has 2 layouts
+2022-10-06 12:11:20.2137 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-06 12:45:22.1178 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 12:45:22.1774 Debug Found assembly location directory: 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2022-10-06 12:45:22.1774 Debug Auto loading based on NLog-Assembly found location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 12:45:22.1774 Debug Search for auto loading files in location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 12:45:22.1825 Debug Start auto loading, location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 12:45:22.1825 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 12:45:22.1825 Info Loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 12:45:22.1980 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-06 12:45:22.1980 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 12:45:22.1980 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-06 12:45:22.1980 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 12:45:22.1980 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 12:45:22.1980 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-06 12:45:22.1980 Debug Auto loading done
+2022-10-06 12:45:22.1980 Info Message Template Auto Format enabled
+2022-10-06 12:45:22.2798 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 12:45:22.2798 Debug --- NLog configuration dump ---
+2022-10-06 12:45:22.2798 Debug Targets:
+2022-10-06 12:45:22.2798 Debug File Target[logfile]
+2022-10-06 12:45:22.2798 Debug Rules:
+2022-10-06 12:45:22.2798 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 12:45:22.2798 Debug --- End of NLog configuration dump ---
+2022-10-06 12:45:22.2930 Trace FindReachableObject<System.Object>:
+2022-10-06 12:45:22.2930 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 12:45:22.2930 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 12:45:22.2930 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 12:45:22.2930 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 12:45:22.2930 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 12:45:22.2930 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:45:22.2930 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:45:22.2930 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 12:45:22.2930 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:45:22.2930 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 12:45:22.2930 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 12:45:22.2930 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:45:22.2930 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 12:45:22.2930 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:45:22.2930 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 12:45:22.2930 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 12:45:22.2930 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 12:45:22.2930 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:45:22.2930 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 12:45:22.2930 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:45:22.2930 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 12:45:22.2930 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 12:45:22.2930 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 12:45:22.2930 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 12:45:22.3078 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-06 12:45:22.3078 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-06 12:45:22.3078 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-06 12:45:22.3078 Trace Initializing Layout Renderer: ${message}
+2022-10-06 12:45:22.3078 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 12:45:22.3078 Trace Initializing Layout Renderer: ${level}
+2022-10-06 12:45:22.3078 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-06 12:45:22.3078 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:45:22.3078 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 12:45:22.3078 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:45:22.3078 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 12:45:22.3250 Trace Initializing Layout Renderer: ${uppercase}
+2022-10-06 12:45:22.3250 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 12:45:22.3250 Trace Initializing Layout Renderer: ${longdate}
+2022-10-06 12:45:22.3250 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 12:45:22.3250 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:45:22.3250 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 12:45:22.3250 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:45:22.3250 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 12:45:22.3250 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:45:22.3250 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 12:45:22.3250 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 12:45:22.3250 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 12:45:22.3250 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:45:22.3250 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 12:45:22.3250 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:45:22.3250 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 12:45:22.3250 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 12:45:22.3250 Trace Initializing Layout Renderer: ${shortdate}
+2022-10-06 12:45:22.3250 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 12:45:22.3250 Trace Initializing 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 12:45:22.3250 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 12:45:22.3250 Trace Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 12:45:22.3250 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 12:45:22.3250 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:45:22.3250 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 12:45:22.3250 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 12:45:22.3250 Trace Initializing File Target[logfile]
+2022-10-06 12:45:22.3388 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-10-06 12:45:22.3388 Trace Scanning FileTarget 'File Target[logfile]'
+2022-10-06 12:45:22.3388 Trace  Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 12:45:22.3388 Trace  Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 12:45:22.3388 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 12:45:22.3388 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 12:45:22.3388 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 12:45:22.3388 Trace File Target[logfile] has 2 layouts
+2022-10-06 12:45:22.3388 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-06 13:17:34.3603 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 13:17:34.4366 Debug Found assembly location directory: 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2022-10-06 13:17:34.4366 Debug Auto loading based on NLog-Assembly found location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 13:17:34.4366 Debug Search for auto loading files in location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 13:17:34.4366 Debug Start auto loading, location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 13:17:34.4497 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 13:17:34.4497 Info Loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 13:17:34.4746 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-06 13:17:34.4746 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 13:17:34.4746 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-06 13:17:34.4819 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 13:17:34.4819 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 13:17:34.4819 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-06 13:17:34.4819 Debug Auto loading done
+2022-10-06 13:17:34.4819 Info Message Template Auto Format enabled
+2022-10-06 13:17:34.5143 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.5143 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:17:34.5143 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 13:17:34.5272 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 13:17:34.5272 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.5272 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:17:34.5272 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.5272 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:17:34.5272 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:17:34.5272 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:17:34.5272 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:17:34.5272 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:17:34.5272 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.5412 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2022-10-06 13:17:34.5412 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.5412 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:17:34.5412 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-06 13:17:34.5412 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 13:17:34.5412 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.5412 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 13:17:34.5412 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 13:17:34.5412 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.5571 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:17:34.5571 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 13:17:34.5571 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 13:17:34.5571 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.5571 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:17:34.5571 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.5571 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:17:34.5571 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:17:34.5571 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:17:34.5571 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:17:34.5571 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:17:34.5571 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.5571 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:17:34.5571 Info Adding target FileTarget(Name=logfile)
+2022-10-06 13:17:34.5571 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-06 13:17:34.5571 Trace ParseRulesElement
+2022-10-06 13:17:34.5900 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 13:17:34.5900 Debug --- NLog configuration dump ---
+2022-10-06 13:17:34.5900 Debug Targets:
+2022-10-06 13:17:34.5900 Debug File Target[logfile]
+2022-10-06 13:17:34.5900 Debug Rules:
+2022-10-06 13:17:34.5900 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 13:17:34.5900 Debug --- End of NLog configuration dump ---
+2022-10-06 13:17:34.6053 Trace FindReachableObject<System.Object>:
+2022-10-06 13:17:34.6053 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 13:17:34.6053 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 13:17:34.6053 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 13:17:34.6053 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 13:17:34.6053 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 13:17:34.6053 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:17:34.6053 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:17:34.6053 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 13:17:34.6053 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:17:34.6053 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 13:17:34.6053 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 13:17:34.6053 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:17:34.6053 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:17:34.6053 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:17:34.6053 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:17:34.6053 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:17:34.6053 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:17:34.6053 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:17:34.6053 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:17:34.6053 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:17:34.6053 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:17:34.6197 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 13:17:34.6197 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 13:17:34.6197 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 13:17:34.6197 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-06 13:17:34.6197 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-06 13:17:34.6357 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-06 13:17:34.6357 Trace Initializing Layout Renderer: ${message}
+2022-10-06 13:17:34.6357 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:17:34.6357 Trace Initializing Layout Renderer: ${level}
+2022-10-06 13:17:34.6357 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-06 13:17:34.6357 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.6357 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:17:34.6357 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:17:34.6357 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:17:34.6357 Trace Initializing Layout Renderer: ${uppercase}
+2022-10-06 13:17:34.6357 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:17:34.6357 Trace Initializing Layout Renderer: ${longdate}
+2022-10-06 13:17:34.6357 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 13:17:34.6357 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.6357 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 13:17:34.6357 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:17:34.6507 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:17:34.6507 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:17:34.6507 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:17:34.6507 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:17:34.6507 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:17:34.6507 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:17:34.6507 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:17:34.6507 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:17:34.6507 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:17:34.6507 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:17:34.6507 Trace Initializing Layout Renderer: ${shortdate}
+2022-10-06 13:17:34.6507 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:17:34.6507 Trace Initializing 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 13:17:34.6507 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:17:34.6507 Trace Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 13:17:34.6507 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:17:34.6507 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:17:34.6507 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 13:17:34.6507 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:17:34.6507 Trace Initializing File Target[logfile]
+2022-10-06 13:17:34.6507 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-10-06 13:17:34.6507 Trace Scanning FileTarget 'File Target[logfile]'
+2022-10-06 13:17:34.6507 Trace  Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 13:17:34.6507 Trace  Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 13:17:34.6507 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 13:17:34.6507 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 13:17:34.6507 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 13:17:34.6507 Trace File Target[logfile] has 2 layouts
+2022-10-06 13:17:34.6507 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-06 13:22:21.7011 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 13:22:21.8183 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-06 13:22:21.8183 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 13:22:21.8222 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-06 13:22:21.8222 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 13:22:21.8222 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 13:22:21.8222 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-06 13:22:21.8222 Debug Auto loading done
+2022-10-06 13:22:21.8222 Info Message Template Auto Format enabled
+2022-10-06 13:22:21.8503 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.8576 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:22:21.8576 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 13:22:21.8692 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 13:22:21.8692 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.8692 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:22:21.8692 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.8692 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:22:21.8692 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:22:21.8692 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:22:21.8692 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:22:21.8692 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:22:21.8692 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.8692 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2022-10-06 13:22:21.8692 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.8692 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:22:21.8906 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-06 13:22:21.8906 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 13:22:21.8906 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.8906 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 13:22:21.8906 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 13:22:21.8906 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.8906 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:22:21.8906 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 13:22:21.8906 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 13:22:21.8906 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.8906 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:22:21.8906 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.9020 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:22:21.9020 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:22:21.9020 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:22:21.9020 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:22:21.9020 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:22:21.9020 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.9020 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:22:21.9020 Info Adding target FileTarget(Name=logfile)
+2022-10-06 13:22:21.9020 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-06 13:22:21.9020 Trace ParseRulesElement
+2022-10-06 13:22:21.9302 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 13:22:21.9321 Debug --- NLog configuration dump ---
+2022-10-06 13:22:21.9321 Debug Targets:
+2022-10-06 13:22:21.9321 Debug File Target[logfile]
+2022-10-06 13:22:21.9321 Debug Rules:
+2022-10-06 13:22:21.9321 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 13:22:21.9321 Debug --- End of NLog configuration dump ---
+2022-10-06 13:22:21.9321 Trace FindReachableObject<System.Object>:
+2022-10-06 13:22:21.9321 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 13:22:21.9321 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 13:22:21.9321 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 13:22:21.9321 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 13:22:21.9321 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 13:22:21.9321 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:22:21.9321 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:22:21.9321 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 13:22:21.9321 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:22:21.9321 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 13:22:21.9479 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 13:22:21.9479 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:22:21.9479 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:22:21.9479 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:22:21.9479 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:22:21.9479 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:22:21.9479 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:22:21.9479 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:22:21.9479 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:22:21.9479 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:22:21.9479 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:22:21.9479 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 13:22:21.9479 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 13:22:21.9479 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 13:22:21.9479 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-06 13:22:21.9479 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-06 13:22:21.9684 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-06 13:22:21.9684 Trace Initializing Layout Renderer: ${message}
+2022-10-06 13:22:21.9684 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:22:21.9684 Trace Initializing Layout Renderer: ${level}
+2022-10-06 13:22:21.9684 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-06 13:22:21.9684 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.9684 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:22:21.9684 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:22:21.9684 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:22:21.9794 Trace Initializing Layout Renderer: ${uppercase}
+2022-10-06 13:22:21.9794 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:22:21.9794 Trace Initializing Layout Renderer: ${longdate}
+2022-10-06 13:22:21.9794 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 13:22:21.9794 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.9794 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 13:22:21.9794 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:22:21.9794 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:22:21.9794 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:22:21.9794 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:22:21.9794 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:22:21.9794 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:22:21.9794 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:22:21.9794 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:22:21.9794 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:22:21.9794 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:22:21.9794 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:22:21.9794 Trace Initializing Layout Renderer: ${shortdate}
+2022-10-06 13:22:21.9794 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:22:21.9794 Trace Initializing 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 13:22:21.9794 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:22:21.9794 Trace Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 13:22:21.9794 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:22:21.9794 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:22:21.9794 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 13:22:21.9794 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:22:21.9794 Trace Initializing File Target[logfile]
+2022-10-06 13:22:21.9948 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-10-06 13:22:21.9948 Trace Scanning FileTarget 'File Target[logfile]'
+2022-10-06 13:22:21.9948 Trace  Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 13:22:21.9948 Trace  Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 13:22:21.9948 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 13:22:21.9948 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 13:22:21.9948 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 13:22:21.9948 Trace File Target[logfile] has 2 layouts
+2022-10-06 13:22:21.9948 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-06 13:24:39.1729 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 13:24:39.2284 Debug Found assembly location directory: 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2022-10-06 13:24:39.2290 Debug Auto loading based on NLog-Assembly found location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 13:24:39.2290 Debug Search for auto loading files in location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 13:24:39.2290 Debug Start auto loading, location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 13:24:39.2290 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 13:24:39.2290 Info Loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 13:24:39.2505 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-06 13:24:39.2505 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 13:24:39.2505 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-06 13:24:39.2505 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 13:24:39.2505 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 13:24:39.2505 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-06 13:24:39.2505 Debug Auto loading done
+2022-10-06 13:24:39.2505 Info Message Template Auto Format enabled
+2022-10-06 13:24:39.2734 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.2764 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:24:39.2764 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 13:24:39.2764 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 13:24:39.2764 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.2764 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:24:39.2764 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.2764 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:24:39.2764 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:24:39.2764 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:24:39.2764 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:24:39.2919 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:24:39.2919 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.2919 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2022-10-06 13:24:39.2919 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.2919 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:24:39.2919 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-06 13:24:39.2919 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 13:24:39.2919 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.2919 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 13:24:39.2919 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 13:24:39.2919 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.2919 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:24:39.2919 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 13:24:39.2919 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 13:24:39.2919 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.2919 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:24:39.2919 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.2919 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:24:39.2919 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:24:39.2919 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:24:39.2919 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:24:39.2919 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:24:39.2919 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.2919 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:24:39.3067 Info Adding target FileTarget(Name=logfile)
+2022-10-06 13:24:39.3067 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-06 13:24:39.3067 Trace ParseRulesElement
+2022-10-06 13:24:39.3254 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 13:24:39.3254 Debug --- NLog configuration dump ---
+2022-10-06 13:24:39.3254 Debug Targets:
+2022-10-06 13:24:39.3254 Debug File Target[logfile]
+2022-10-06 13:24:39.3254 Debug Rules:
+2022-10-06 13:24:39.3254 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 13:24:39.3254 Debug --- End of NLog configuration dump ---
+2022-10-06 13:24:39.3254 Trace FindReachableObject<System.Object>:
+2022-10-06 13:24:39.3254 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 13:24:39.3254 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 13:24:39.3254 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 13:24:39.3254 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 13:24:39.3254 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 13:24:39.3383 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:24:39.3383 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:24:39.3383 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 13:24:39.3383 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:24:39.3383 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 13:24:39.3383 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 13:24:39.3383 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:24:39.3383 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:24:39.3383 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:24:39.3383 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:24:39.3383 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:24:39.3383 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:24:39.3383 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:24:39.3383 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:24:39.3383 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:24:39.3383 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:24:39.3383 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 13:24:39.3383 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 13:24:39.3383 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 13:24:39.3383 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-06 13:24:39.3383 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-06 13:24:39.3571 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-06 13:24:39.3571 Trace Initializing Layout Renderer: ${message}
+2022-10-06 13:24:39.3571 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:24:39.3571 Trace Initializing Layout Renderer: ${level}
+2022-10-06 13:24:39.3571 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-06 13:24:39.3571 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.3571 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:24:39.3571 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:24:39.3571 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:24:39.3571 Trace Initializing Layout Renderer: ${uppercase}
+2022-10-06 13:24:39.3571 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:24:39.3571 Trace Initializing Layout Renderer: ${longdate}
+2022-10-06 13:24:39.3571 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 13:24:39.3571 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.3571 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 13:24:39.3571 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:24:39.3696 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:24:39.3696 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:24:39.3696 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:24:39.3696 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:24:39.3696 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:24:39.3696 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:24:39.3696 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:24:39.3696 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:24:39.3696 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:24:39.3696 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:24:39.3696 Trace Initializing Layout Renderer: ${shortdate}
+2022-10-06 13:24:39.3696 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:24:39.3696 Trace Initializing 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 13:24:39.3696 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:24:39.3696 Trace Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 13:24:39.3696 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:24:39.3696 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:24:39.3696 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 13:24:39.3696 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:24:39.3696 Trace Initializing File Target[logfile]
+2022-10-06 13:24:39.3696 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-10-06 13:24:39.3696 Trace Scanning FileTarget 'File Target[logfile]'
+2022-10-06 13:24:39.3856 Trace  Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 13:24:39.3856 Trace  Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 13:24:39.3856 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 13:24:39.3856 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 13:24:39.3856 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 13:24:39.3856 Trace File Target[logfile] has 2 layouts
+2022-10-06 13:24:39.3856 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-06 13:53:23.3162 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 13:53:23.5644 Debug Found assembly location directory: 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2022-10-06 13:53:23.5644 Debug Auto loading based on NLog-Assembly found location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 13:53:23.5644 Debug Search for auto loading files in location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 13:53:23.5644 Debug Start auto loading, location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 13:53:23.5644 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 13:53:23.5644 Info Loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 13:53:23.6740 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-06 13:53:23.6740 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 13:53:23.6740 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-06 13:53:23.6740 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 13:53:23.6740 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 13:53:23.6740 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-06 13:53:23.6740 Debug Auto loading done
+2022-10-06 13:53:23.6740 Info Message Template Auto Format enabled
+2022-10-06 13:53:23.6983 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.6983 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:53:23.6983 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 13:53:23.6983 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 13:53:23.6983 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.6983 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:53:23.6983 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.6983 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:53:23.7146 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:53:23.7146 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:53:23.7146 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:53:23.7146 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:53:23.7146 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.7146 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2022-10-06 13:53:23.7146 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.7146 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:53:23.7146 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-06 13:53:23.7146 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 13:53:23.7146 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.7146 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 13:53:23.7146 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 13:53:23.7146 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.7146 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:53:23.7146 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 13:53:23.7146 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 13:53:23.7146 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.7146 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:53:23.7146 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.7291 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:53:23.7291 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:53:23.7291 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:53:23.7291 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:53:23.7291 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:53:23.7291 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.7291 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:53:23.7291 Info Adding target FileTarget(Name=logfile)
+2022-10-06 13:53:23.7291 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-06 13:53:23.7291 Trace ParseRulesElement
+2022-10-06 13:53:23.7511 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 13:53:23.7511 Debug --- NLog configuration dump ---
+2022-10-06 13:53:23.7511 Debug Targets:
+2022-10-06 13:53:23.7511 Debug File Target[logfile]
+2022-10-06 13:53:23.7511 Debug Rules:
+2022-10-06 13:53:23.7511 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 13:53:23.7511 Debug --- End of NLog configuration dump ---
+2022-10-06 13:53:23.7511 Trace FindReachableObject<System.Object>:
+2022-10-06 13:53:23.7511 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 13:53:23.7601 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 13:53:23.7601 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 13:53:23.7601 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 13:53:23.7601 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 13:53:23.7601 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:53:23.7601 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:53:23.7601 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 13:53:23.7601 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:53:23.7601 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 13:53:23.7601 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 13:53:23.7601 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:53:23.7601 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:53:23.7601 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:53:23.7601 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:53:23.7601 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:53:23.7601 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:53:23.7601 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:53:23.7601 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:53:23.7601 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:53:23.7601 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:53:23.7601 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 13:53:23.7601 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 13:53:23.7601 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 13:53:23.7601 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-06 13:53:23.7770 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-06 13:53:23.7770 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-06 13:53:23.7770 Trace Initializing Layout Renderer: ${message}
+2022-10-06 13:53:23.7770 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:53:23.7770 Trace Initializing Layout Renderer: ${level}
+2022-10-06 13:53:23.7770 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-06 13:53:23.7770 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.7770 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:53:23.7770 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:53:23.7770 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:53:23.7770 Trace Initializing Layout Renderer: ${uppercase}
+2022-10-06 13:53:23.7913 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:53:23.7913 Trace Initializing Layout Renderer: ${longdate}
+2022-10-06 13:53:23.7913 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 13:53:23.7913 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.7913 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 13:53:23.7913 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:53:23.7913 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 13:53:23.7913 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:53:23.7913 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 13:53:23.7913 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 13:53:23.7913 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 13:53:23.7913 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:53:23.7913 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 13:53:23.7913 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:53:23.7913 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 13:53:23.7913 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:53:23.7913 Trace Initializing Layout Renderer: ${shortdate}
+2022-10-06 13:53:23.7913 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 13:53:23.7913 Trace Initializing 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 13:53:23.7913 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 13:53:23.7913 Trace Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 13:53:23.7913 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 13:53:23.7913 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:53:23.7913 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 13:53:23.7913 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 13:53:23.7913 Trace Initializing File Target[logfile]
+2022-10-06 13:53:23.7913 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-10-06 13:53:23.7913 Trace Scanning FileTarget 'File Target[logfile]'
+2022-10-06 13:53:23.8070 Trace  Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 13:53:23.8070 Trace  Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 13:53:23.8070 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 13:53:23.8070 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 13:53:23.8070 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 13:53:23.8070 Trace File Target[logfile] has 2 layouts
+2022-10-06 13:53:23.8070 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
+2022-10-06 15:23:13.8829 Debug ScanAssembly('NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 15:23:13.9411 Debug Found assembly location directory: 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0' (NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c)
+2022-10-06 15:23:13.9411 Debug Auto loading based on NLog-Assembly found location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 15:23:13.9411 Debug Search for auto loading files in location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 15:23:13.9411 Debug Start auto loading, location: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0
+2022-10-06 15:23:13.9481 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 15:23:13.9481 Info Loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+2022-10-06 15:23:13.9627 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2022-10-06 15:23:13.9627 Debug ScanAssembly('NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-06 15:23:13.9627 Info Auto loading assembly file: C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices\bin\Debug\net6.0\NLog.Extensions.Logging.dll succeeded!
+2022-10-06 15:23:13.9627 Trace Assembly 'Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 15:23:13.9627 Trace Assembly 'Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60' will be hidden in callsite stacktrace
+2022-10-06 15:23:13.9627 Trace Assembly 'NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c' will be hidden in callsite stacktrace
+2022-10-06 15:23:13.9627 Debug Auto loading done
+2022-10-06 15:23:13.9627 Info Message Template Auto Format enabled
+2022-10-06 15:23:13.9893 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:13.9893 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 15:23:14.0039 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 15:23:14.0039 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 15:23:14.0039 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:14.0039 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 15:23:14.0039 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:14.0039 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 15:23:14.0099 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 15:23:14.0099 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 15:23:14.0099 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 15:23:14.0099 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 15:23:14.0099 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:14.0099 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${logger}'
+2022-10-06 15:23:14.0099 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:14.0099 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 15:23:14.0099 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-06 15:23:14.0099 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 15:23:14.0099 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:14.0099 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 15:23:14.0099 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 15:23:14.0099 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:14.0099 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 15:23:14.0099 Debug Setting 'NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper.uppercase' to 'true'
+2022-10-06 15:23:14.0099 Trace Wrapping NLog.LayoutRenderers.LevelLayoutRenderer with NLog.LayoutRenderers.Wrappers.UppercaseLayoutRendererWrapper
+2022-10-06 15:23:14.0099 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:14.0099 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 15:23:14.0099 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:14.0256 Trace Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 15:23:14.0256 Trace  Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 15:23:14.0256 Trace  Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 15:23:14.0256 Trace   Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 15:23:14.0256 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 15:23:14.0256 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:14.0256 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 15:23:14.0256 Info Adding target FileTarget(Name=logfile)
+2022-10-06 15:23:14.0256 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-06 15:23:14.0256 Trace ParseRulesElement
+2022-10-06 15:23:14.0483 Debug Watching path 'C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices' filter 'nlog.config' for changes.
+2022-10-06 15:23:14.0483 Debug --- NLog configuration dump ---
+2022-10-06 15:23:14.0483 Debug Targets:
+2022-10-06 15:23:14.0483 Debug File Target[logfile]
+2022-10-06 15:23:14.0483 Debug Rules:
+2022-10-06 15:23:14.0483 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]
+2022-10-06 15:23:14.0483 Debug --- End of NLog configuration dump ---
+2022-10-06 15:23:14.0585 Trace FindReachableObject<System.Object>:
+2022-10-06 15:23:14.0585 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] appendTo: [ logfile ]'
+2022-10-06 15:23:14.0585 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-10-06 15:23:14.0585 Trace  Scanning FileTarget 'File Target[logfile]'
+2022-10-06 15:23:14.0585 Trace   Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 15:23:14.0585 Trace   Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 15:23:14.0585 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 15:23:14.0585 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 15:23:14.0585 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 15:23:14.0585 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 15:23:14.0585 Trace   Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 15:23:14.0585 Trace   Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 15:23:14.0585 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 15:23:14.0585 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 15:23:14.0585 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 15:23:14.0585 Trace    Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 15:23:14.0585 Trace     Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 15:23:14.0585 Trace     Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 15:23:14.0585 Trace      Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 15:23:14.0585 Trace      Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 15:23:14.0585 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 15:23:14.0585 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 15:23:14.0585 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 15:23:14.0585 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-10-06 15:23:14.0585 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-10-06 15:23:14.0724 Info Validating config: TargetNames=logfile, ConfigItems=14, FilePath=C:\Projects\JepcoNetProjects\EmergancyAppApis\JepcoBackEndSystemProject.MeterReaderCompanyServices/nlog.config
+2022-10-06 15:23:14.0724 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-10-06 15:23:14.0724 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-10-06 15:23:14.0724 Trace Initializing Layout Renderer: ${message}
+2022-10-06 15:23:14.0724 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 15:23:14.0724 Trace Initializing Layout Renderer: ${level}
+2022-10-06 15:23:14.0724 Trace Initializing SimpleLayout=Layout Renderer: ${level}
+2022-10-06 15:23:14.0724 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:14.0724 Trace Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 15:23:14.0724 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 15:23:14.0724 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 15:23:14.0898 Trace Initializing Layout Renderer: ${uppercase}
+2022-10-06 15:23:14.0898 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 15:23:14.0898 Trace Initializing Layout Renderer: ${longdate}
+2022-10-06 15:23:14.0898 Trace Initializing '${longdate} ${level:uppercase=true} ${message}'
+2022-10-06 15:23:14.0898 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:14.0898 Trace Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 15:23:14.0898 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 15:23:14.0898 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-06 15:23:14.0898 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 15:23:14.0898 Trace  Scanning UppercaseLayoutRendererWrapper 'Layout Renderer: ${uppercase}'
+2022-10-06 15:23:14.0898 Trace   Scanning Property Inner 'SimpleLayout=Layout Renderer: ${level}' NLog.Layouts
+2022-10-06 15:23:14.0898 Trace   Scanning SimpleLayout 'SimpleLayout=Layout Renderer: ${level}'
+2022-10-06 15:23:14.0898 Trace    Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 15:23:14.0898 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-06 15:23:14.0898 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 15:23:14.0898 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-06 15:23:14.0898 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 15:23:14.0898 Trace Initializing Layout Renderer: ${shortdate}
+2022-10-06 15:23:14.0898 Trace Initializing Layout Renderer: ${literal}
+2022-10-06 15:23:14.0898 Trace Initializing 'c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'
+2022-10-06 15:23:14.0898 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-06 15:23:14.0898 Trace Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 15:23:14.0898 Trace  Scanning Property Renderers 'System.Collections.ObjectModel.ReadOnlyCollection`1[NLog.LayoutRenderers.LayoutRenderer]' System.Collections.ObjectModel
+2022-10-06 15:23:14.0898 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 15:23:14.0898 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-06 15:23:14.0898 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-10-06 15:23:14.0898 Trace Initializing File Target[logfile]
+2022-10-06 15:23:14.1037 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-10-06 15:23:14.1037 Trace Scanning FileTarget 'File Target[logfile]'
+2022-10-06 15:23:14.1037 Trace  Scanning Property FileName ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt'' NLog.Layouts
+2022-10-06 15:23:14.1037 Trace  Scanning SimpleLayout ''c:/Projects/Blog-JepcoBackEndSystem/Project/logs/${shortdate}_EmergancyApplogfile.txt''
+2022-10-06 15:23:14.1037 Trace  Scanning Property Layout ''${longdate} ${level:uppercase=true} ${message}'' NLog.Layouts
+2022-10-06 15:23:14.1037 Trace  Scanning SimpleLayout ''${longdate} ${level:uppercase=true} ${message}''
+2022-10-06 15:23:14.1037 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-10-06 15:23:14.1037 Trace File Target[logfile] has 2 layouts
+2022-10-06 15:23:14.1037 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.RetryingMultiProcessFileAppender+Factory
