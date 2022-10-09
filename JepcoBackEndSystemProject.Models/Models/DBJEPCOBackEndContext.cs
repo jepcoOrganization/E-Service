@@ -23,8 +23,11 @@ namespace JepcoBackEndSystemProject.Models.Models
         public virtual DbSet<tb_RepairingStatus> tb_RepairingStatus { get; set; }
         public virtual DbSet<tb_UserAccessRegister> tb_UserAccessRegister { get; set; }
         public virtual DbSet<tb_EngineersAccessRegister> tb_EngineersAccessRegister { get; set; }
-
         public virtual DbSet<tb_Technical> tb_Technical { get; set; }
+
+        public virtual DbSet<tb_EmergancyGroups> tb_EmergancyGroups { get; set; }
+        public virtual DbSet<tb_Governorate> tb_Governorate { get; set; }
+        public virtual DbSet<tb_TechnicalGroups> tb_TechnicalGroups { get; set; }
 
 
 
@@ -113,6 +116,51 @@ namespace JepcoBackEndSystemProject.Models.Models
                 entity.ToTable("tb_Technical");
 
             });
+
+
+
+            modelBuilder.Entity<tb_EmergancyGroups>(entity =>
+            {
+                entity.HasKey(e => new { e.ID });
+                entity.ToTable("tb_EmergancyGroups");
+
+            });
+
+            modelBuilder.Entity<tb_Governorate>(entity =>
+            {
+                entity.HasKey(e => new { e.ID });
+                entity.ToTable("tb_Governorate");
+
+            });
+
+
+            modelBuilder.Entity<tb_TechnicalGroups>(entity =>
+            {
+                entity.HasKey(e => new { e.GroupId , e.UserID });
+                entity.ToTable("tb_TechnicalGroups");
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             OnModelCreatingPartial(modelBuilder);
         }
 

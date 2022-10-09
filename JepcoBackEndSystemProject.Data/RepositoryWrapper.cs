@@ -22,7 +22,11 @@ namespace JepcoBackEndSystemProject.Data
         private ElectricalFaultStatus.IElectricalFaultStatusRepository _electricalFaultStatusRepository;
         private EngineersAccessRegister.IEngineersAccessRegisterRepository _engineersAccessRegisterRepository;
         private Technical.ITechnicalRepository _technicalRepository;
-      
+        private Governorate.IGovernorateRepository _governorateRepository;
+        private EmergancyGroups.IEmergancyGroupsRepository _emergancyGroupsRepository;
+
+ 
+
 
 
         public RepositoryWrapper(DBJEPCOBackEndContext repositoryContext, ILoggerManager logger)
@@ -158,6 +162,52 @@ namespace JepcoBackEndSystemProject.Data
                 return _technicalRepository;
             }
         }
+
+
+
+
+        public Governorate.IGovernorateRepository GovernorateRepository
+        {
+            get
+            {
+                if (_governorateRepository == null)
+                {
+                    _governorateRepository = new Governorate.GovernorateRepository(_repoContext, _logger);
+                }
+
+                return _governorateRepository;
+            }
+        }
+
+
+
+
+        public EmergancyGroups.IEmergancyGroupsRepository EmergancyGroupsRepository
+        {
+            get
+            {
+                if (_emergancyGroupsRepository == null)
+                {
+                    _emergancyGroupsRepository = new EmergancyGroups.EmergancyGroupsRepository(_repoContext, _logger);
+                }
+
+                return _emergancyGroupsRepository;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
