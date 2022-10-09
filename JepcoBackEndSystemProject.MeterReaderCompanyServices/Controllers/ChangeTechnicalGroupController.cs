@@ -87,6 +87,43 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
     }
 
+        //-------------------------------------------Get group for Governorate ------------------------------------------------------
+
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
+        [HttpPost(Name = "GetGroupForGovernorate")]
+        [Route("GetGroupForGovernorate")]
+        public async Task<ActionResult<CommonReturnResult>> GetGroupForGovernorate([FromBody] LanguageDto languageDto)
+        {
+
+
+            try
+            {
+                if (languageDto == null)
+                {
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, " Complaint object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Invalid Complaint object sent from client")));
+                }
+
+
+                IEnumerable<tb_Governorate> lstGovernorateData = await _repository.GovernorateRepository.GetAllGovernorate().ConfigureAwait(false);
+
+
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Returned all data from database"), lstGovernorateData));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetAllStutuses action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Internal server error")));
+            }
+
+        }
 
 
 
@@ -102,9 +139,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-
-
-
-}
+    }
 
 }
