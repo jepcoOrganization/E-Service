@@ -306,7 +306,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                     //  string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse( Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID ,28, dtDelivredDate.ToString() ).ConfigureAwait(false); 
 
@@ -492,7 +492,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                     //  string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse( Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID ,28, dtDelivredDate.ToString() ).ConfigureAwait(false); 
 
@@ -695,7 +695,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     string strAddtionalFiledsjson = JsonConvert.SerializeObject(lstMenaTrackAddtionalFiledsDto.ToArray());
 
-                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                     string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertBulkAsync(Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()), strAddtionalFiledsjson).ConfigureAwait(false);
 
@@ -870,7 +870,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 {
 
 
-                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                     string Status = await objCallCenterNewClient.JEPCO_RequestReassignToPreviousAssigneeAsync(Fault_Compliants.UserID, Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()), ReassignCompliantDto.ReassignClassficationID, ReassignCompliantDto.ReassignReason).ConfigureAwait(false);
 
@@ -969,7 +969,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                 List<FaultClassficationResponsetDto> lstFaultClassficationResponsetDto = new List<FaultClassficationResponsetDto>();
 
-                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                 List<MenaTrackService.ClassficationLookupResponse> lstClassficationLookupResponse = await objCallCenterNewClient.MainCalssficationsAsync().ConfigureAwait(false);
 
@@ -1044,7 +1044,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                    MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                     List<MenaTrackService.ClassficationLookupResponse> lstClassficationLookupResponse = await objCallCenterNewClient.SubMainCalssficationsAsync(FaultSubClassficationRequestDto.FaultClassficationID).ConfigureAwait(false);
 
@@ -1111,7 +1111,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                 List<ReassingClassficationResponsetDto> lstReassingClassficationResponsetDto = new List<ReassingClassficationResponsetDto>();
 
-                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                 List<MenaTrackService.ClassficationLookupResponse> lstClassficationLookupResponse = await objCallCenterNewClient.ReassingCallsficationCalssficationsAsync().ConfigureAwait(false);
 

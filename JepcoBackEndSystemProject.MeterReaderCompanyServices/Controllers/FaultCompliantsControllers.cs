@@ -63,7 +63,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             try
             {
 
-                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                 List < MenaTrackService.JEPCOViewRequestsParentsResponse > lstJEPCOViewRequestsParentsResponse =   await objCallCenterNewClient.JEPCO_ViewRequests_ParentsAsync(FaultComplaintDto.UserID, FaultComplaintDto.BranchID).ConfigureAwait(false ) ;
 
@@ -138,6 +138,61 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                      
                         IEnumerable<tb_Fault_Compliants > lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants (x => x.IssueID == jEPCOViewRequest.IssueID && x.UserID == FaultComplaintDto.UserID).ConfigureAwait(false) ;
+
+
+                        if (lstFalutComplaintData != null && lstFalutComplaintData.ToList().Count > 0)
+                        {
+
+                            var objFalutComplaintData = lstFalutComplaintData.FirstOrDefault();
+
+                            if (objFalutComplaintData.FaultStatusID == 4 || objFalutComplaintData.FaultStatusID == 5)
+                            {
+
+
+                                IEnumerable<tb_Fault_Compliants> lstChildsFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantParentRefNumber == objFalutComplaintData.ComplaintRefNumber).ConfigureAwait(false);
+
+
+                                if (lstChildsFalutComplaintData != null && lstChildsFalutComplaintData.ToList().Count > 0)
+                                {
+                                    /// Delete Child Tieckts 
+                                    _repository.FaultCompliantsLookupRepository.Remove(lstChildsFalutComplaintData.ToArray());
+
+                                    await _repository.SaveAsync().ConfigureAwait(false);
+
+                                }
+
+                                ComplaintFaultDetailsRequestDto objcomplaintFaultDetailsRequestDto = new ComplaintFaultDetailsRequestDto();
+
+                                objcomplaintFaultDetailsRequestDto.FaultComplaintID = objFalutComplaintData.FaultComplaintID;
+                                objcomplaintFaultDetailsRequestDto.LanguageId = "AR";
+
+
+                                //IEnumerable<tb_FaultDetails> lsttb_FaultDetails = (IEnumerable<tb_FaultDetails>) _FaultDetailsController.GetFaultCompliantDetailsWithOUTImage(objcomplaintFaultDetailsRequestDto); 
+                                // await _repository.FaultDetailsRepository .GetListOfFaultDetails(faultDetails => faultDetails.FaultComplaintID  == FalutComplaintALL.FaultComplaintID).ConfigureAwait(false);
+                                //await _repository.FaultDetailsRepository .GetListOfFaultDetails(faultDetails => faultDetails.FaultComplaintID  == FalutComplaintALL.FaultComplaintID).ConfigureAwait(false);
+
+                                IEnumerable<tb_FaultDetails> lsttb_FaultDetails = await _repository.FaultDetailsRepository.GetListOfFaultDetailsWithoutImages(objFalutComplaintData.FaultComplaintID).ConfigureAwait(false);
+
+                                if (lsttb_FaultDetails != null && lsttb_FaultDetails.ToList().Count > 0)
+                                {
+
+                                    _repository.FaultDetailsRepository.Remove(lsttb_FaultDetails.FirstOrDefault());
+
+                                }
+
+                                _repository.FaultCompliantsLookupRepository.Remove(objFalutComplaintData);
+
+
+                                await _repository.SaveAsync().ConfigureAwait(false);
+
+
+
+
+
+
+                            }
+
+                        } 
 
                         if (lstFalutComplaintData == null || lstFalutComplaintData.ToList().Count  ==0)
                         {
@@ -246,7 +301,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                             await _repository.SaveAsync().ConfigureAwait(false);
 
                             //----------------------getChild-------------------------
-                            //MenaTrackService.CallCenterNewClient objCallCenterNewClientChild = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                            //MenaTrackService.CallCenterNewClient objCallCenterNewClientChild = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                             //List<MenaTrackService.JEPCOViewRequestsParentsResponse> lstJEPCOViewRequestsChildsResponse = await objCallCenterNewClientChild.JEPCO_ViewRequests_ChildsAsync(long.Parse(tb_Fault_Compliants.IssueID.ToString()), tb_Fault_Compliants.BranchID).ConfigureAwait(false);
 
@@ -397,7 +452,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             try
             {
 
-                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                 List<MenaTrackService.JEPCOViewRequestsParentsResponse > lstJEPCOViewRequestsChildsResponse = await objCallCenterNewClient.JEPCO_ViewRequests_ChildsAsync(FaultComplaintDto.IssueID , FaultComplaintDto.BranchID).ConfigureAwait(false);
 
