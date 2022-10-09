@@ -168,6 +168,9 @@
   <data name="Invalid User object sent from client" xml:space="preserve">
     <value>خطأ في ارسال محتوى المستخدم</value>
   </data>
+  <data name="MenaTrackError" xml:space="preserve">
+    <value>خطا من MenaTrack</value>
+  </data>
   <data name="Meter reading Comany User Data has been Updated" xml:space="preserve">
     <value>تم تحديث بيانات مستخدم شركة قراءة العدادات بنجاح</value>
   </data>

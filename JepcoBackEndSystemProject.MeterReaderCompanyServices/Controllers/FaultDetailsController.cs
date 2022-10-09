@@ -109,7 +109,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GetFaultCompliantDetailsWithOutImage")]
         [Route("GetFaultCompliantDetailsWithOutImage")]
-       
+
         public async Task<ActionResult<CommonReturnResult>> GetFaultCompliantDetailsWithOUTImage([FromBody] ComplaintFaultDetailsRequestDto ComplaintFaultDetailsRequest)
         {
 
@@ -226,7 +226,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                         ImageResponse.Image = ComplaintFaultDetails.ArrivingLocationImage;
 
 
-                    }else if(GetFaultCompliantDetailsImageRequest.Image == 2)
+                    } else if (GetFaultCompliantDetailsImageRequest.Image == 2)
                     {
                         ImageResponse.Image = ComplaintFaultDetails.RepairingImage1;
                     }
@@ -302,7 +302,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     lstMenaTrackAddtionalFiledsDto.Add(objMenaTrackAddtionalFiledsDto);
 
-                    string  strAddtionalFiledsjson = JsonConvert.SerializeObject(lstMenaTrackAddtionalFiledsDto.ToArray());
+                    string strAddtionalFiledsjson = JsonConvert.SerializeObject(lstMenaTrackAddtionalFiledsDto.ToArray());
 
 
 
@@ -310,14 +310,25 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     //  string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertAsync(long.Parse( Fault_Compliants.IssueID.ToString()), Fault_Compliants.BranchID ,28, dtDelivredDate.ToString() ).ConfigureAwait(false); 
 
-                     string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertBulkAsync (Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()), strAddtionalFiledsjson).ConfigureAwait(false); 
+                    string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertBulkAsync(Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()), strAddtionalFiledsjson).ConfigureAwait(false);
 
 
 
-                    if (Status != "Success")
+
+
+
+                    if (Status.StartsWith("0") == true)
                     {
 
-                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, DelivredCompliantRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, DelivredCompliantRequest.LanguageId, "Error In Integration With MenaTrack System" + " تاريخ الاستلام" )));
+                        return BadRequest(_common.ReturnCustomErrorData(_common.ReturnResourceValue(_localizerAR, _localizerEN, DelivredCompliantRequest.LanguageId, "MenaTrackError"), Status.Substring(Status.LastIndexOf(":") + 1)));
+
+                    }
+
+
+                    if (Status.StartsWith("1") == false)
+                    {
+
+                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, DelivredCompliantRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, DelivredCompliantRequest.LanguageId, "Error In Integration With MenaTrack System" + " تاريخ الاستلام")));
 
                     }
 
@@ -412,10 +423,10 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+          [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "ArrivingLocation")]
         [Route("ArrivingLocation")]
-  
+
         public async Task<ActionResult<CommonReturnResult>> ArrivingLocation([FromBody] ArrivingLocationCompliantRequestDto ArrivingLocationCompliantRequestDto)
         {
 
@@ -434,16 +445,16 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 }
 
 
-                  _logger.LogError("Image:" + ArrivingLocationCompliantRequestDto.ArrivingLocationImage );
+                _logger.LogError("Image:" + ArrivingLocationCompliantRequestDto.ArrivingLocationImage);
 
 
                 tb_Fault_Compliants Fault_Compliants = await _repository.FaultCompliantsLookupRepository.GetSingleFaultCompliant(X => X.FaultComplaintID == ArrivingLocationCompliantRequestDto.FaultComplaintID).ConfigureAwait(false);
                 tb_FaultDetails ComplaintFaultDetails = await _repository.FaultDetailsRepository.GetSingleFaultDetails(faultDetails => faultDetails.FaultComplaintID == ArrivingLocationCompliantRequestDto.FaultComplaintID).ConfigureAwait(false);
 
-            
+
                 if (ComplaintFaultDetails == null || Fault_Compliants == null)
                 {
-      
+
 
                     return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Complaint with id hasn't been found in db") + ArrivingLocationCompliantRequestDto.FaultComplaintID));
 
@@ -487,7 +498,17 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertBulkAsync(Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()), strAddtionalFiledsjson).ConfigureAwait(false);
 
-                    if (Status != "Success")
+
+
+                    if (Status.StartsWith("0") == true)
+                    {
+
+                        return BadRequest(_common.ReturnCustomErrorData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "MenaTrackError"), Status.Substring(Status.LastIndexOf(":") + 1)));
+
+                    }
+
+
+                    if (Status.StartsWith("1") == false)
                     {
 
                         return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ArrivingLocationCompliantRequestDto.LanguageId, "Error In Integration With MenaTrack System" + "  تاريخ الوصول و أحداثيات الموقع")));
@@ -510,9 +531,9 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     ComplaintFaultDetails.ArrivingLocationDateTime = dtArrivingDate;
                     ComplaintFaultDetails.ArrivingLocationImage = ArrivingLocationCompliantRequestDto.ArrivingLocationImage;
-                    ComplaintFaultDetails.ArrivingLocationLatt  = ArrivingLocationCompliantRequestDto.ArrivingLocationLatt;
-                    ComplaintFaultDetails.ArrivingLocationLong  = ArrivingLocationCompliantRequestDto.ArrivingLocationLong;
-                    ComplaintFaultDetails.UpdateDate = DateTime.Now; 
+                    ComplaintFaultDetails.ArrivingLocationLatt = ArrivingLocationCompliantRequestDto.ArrivingLocationLatt;
+                    ComplaintFaultDetails.ArrivingLocationLong = ArrivingLocationCompliantRequestDto.ArrivingLocationLong;
+                    ComplaintFaultDetails.UpdateDate = DateTime.Now;
                     _repository.FaultDetailsRepository.UpdateFaultDetails(null, ComplaintFaultDetails);
                     await _repository.SaveAsync().ConfigureAwait(false);
 
@@ -522,7 +543,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     Fault_Compliants.FaultStatusDesc = "تم الوصول الى الموقع";
 
                     Fault_Compliants.UpdateDate = DateTime.Now;
-                     _repository.FaultCompliantsLookupRepository.UpdateFaultCompliants(null, Fault_Compliants);
+                    _repository.FaultCompliantsLookupRepository.UpdateFaultCompliants(null, Fault_Compliants);
                     await _repository.SaveAsync().ConfigureAwait(false);
                     //-------------------------------------------------------------------------------------------------------------------------------------
                     IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantParentRefNumber == Fault_Compliants.ComplaintRefNumber).ConfigureAwait(false);
@@ -534,7 +555,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                             objComplainChildtUpdate.FaultStatusID = 3;
                             objComplainChildtUpdate.UpdateDate = DateTime.Now;
-                            
+
                             _repository.FaultCompliantsLookupRepository.UpdateFaultCompliants(null, objComplainChildtUpdate);
                             await _repository.SaveAsync().ConfigureAwait(false);
 
@@ -562,7 +583,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "RepairandCloseComplaint")]
         [Route("RepairandCloseComplaint")]
         // BranchId from BranchesModelResource in Resource project to hide value
@@ -611,7 +632,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     MenaTrackAddtionalFiledsDto objMenaTrackAddtionalFiledsDto = new MenaTrackAddtionalFiledsDto();
 
 
-                  
+
                     objMenaTrackAddtionalFiledsDto.FieldID = 65;
                     objMenaTrackAddtionalFiledsDto.FieldValue = RepairandCloseComplaintRequestDto.FaultClassficationID.ToString();
 
@@ -619,7 +640,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
                     MenaTrackAddtionalFiledsDto objMenaTrackAddtionalFiledsDto1 = new MenaTrackAddtionalFiledsDto();
-                   
+
                     objMenaTrackAddtionalFiledsDto1.FieldValue = RepairandCloseComplaintRequestDto.FaultSubClassficationID.ToString();
 
 
@@ -676,9 +697,18 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
-                    string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertBulkAsync(Fault_Compliants.BranchID , long.Parse(Fault_Compliants.IssueID.ToString()),strAddtionalFiledsjson).ConfigureAwait(false);
+                    string Status = await objCallCenterNewClient.IssueAdditionalFieldsInsertBulkAsync(Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()), strAddtionalFiledsjson).ConfigureAwait(false);
 
-                    if (Status != "Success")
+
+                    if (Status.StartsWith("0") == true)
+                    {
+
+                        return BadRequest(_common.ReturnCustomErrorData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "MenaTrackError"), Status.Substring(Status.LastIndexOf(":") + 1)));
+
+                    }
+
+
+                    if (Status.StartsWith("1") == false)
                     {
 
                         return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error In Integration With MenaTrack System" + " بيانات الاغلاق")));
@@ -686,7 +716,12 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     }
 
 
-                    if( string.IsNullOrEmpty(RepairandCloseComplaintRequestDto.RepairingImage1) == false ){
+
+
+
+
+
+                    if (string.IsNullOrEmpty(RepairandCloseComplaintRequestDto.RepairingImage1) == false) {
 
                         string Status1 = await objCallCenterNewClient.JEPCO_NewAttachmentAsync(Fault_Compliants.BranchID, Fault_Compliants.UserID, long.Parse(Fault_Compliants.IssueID.ToString()), "صورة_بعد_الاصلاح.jpg", RepairandCloseComplaintRequestDto.RepairingImage1).ConfigureAwait(false);
 
@@ -700,10 +735,21 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     }
 
 
-                    string Status3 =  await objCallCenterNewClient.JEPCO_ChangeStatusAsync(Fault_Compliants.UserID, Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()) , RepairandCloseComplaintRequestDto.TechnicationNote).ConfigureAwait(false);
+                    string Status3 = await objCallCenterNewClient.JEPCO_ChangeStatusAsync(Fault_Compliants.UserID, Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()), RepairandCloseComplaintRequestDto.TechnicationNote).ConfigureAwait(false);
 
 
-                    if (Status3 != "Success")
+
+
+
+                    if (Status3.StartsWith("0") == true)
+                    {
+
+                        return BadRequest(_common.ReturnCustomErrorData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "MenaTrackError"), Status3.Substring(Status3.LastIndexOf(":") + 1)));
+
+                    }
+
+
+                    if (Status3.StartsWith("1") == false)
                     {
 
                         return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, RepairandCloseComplaintRequestDto.LanguageId, "Error In Integration With MenaTrack System to close Tieckt")));
@@ -714,28 +760,28 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
                     ComplaintFaultDetails.RepairingClosingDatetime = DateTime.Now;
-                    ComplaintFaultDetails.FaultClassficationID   = RepairandCloseComplaintRequestDto.FaultClassficationID ;
-                    ComplaintFaultDetails.FaultClassficationName  = RepairandCloseComplaintRequestDto.FaultClassficationName;
+                    ComplaintFaultDetails.FaultClassficationID = RepairandCloseComplaintRequestDto.FaultClassficationID;
+                    ComplaintFaultDetails.FaultClassficationName = RepairandCloseComplaintRequestDto.FaultClassficationName;
 
-                    ComplaintFaultDetails.FaultSubClassficationID  = RepairandCloseComplaintRequestDto.FaultSubClassficationID;
+                    ComplaintFaultDetails.FaultSubClassficationID = RepairandCloseComplaintRequestDto.FaultSubClassficationID;
                     ComplaintFaultDetails.FaultSubClassficationName = RepairandCloseComplaintRequestDto.FaultSubClassficationName;
 
-                    ComplaintFaultDetails.UpdatedLV_Feeder  = RepairandCloseComplaintRequestDto.UpdatedLV_Feeder;
+                    ComplaintFaultDetails.UpdatedLV_Feeder = RepairandCloseComplaintRequestDto.UpdatedLV_Feeder;
                     ComplaintFaultDetails.LV_Feeder_Color = RepairandCloseComplaintRequestDto.LV_Feeder_Color;
 
 
-                    ComplaintFaultDetails.UpdatedSubstationLatt  = RepairandCloseComplaintRequestDto.UpdatedSubstationLatt;
-                    ComplaintFaultDetails.UpdatedSubstationLong  = RepairandCloseComplaintRequestDto.UpdatedSubstationLong;
-                    ComplaintFaultDetails.UpdateSubstationID  = RepairandCloseComplaintRequestDto.UpdateSubstationID;
-                    ComplaintFaultDetails.UpdateSubstationName  = RepairandCloseComplaintRequestDto.UpdateSubstationName;
-                    
+                    ComplaintFaultDetails.UpdatedSubstationLatt = RepairandCloseComplaintRequestDto.UpdatedSubstationLatt;
+                    ComplaintFaultDetails.UpdatedSubstationLong = RepairandCloseComplaintRequestDto.UpdatedSubstationLong;
+                    ComplaintFaultDetails.UpdateSubstationID = RepairandCloseComplaintRequestDto.UpdateSubstationID;
+                    ComplaintFaultDetails.UpdateSubstationName = RepairandCloseComplaintRequestDto.UpdateSubstationName;
+
                     ComplaintFaultDetails.RepairingImage1 = RepairandCloseComplaintRequestDto.RepairingImage1;
                     ComplaintFaultDetails.RepairingStatusID = RepairandCloseComplaintRequestDto.RepairingStatusID;
 
                     ComplaintFaultDetails.FaultDescription = RepairandCloseComplaintRequestDto.FaultDescription;
-                    ComplaintFaultDetails.FaultReason  = RepairandCloseComplaintRequestDto.FaultReason;
+                    ComplaintFaultDetails.FaultReason = RepairandCloseComplaintRequestDto.FaultReason;
                     ComplaintFaultDetails.TechnicationNote = RepairandCloseComplaintRequestDto.TechnicationNote;
-                    ComplaintFaultDetails.UpdateDate = DateTime.Now; 
+                    ComplaintFaultDetails.UpdateDate = DateTime.Now;
 
 
                     _repository.FaultDetailsRepository.UpdateFaultDetails(null, ComplaintFaultDetails);
@@ -756,7 +802,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     {
                         foreach (var objComplainChildtUpdate in lstFalutComplaintData)
                         {
-                           // tb_Fault_Compliants ComplaintChildUpdate = new tb_Fault_Compliants();
+                            // tb_Fault_Compliants ComplaintChildUpdate = new tb_Fault_Compliants();
 
                             objComplainChildtUpdate.FaultStatusID = 4;
                             objComplainChildtUpdate.UpdateDate = DateTime.Now;
@@ -788,7 +834,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "ReassignCompliant")]
         [Route("ReassignCompliant")]
-       
+
         public async Task<ActionResult<CommonReturnResult>> ReassignCompliant([FromBody] ReassignCompliantDto ReassignCompliantDto)
         {
 
@@ -826,10 +872,20 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
-                    string Status = await objCallCenterNewClient.JEPCO_RequestReassignToPreviousAssigneeAsync(Fault_Compliants.UserID  , Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()), ReassignCompliantDto.ReassignClassficationID , ReassignCompliantDto.ReassignReason ).ConfigureAwait(false);
+                    string Status = await objCallCenterNewClient.JEPCO_RequestReassignToPreviousAssigneeAsync(Fault_Compliants.UserID, Fault_Compliants.BranchID, long.Parse(Fault_Compliants.IssueID.ToString()), ReassignCompliantDto.ReassignClassficationID, ReassignCompliantDto.ReassignReason).ConfigureAwait(false);
 
 
-                    if (Status != "Success")
+
+
+                    if (Status.StartsWith("0") == true)
+                    {
+
+                        return BadRequest(_common.ReturnCustomErrorData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "MenaTrackError"), Status.Substring(Status.LastIndexOf(":") + 1)));
+
+                    }
+
+
+                    if (Status.StartsWith("1") == false)
                     {
 
                         return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Error In Integration With MenaTrack System to close Tieckt")));
@@ -839,12 +895,14 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-                    ComplaintFaultDetails.ReassignDate  = DateTime.Now;
-                    ComplaintFaultDetails.ReassignClassficationID  = ReassignCompliantDto.ReassignClassficationID ;
-                    ComplaintFaultDetails.ReassignClassficationName  = ReassignCompliantDto.ReassignClassficationName ;
 
-                    ComplaintFaultDetails.ReassignReason   = ReassignCompliantDto.ReassignReason;
-                    
+
+                    ComplaintFaultDetails.ReassignDate = DateTime.Now;
+                    ComplaintFaultDetails.ReassignClassficationID = ReassignCompliantDto.ReassignClassficationID;
+                    ComplaintFaultDetails.ReassignClassficationName = ReassignCompliantDto.ReassignClassficationName;
+
+                    ComplaintFaultDetails.ReassignReason = ReassignCompliantDto.ReassignReason;
+
 
                     ComplaintFaultDetails.UpdateDate = DateTime.Now;
                     ComplaintFaultDetails.RepairingImage1 = ReassignCompliantDto.ReassigningImage;
@@ -913,13 +971,13 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                 MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
-                List<MenaTrackService.ClassficationLookupResponse > lstClassficationLookupResponse = await objCallCenterNewClient.MainCalssficationsAsync ().ConfigureAwait(false);
+                List<MenaTrackService.ClassficationLookupResponse> lstClassficationLookupResponse = await objCallCenterNewClient.MainCalssficationsAsync().ConfigureAwait(false);
 
 
-                if (lstClassficationLookupResponse !=null && lstClassficationLookupResponse.Count > 0)
+                if (lstClassficationLookupResponse != null && lstClassficationLookupResponse.Count > 0)
                 {
 
-                    foreach ( var obClassficationLookupResponse in lstClassficationLookupResponse)
+                    foreach (var obClassficationLookupResponse in lstClassficationLookupResponse)
                     {
 
                         if (obClassficationLookupResponse.FieldValue == 3)
@@ -939,8 +997,8 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 }
 
                 //------------------------------------------------------------------------------------------------------------------------------------
-                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, FaultClassficationRequestDto.LanguageId, "Fault Calssfication Lookup returened Susscuflly") , lstFaultClassficationResponsetDto));
-                
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, FaultClassficationRequestDto.LanguageId, "Fault Calssfication Lookup returened Susscuflly"), lstFaultClassficationResponsetDto));
+
             }
             catch (Exception ex)
             {
@@ -1000,9 +1058,9 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                             FaultSubClassficationResponsetDto objFaultSubClassficationResponsetDto = new FaultSubClassficationResponsetDto();
                             objFaultSubClassficationResponsetDto.FaultClassficationID = FaultSubClassficationRequestDto.FaultClassficationID;
-                            objFaultSubClassficationResponsetDto.FaultSubClassficationID  = obClassficationLookupResponse.FieldValue ;
+                            objFaultSubClassficationResponsetDto.FaultSubClassficationID = obClassficationLookupResponse.FieldValue;
 
-                            objFaultSubClassficationResponsetDto.FaultSubClassficationName  = obClassficationLookupResponse.FieldDesc;
+                            objFaultSubClassficationResponsetDto.FaultSubClassficationName = obClassficationLookupResponse.FieldDesc;
                             lstFaultsubClassficationResponsetDto.Add(objFaultSubClassficationResponsetDto);
 
                         }
@@ -1014,8 +1072,8 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
                 }
-                    
-               
+
+
 
                 //------------------------------------------------------------------------------------------------------------------------------------
                 return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, FaultSubClassficationRequestDto.LanguageId, "Fault Calssfication Lookup returened Susscuflly"), lstFaultsubClassficationResponsetDto));
@@ -1051,11 +1109,11 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassingClassficationRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ReassingClassficationRequestDto.LanguageId, " FaultClassficationRequestDto object sent from client is null")));
                 }
 
-                List<ReassingClassficationResponsetDto > lstReassingClassficationResponsetDto = new List<ReassingClassficationResponsetDto>();
+                List<ReassingClassficationResponsetDto> lstReassingClassficationResponsetDto = new List<ReassingClassficationResponsetDto>();
 
                 MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
-                List<MenaTrackService.ClassficationLookupResponse> lstClassficationLookupResponse = await objCallCenterNewClient.ReassingCallsficationCalssficationsAsync ().ConfigureAwait(false);
+                List<MenaTrackService.ClassficationLookupResponse> lstClassficationLookupResponse = await objCallCenterNewClient.ReassingCallsficationCalssficationsAsync().ConfigureAwait(false);
 
 
                 if (lstClassficationLookupResponse != null && lstClassficationLookupResponse.Count > 0)
@@ -1065,8 +1123,8 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     {
 
                         ReassingClassficationResponsetDto objReassingClassficationResponsetDto = new ReassingClassficationResponsetDto();
-                        objReassingClassficationResponsetDto.ReassingClassficationID  = obClassficationLookupResponse.FieldValue;
-                        objReassingClassficationResponsetDto.ReassingClassficationName  = obClassficationLookupResponse.FieldDesc;
+                        objReassingClassficationResponsetDto.ReassingClassficationID = obClassficationLookupResponse.FieldValue;
+                        objReassingClassficationResponsetDto.ReassingClassficationName = obClassficationLookupResponse.FieldDesc;
                         lstReassingClassficationResponsetDto.Add(objReassingClassficationResponsetDto);
 
                     }
@@ -1099,6 +1157,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
 
+        
 
 
 

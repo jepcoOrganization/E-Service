@@ -34,11 +34,13 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         private readonly IStringLocalizer<MessagesEn> _localizerEN;
         public static Microsoft.AspNetCore.Hosting.IWebHostEnvironment _environment;
 
+        private readonly FaultDetailsController _FaultDetailsController;
+
         #endregion
         #region Constructor
 
         public FaultCompliantsControllers(ILoggerManager logger, IRepositoryWrapper repository, IMapper mapper,
-            ICommonReturn common, IStringLocalizer<MessagesAr> localizerAR, IStringLocalizer<MessagesEn> localizerEN, IWebHostEnvironment environment)
+            ICommonReturn common, IStringLocalizer<MessagesAr> localizerAR, IStringLocalizer<MessagesEn> localizerEN, IWebHostEnvironment environment , FaultDetailsController OBJFaultDetailsController)
         {
             _logger = logger;
             _repository = repository;
@@ -47,10 +49,11 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             _localizerAR = localizerAR;
             _localizerEN = localizerEN;
             _environment = environment;
+            _FaultDetailsController = OBJFaultDetailsController;
         }
         #endregion
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GetParentFaultCompliantList")]
         [Route("GetParentFaultCompliantList")]
         public async Task<ActionResult<CommonReturnResult>> GetParentFaultCompliantList([FromBody] FaultComplaintDto FaultComplaintDto)
@@ -65,13 +68,131 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 List < MenaTrackService.JEPCOViewRequestsParentsResponse > lstJEPCOViewRequestsParentsResponse =   await objCallCenterNewClient.JEPCO_ViewRequests_ParentsAsync(FaultComplaintDto.UserID, FaultComplaintDto.BranchID).ConfigureAwait(false ) ;
 
 
+                var lstFalutComplaintALL = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserID == FaultComplaintDto.UserID
+                &&(x.FaultStatusID != 4 && x.FaultStatusID != 5)
+             && (x.CompliantParentRefNumber == null || x.CompliantParentRefNumber == "")).ConfigureAwait(false);
+
+
+                if (lstFalutComplaintALL != null && lstFalutComplaintALL.ToList().Count > 0)
+                {
+
+                    foreach (var FalutComplaintALL in lstFalutComplaintALL)
+                    {
+
+
+
+                        if ( lstJEPCOViewRequestsParentsResponse.Where(x=> x.IssueID == FalutComplaintALL.IssueID ).ToList().Count == 0 )
+                            // check if current saved compliant in APP is not closed and reassinged and not exist in retrivted compliants come
+                            // from mena Track  that Mean that parnet and childs tieckts need to be deleted
+                            // // as it is closed and regisned by dispatcher in Mena Track although tieckt still in a new or delivred and Arrriving  status in APP
+                        {
+
+                            IEnumerable<tb_Fault_Compliants> lstChildsFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantParentRefNumber  == FalutComplaintALL.ComplaintRefNumber ).ConfigureAwait(false);
+
+
+                            if (lstChildsFalutComplaintData != null && lstChildsFalutComplaintData.ToList().Count > 0)
+                            {
+                            /// Delete Child Tieckts 
+                                _repository.FaultCompliantsLookupRepository.Remove(lstChildsFalutComplaintData.ToArray() );
+
+                                await _repository.SaveAsync().ConfigureAwait(false);
+
+                            }
+
+                            ComplaintFaultDetailsRequestDto objcomplaintFaultDetailsRequestDto = new ComplaintFaultDetailsRequestDto();
+
+                            objcomplaintFaultDetailsRequestDto.FaultComplaintID = FalutComplaintALL.FaultComplaintID;
+                            objcomplaintFaultDetailsRequestDto.LanguageId = "AR";
+
+
+                            //IEnumerable<tb_FaultDetails> lsttb_FaultDetails = (IEnumerable<tb_FaultDetails>) _FaultDetailsController.GetFaultCompliantDetailsWithOUTImage(objcomplaintFaultDetailsRequestDto); 
+                            // await _repository.FaultDetailsRepository .GetListOfFaultDetails(faultDetails => faultDetails.FaultComplaintID  == FalutComplaintALL.FaultComplaintID).ConfigureAwait(false);
+                            //await _repository.FaultDetailsRepository .GetListOfFaultDetails(faultDetails => faultDetails.FaultComplaintID  == FalutComplaintALL.FaultComplaintID).ConfigureAwait(false);
+
+                            IEnumerable<tb_FaultDetails> lsttb_FaultDetails = await  _repository.FaultDetailsRepository.GetListOfFaultDetailsWithoutImages (FalutComplaintALL.FaultComplaintID).ConfigureAwait(false) ;
+
+                            if (lsttb_FaultDetails != null && lsttb_FaultDetails.ToList().Count > 0)
+                            {
+
+                                _repository.FaultDetailsRepository.Remove(lsttb_FaultDetails.FirstOrDefault());
+
+                            }
+
+                            _repository.FaultCompliantsLookupRepository.Remove(FalutComplaintALL);
+
+
+                            await _repository.SaveAsync().ConfigureAwait(false);
+
+                        }
+                    }
+
+                }
+
+
+
+                /// Add  New tieckts retrivted from Mena Track and exist in APP 
                 if (lstJEPCOViewRequestsParentsResponse != null && lstJEPCOViewRequestsParentsResponse.Count > 0)
                 {
                     foreach ( var jEPCOViewRequest in lstJEPCOViewRequestsParentsResponse)
                     {
 
+                     
+                        IEnumerable<tb_Fault_Compliants > lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants (x => x.IssueID == jEPCOViewRequest.IssueID && x.UserID == FaultComplaintDto.UserID).ConfigureAwait(false) ;
 
-                        IEnumerable<tb_Fault_Compliants > lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants (x => x.IssueID == jEPCOViewRequest.IssueID).ConfigureAwait(false) ;
+
+                        if (lstFalutComplaintData != null && lstFalutComplaintData.ToList().Count > 0)
+                        {
+
+                            var objFalutComplaintData = lstFalutComplaintData.FirstOrDefault();
+
+                            if (objFalutComplaintData.FaultStatusID == 4 || objFalutComplaintData.FaultStatusID == 5)
+                            {
+
+
+                                IEnumerable<tb_Fault_Compliants> lstChildsFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantParentRefNumber == objFalutComplaintData.ComplaintRefNumber).ConfigureAwait(false);
+
+
+                                if (lstChildsFalutComplaintData != null && lstChildsFalutComplaintData.ToList().Count > 0)
+                                {
+                                    /// Delete Child Tieckts 
+                                    _repository.FaultCompliantsLookupRepository.Remove(lstChildsFalutComplaintData.ToArray());
+
+                                    await _repository.SaveAsync().ConfigureAwait(false);
+
+                                }
+
+                                ComplaintFaultDetailsRequestDto objcomplaintFaultDetailsRequestDto = new ComplaintFaultDetailsRequestDto();
+
+                                objcomplaintFaultDetailsRequestDto.FaultComplaintID = objFalutComplaintData.FaultComplaintID;
+                                objcomplaintFaultDetailsRequestDto.LanguageId = "AR";
+
+
+                                //IEnumerable<tb_FaultDetails> lsttb_FaultDetails = (IEnumerable<tb_FaultDetails>) _FaultDetailsController.GetFaultCompliantDetailsWithOUTImage(objcomplaintFaultDetailsRequestDto); 
+                                // await _repository.FaultDetailsRepository .GetListOfFaultDetails(faultDetails => faultDetails.FaultComplaintID  == FalutComplaintALL.FaultComplaintID).ConfigureAwait(false);
+                                //await _repository.FaultDetailsRepository .GetListOfFaultDetails(faultDetails => faultDetails.FaultComplaintID  == FalutComplaintALL.FaultComplaintID).ConfigureAwait(false);
+
+                                IEnumerable<tb_FaultDetails> lsttb_FaultDetails = await _repository.FaultDetailsRepository.GetListOfFaultDetailsWithoutImages(objFalutComplaintData.FaultComplaintID).ConfigureAwait(false);
+
+                                if (lsttb_FaultDetails != null && lsttb_FaultDetails.ToList().Count > 0)
+                                {
+
+                                    _repository.FaultDetailsRepository.Remove(lsttb_FaultDetails.FirstOrDefault());
+
+                                }
+
+                                _repository.FaultCompliantsLookupRepository.Remove(objFalutComplaintData);
+
+
+                                await _repository.SaveAsync().ConfigureAwait(false);
+
+
+
+
+
+
+                            }
+
+                        } 
 
                         if (lstFalutComplaintData == null || lstFalutComplaintData.ToList().Count  ==0)
                         {
@@ -83,7 +204,56 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                             tb_Fault_Compliants.ComplaintDescription = jEPCOViewRequest.ComplaintDescription.ToString();
                             tb_Fault_Compliants.CompliantCustomerName = jEPCOViewRequest.CustomerName;
                             tb_Fault_Compliants.CompliantDateTime = jEPCOViewRequest.ComplaintDate;
-                            tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CustomerMobileNumber;
+
+                            if (jEPCOViewRequest.CustomerMobileNumber != null )
+                            {
+
+
+                                if (jEPCOViewRequest.CustomerMobileNumber.StartsWith("+9620"))
+                                {
+                                    tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CustomerMobileNumber[4..];
+                                }
+                                else if (jEPCOViewRequest.CustomerMobileNumber.StartsWith("+962"))
+                                {
+
+                                    tb_Fault_Compliants.CompliantPhoneNumber = "0" + jEPCOViewRequest.CustomerMobileNumber[4..];
+
+
+                                }
+                                else if (jEPCOViewRequest.CustomerMobileNumber.StartsWith("9620"))
+                                {
+                                    tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CustomerMobileNumber[3..]; //ComplainPhoneNumber = NewComplaint.ComplainPhoneNumber.Replace("962", "");
+                                }
+                                else if (jEPCOViewRequest.CustomerMobileNumber.StartsWith("962"))
+                                {
+                                    tb_Fault_Compliants.CompliantPhoneNumber = "0" + jEPCOViewRequest.CustomerMobileNumber[3..]; //ComplainPhoneNumber = NewComplaint.ComplainPhoneNumber.Replace("962", "");
+
+
+                                }
+                                else if (jEPCOViewRequest.CustomerMobileNumber.StartsWith("009620"))
+                                {
+                                    tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CustomerMobileNumber[5..];//.Replace("00962", "");
+                                }
+                                else if (jEPCOViewRequest.CustomerMobileNumber.StartsWith("00962"))
+                                {
+                                    tb_Fault_Compliants.CompliantPhoneNumber = "0" + jEPCOViewRequest.CustomerMobileNumber[5..];//.Replace("00962", "");
+                                }
+                                else
+                                {
+                                    tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CustomerMobileNumber;
+
+                                }
+                            }
+                            else
+                            {
+                                tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CustomerMobileNumber;
+
+                            }
+
+
+
+
+
                             tb_Fault_Compliants.SubstationNumber = jEPCOViewRequest.SubstationNumber;
                             tb_Fault_Compliants.CompliantParentRefNumber = jEPCOViewRequest.ParentRefcode;
                             tb_Fault_Compliants.CustomerAddress_Latt = jEPCOViewRequest.AddressLatt;
@@ -306,7 +476,53 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                             tb_Fault_Compliants.ComplaintDescription = jEPCOViewRequest.ComplaintDescription.ToString();
                             tb_Fault_Compliants.CompliantCustomerName = jEPCOViewRequest.CustomerName;
                             tb_Fault_Compliants.CompliantDateTime = jEPCOViewRequest.ComplaintDate;
-                            tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CustomerMobileNumber;
+
+                            if (jEPCOViewRequest.CustomerMobileNumber != null)
+                            {
+
+
+                                if (jEPCOViewRequest.CustomerMobileNumber.StartsWith("+9620"))
+                                {
+                                    tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CustomerMobileNumber[4..];
+                                }
+                                else if (jEPCOViewRequest.CustomerMobileNumber.StartsWith("+962"))
+                                {
+
+                                    tb_Fault_Compliants.CompliantPhoneNumber = "0" + jEPCOViewRequest.CustomerMobileNumber[4..];
+
+
+                                }
+                                else if (jEPCOViewRequest.CustomerMobileNumber.StartsWith("9620"))
+                                {
+                                    tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CustomerMobileNumber[3..]; //ComplainPhoneNumber = NewComplaint.ComplainPhoneNumber.Replace("962", "");
+                                }
+                                else if (jEPCOViewRequest.CustomerMobileNumber.StartsWith("962"))
+                                {
+                                    tb_Fault_Compliants.CompliantPhoneNumber = "0" + jEPCOViewRequest.CustomerMobileNumber[3..]; //ComplainPhoneNumber = NewComplaint.ComplainPhoneNumber.Replace("962", "");
+
+
+                                }
+                                else if (jEPCOViewRequest.CustomerMobileNumber.StartsWith("009620"))
+                                {
+                                    tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CustomerMobileNumber[5..];//.Replace("00962", "");
+                                }
+                                else if (jEPCOViewRequest.CustomerMobileNumber.StartsWith("00962"))
+                                {
+                                    tb_Fault_Compliants.CompliantPhoneNumber = "0" + jEPCOViewRequest.CustomerMobileNumber[5..];//.Replace("00962", "");
+                                }
+                                else
+                                {
+                                    tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CustomerMobileNumber;
+
+                                }
+                            }
+                            else
+                            {
+                                tb_Fault_Compliants.CompliantPhoneNumber = jEPCOViewRequest.CustomerMobileNumber;
+
+                            }
+
+
                             tb_Fault_Compliants.SubstationNumber = jEPCOViewRequest.SubstationNumber;
                             tb_Fault_Compliants.CompliantParentRefNumber = jEPCOViewRequest.ParentRefcode;
                             tb_Fault_Compliants.CustomerAddress_Latt = jEPCOViewRequest.AddressLatt;
