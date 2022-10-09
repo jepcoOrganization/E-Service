@@ -152,7 +152,11 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                         {
                             tb_Technical technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == group.Key.UserName).ConfigureAwait(false);
+                            if (technical == null)
+                            {
+                                return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "sssssssssssssssssss")));
 
+                            }
                             GroupCountResponseDto GroupCountResponse = new GroupCountResponseDto();
                             List<tb_Fault_Compliants> groupOfComp = new List<tb_Fault_Compliants>();
                             GroupCountResponse.FullName = technical.FullName;

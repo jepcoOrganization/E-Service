@@ -24,9 +24,10 @@ namespace JepcoBackEndSystemProject.Data
         private Technical.ITechnicalRepository _technicalRepository;
         private Governorate.IGovernorateRepository _governorateRepository;
         private EmergancyGroups.IEmergancyGroupsRepository _emergancyGroupsRepository;
+        private TechnicalGroups.ITechnicalGroupsRepository _technicalGroupsRepository;
 
- 
 
+     
 
 
         public RepositoryWrapper(DBJEPCOBackEndContext repositoryContext, ILoggerManager logger)
@@ -199,6 +200,18 @@ namespace JepcoBackEndSystemProject.Data
 
 
 
+        public TechnicalGroups.ITechnicalGroupsRepository TechnicalGroupsRepository
+        {
+            get
+            {
+                if (_technicalGroupsRepository == null)
+                {
+                    _technicalGroupsRepository = new TechnicalGroups.TechnicalGroupsRepository(_repoContext, _logger);
+                }
+
+                return _technicalGroupsRepository;
+            }
+        }
 
 
 

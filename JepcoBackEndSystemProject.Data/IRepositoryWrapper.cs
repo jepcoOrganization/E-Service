@@ -17,10 +17,14 @@ FaultDetails.IFaultDetailsRepository FaultDetailsRepository { get; }
 ElectricalFaultStatus.IElectricalFaultStatusRepository ElectricalFaultStatusRepository { get; }
 EngineersAccessRegister.IEngineersAccessRegisterRepository EngineersAccessRegisterRepository { get; }
 Technical.ITechnicalRepository TechnicalRepository { get; }
- Governorate.IGovernorateRepository GovernorateRepository { get; }
-        EmergancyGroups.IEmergancyGroupsRepository EmergancyGroupsRepository { get; }
 
-        
+
+Governorate.IGovernorateRepository GovernorateRepository { get; }
+EmergancyGroups.IEmergancyGroupsRepository EmergancyGroupsRepository { get; }
+
+TechnicalGroups.ITechnicalGroupsRepository TechnicalGroupsRepository { get; }
+
+
 
         Task SaveAsync();
     }
