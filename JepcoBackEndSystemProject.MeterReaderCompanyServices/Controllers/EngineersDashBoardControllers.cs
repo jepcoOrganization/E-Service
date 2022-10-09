@@ -80,7 +80,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     DateTime dtScheduleDateFrom = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateStart, "yyyy-MM-dd",
                     System.Globalization.CultureInfo.InvariantCulture);
 
-                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date == dtScheduleDateFrom).ConfigureAwait(false);
+                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date == dtScheduleDateFrom && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
 
 
                 }
@@ -92,7 +92,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     DateTime HourTo = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateStart + " " + GeneralTechnicianInfRequest.ComplaintTimeEnd, "yyyy-MM-dd HH:mm",
                                           System.Globalization.CultureInfo.InvariantCulture);
 
-                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= HourFrom.AddMinutes(-1) && x.CompliantDateTime <= HourTo.AddMinutes(1)).ConfigureAwait(false);
+                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= HourFrom.AddMinutes(-1) && x.CompliantDateTime <= HourTo.AddMinutes(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
 
                 }
                 else
@@ -103,7 +103,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     DateTime dtScheduleDateEnd = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateEnd, "yyyy-MM-dd",
                                           System.Globalization.CultureInfo.InvariantCulture);
 
-                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= dtScheduleDateFrom.Date && x.CompliantDateTime <= dtScheduleDateEnd.Date).ConfigureAwait(false);
+                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= dtScheduleDateFrom.Date && x.CompliantDateTime <= dtScheduleDateEnd.Date && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
                 }
 
 
@@ -374,7 +374,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
                 tb_Technical technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == MonitorRequest.EmployeeNumber).ConfigureAwait(false);
-                IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserName == MonitorRequest.EmployeeNumber && x.FaultStatusID == 3).ConfigureAwait(false);
+                IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserName == MonitorRequest.EmployeeNumber && x.FaultStatusID == 3 && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
                 IEnumerable<tb_Fault_Compliants> lstFalutComplaintNew = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserName == MonitorRequest.EmployeeNumber && x.FaultStatusID == 1).ConfigureAwait(false);
 
                 if (technical == null || lstFalutComplaintData == null)

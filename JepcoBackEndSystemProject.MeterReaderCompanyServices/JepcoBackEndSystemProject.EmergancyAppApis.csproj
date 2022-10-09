@@ -47,6 +47,7 @@
 
   <ItemGroup>
     <Folder Include="Connected Services\" />
+    <Folder Include="DataTransferObject\ChangeTechnicalGroup\" />
   </ItemGroup>
 
   <ItemGroup>
