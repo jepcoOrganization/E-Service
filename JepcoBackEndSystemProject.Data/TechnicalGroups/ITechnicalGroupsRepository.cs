@@ -48,5 +48,6 @@ namespace JepcoBackEndSystemProject.Data.TechnicalGroups
         ///// </summary>
         ///// <param name="UserAccessRegister">The UserAccessRegister.</param>
         void RemoveTechnicalGroups(params tb_TechnicalGroups[] TechnicalGroups);
+     
     }
 }

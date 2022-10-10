@@ -13,9 +13,9 @@ namespace JepcoBackEndSystemProject.Data.TechnicalGroups
     //internal class TechnicalGroupsRepository
     //{
     //}
-    public class TechnicalRepository : RepositoryBase<tb_TechnicalGroups>, ITechnicalGroupsRepository
+    public class TechnicalGroupsRepository : RepositoryBase<tb_TechnicalGroups>, ITechnicalGroupsRepository
     {
-        public TechnicalRepository(DBJEPCOBackEndContext repositoryContext, ILoggerManager logger)
+        public TechnicalGroupsRepository(DBJEPCOBackEndContext repositoryContext, ILoggerManager logger)
             : base(repositoryContext, logger)
         {
         }

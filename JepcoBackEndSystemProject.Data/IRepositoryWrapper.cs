@@ -22,6 +22,8 @@ Technical.ITechnicalRepository TechnicalRepository { get; }
         Smsverifications.ISmsverificationRepository SmsVerification { get; }
 
 
+TechnicalGroups.ITechnicalGroupsRepository TechnicalGroupsRepository { get; }
+
 
 
         Task SaveAsync();
