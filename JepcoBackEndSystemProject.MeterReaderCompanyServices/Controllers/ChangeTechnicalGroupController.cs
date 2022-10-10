@@ -125,54 +125,143 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        //[HttpPost(Name = "GetTechnicianForGroup")]
-        //[Route("GetTechnicianForGroup")]
-        //public async Task<ActionResult<CommonReturnResult>> GetTechnicianForGroup([FromBody] GetTechnicianForGroupRequestDto GetTechnicianForGroupRequest)
-        //{
+        [HttpPost(Name = "GetTechnicianForGroup")]
+        [Route("GetTechnicianForGroup")]
+        public async Task<ActionResult<CommonReturnResult>> GetTechnicianForGroup([FromBody] GetTechnicianForGroupRequestDto GetTechnicianForGroupRequest)
+        {
 
 
-        //    try
-        //    {
-        //        if (GetTechnicianForGroupRequest == null)
-        //        {
+            try
+            {
+                if (GetTechnicianForGroupRequest == null)
+                {
 
 
-        //            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, " Complaint object sent from client is null")));
-        //        }
-        //        if (!ModelState.IsValid)
-        //        {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, " Complaint object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
 
-        //            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, "Invalid Complaint object sent from client")));
-        //        }
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, "Invalid Complaint object sent from client")));
+                }
 
-        //        IEnumerable<tb_TechnicalGroups> lstTechnicianUserIdGroupData = await _repository.TechnicalGroupsRepository.GetListOfTechnicalGroups(x => x.GroupId == GetTechnicianForGroupRequest.GroupID).ConfigureAwait(false);
-        //        List<tb_Technical> groupOfTecnical = new List<tb_Technical>();
+                IEnumerable<tb_TechnicalGroups> lstTechnicianUserIdGroupData = await _repository.TechnicalGroupsRepository.GetListOfTechnicalGroups(x => x.GroupId == GetTechnicianForGroupRequest.GroupID).ConfigureAwait(false);
+                List<tb_Technical> TecnicalOfGroup = new List<tb_Technical>();
 
-        //        foreach (var techbical in lstTechnicianUserIdGroupData)
-        //        {
-        //            IEnumerable<tb_Technical> lstTechnicianGroupData = await _repository.TechnicalRepository.GetListOfTechnical(x => x.MenaTrackUserID == techbical.UserID).ConfigureAwait(false);
-        //            groupOfTecnical.Add()
-        //        }
-        //            return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, "Returned all data from database"), lstGovernorateGroupData));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError($"Something went wrong inside GetAllStutuses action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
-        //        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, "Internal server error")));
-        //    }
-
-
-
-
-
-
-
-
-
-
-
+                foreach (var techbical in lstTechnicianUserIdGroupData)
+                {
+                    tb_Technical TechnicianData = await _repository.TechnicalRepository.GetSingleTechnical(x => x.MenaTrackUserID == techbical.UserID).ConfigureAwait(false);
+                    TecnicalOfGroup.Add(TechnicianData);
+                }
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, "Returned all data from database"), TecnicalOfGroup));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetAllStutuses action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GetTechnicianForGroupRequest.LanguageId, "Internal server error")));
+            }
 
 
         }
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "AddTechnicianForGroup")]
+        [Route("AddTechnicianForGroup")]
+        public async Task<ActionResult<CommonReturnResult>> AddTechnicianForGroup([FromBody] AddTechnicianForGroupRequestDto AddTechnicianForGroupRequest)
+        {
+
+
+            try
+            {
+                if (AddTechnicianForGroupRequest == null)
+                {
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, AddTechnicianForGroupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, AddTechnicianForGroupRequest.LanguageId, " Complaint object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, AddTechnicianForGroupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, AddTechnicianForGroupRequest.LanguageId, "Invalid Complaint object sent from client")));
+                }
+
+                IEnumerable<tb_TechnicalGroups> lstTechnicianUserIdGroupData = await _repository.TechnicalGroupsRepository.GetListOfTechnicalGroups(x => x.GroupId == AddTechnicianForGroupRequest.GroupID).ConfigureAwait(false);
+                if (lstTechnicianUserIdGroupData != null)
+                {
+                    foreach (var techbical in lstTechnicianUserIdGroupData)
+                    {
+                        _repository.TechnicalGroupsRepository.RemoveTechnicalGroups(techbical);
+                        await _repository.SaveAsync().ConfigureAwait(false);
+                    }
+                }
+
+
+
+                foreach (var techbical in AddTechnicianForGroupRequest.UserIDList)
+                {
+                    tb_TechnicalGroups TechnicalGroups = new tb_TechnicalGroups();
+                    TechnicalGroups.CREATION_DATE = DateTime.Now;
+                    TechnicalGroups.Update_DATE = DateTime.Now;
+                    TechnicalGroups.UserID = techbical;
+                    TechnicalGroups.GroupId = AddTechnicianForGroupRequest.GroupID;
+
+
+
+                    _repository.TechnicalGroupsRepository.AddTechnicalGroups(TechnicalGroups);
+                    await _repository.SaveAsync().ConfigureAwait(false);
+                }
+
+
+
+
+
+
+
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, AddTechnicianForGroupRequest.LanguageId, "Returned all data from database"), AddTechnicianForGroupRequest.GroupID));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetAllStutuses action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, AddTechnicianForGroupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, AddTechnicianForGroupRequest.LanguageId, "Internal server error")));
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
 
     }

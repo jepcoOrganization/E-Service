@@ -152,11 +152,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                         {
                             tb_Technical technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == group.Key.UserName).ConfigureAwait(false);
-                            if (technical == null)
-                            {
-                                return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "sssssssssssssssssss")));
-
-                            }
+                         
                             GroupCountResponseDto GroupCountResponse = new GroupCountResponseDto();
                             List<tb_Fault_Compliants> groupOfComp = new List<tb_Fault_Compliants>();
                             GroupCountResponse.FullName = technical.FullName;
@@ -381,45 +377,58 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserName == MonitorRequest.EmployeeNumber && x.FaultStatusID == 3 && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
                 IEnumerable<tb_Fault_Compliants> lstFalutComplaintNew = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserName == MonitorRequest.EmployeeNumber && x.FaultStatusID == 1).ConfigureAwait(false);
 
-                if (technical == null || lstFalutComplaintData == null)
+                if (technical == null   )
                 {
 
-                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "  object sent from client is null")));
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "he is not afound")));
                 }
 
 
-                tb_Fault_Compliants LastArrivecompliant = lstFalutComplaintData.First();
-                tb_FaultDetails LastComplaintFaultDetails = await _repository.FaultDetailsRepository.GetSingleFaultDetails(faultDetails => faultDetails.FaultComplaintID == lstFalutComplaintData.First().FaultComplaintID).ConfigureAwait(false);
+                tb_Fault_Compliants LastArrivecompliant = null;
+                tb_FaultDetails LastComplaintFaultDetails = null;
 
-                if (lstFalutComplaintData.Count() > 1)
+
+                if (lstFalutComplaintData != null && lstFalutComplaintData.ToList().Count > 0)
                 {
+                    LastArrivecompliant = lstFalutComplaintData.First();
+                    LastComplaintFaultDetails = await _repository.FaultDetailsRepository.GetSingleFaultDetails(faultDetails => faultDetails.FaultComplaintID == lstFalutComplaintData.First().FaultComplaintID).ConfigureAwait(false);
 
-                    foreach (var Arrivecompliant in lstFalutComplaintData)
+                    if (lstFalutComplaintData.Count() > 1)
+
                     {
-                        tb_FaultDetails ComplaintFaultDetails = await _repository.FaultDetailsRepository.GetSingleFaultDetails(faultDetails => faultDetails.FaultComplaintID == Arrivecompliant.FaultComplaintID).ConfigureAwait(false);
-
-                        if (ComplaintFaultDetails.ArrivingLocationDateTime > LastComplaintFaultDetails.ArrivingLocationDateTime)
+                        foreach (var Arrivecompliant in lstFalutComplaintData)
                         {
-                            LastArrivecompliant = Arrivecompliant;
-                            LastComplaintFaultDetails = ComplaintFaultDetails;
-                        }
+                            tb_FaultDetails ComplaintFaultDetails = await _repository.FaultDetailsRepository.GetSingleFaultDetails(faultDetails => faultDetails.FaultComplaintID == Arrivecompliant.FaultComplaintID).ConfigureAwait(false);
 
+                            if (ComplaintFaultDetails.ArrivingLocationDateTime > LastComplaintFaultDetails.ArrivingLocationDateTime)
+                            {
+                                LastArrivecompliant = Arrivecompliant;
+                                LastComplaintFaultDetails = ComplaintFaultDetails;
+                            }
+
+                        }
                     }
                 }
 
-                IEnumerable<tb_UserAccessRegister> catnum = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.UserName == MonitorRequest.EmployeeNumber ).ConfigureAwait(false);
+
+
+
+                IEnumerable<tb_UserAccessRegister> catnum = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.UserName == MonitorRequest.EmployeeNumber).ConfigureAwait(false);
                 DateTime timelog = catnum.Max(ss => ss.LoginDateTime);
                 catnum = catnum.Where(ss => ss.LoginDateTime == timelog);
 
-    
-
                 MonitorResponseDto MonitorResponse = new MonitorResponseDto();
+
+
                 MonitorResponse.TechnicianName = technical.FullName;
                 MonitorResponse.TechnicianStatus = technical.SystemActive;
-                MonitorResponse.LastTechnicianPlace = LastArrivecompliant.DistrictName+"/ "+ LastArrivecompliant.ZoneName;
-                MonitorResponse.ComplaintRefNumberisworking = LastArrivecompliant.ComplaintRefNumber;
-                MonitorResponse.NewComplaintNum = lstFalutComplaintNew.Count();
+
+                MonitorResponse.LastTechnicianPlace = LastArrivecompliant != null ? LastArrivecompliant.DistrictName + "/ " + LastArrivecompliant.ZoneName : "no place ";
+                MonitorResponse.ComplaintRefNumberisworking = LastArrivecompliant != null ? LastArrivecompliant.ComplaintRefNumber : "he didnt arrive for any location";
+
+                MonitorResponse.NewComplaintNum = lstFalutComplaintNew == null ? 0 : lstFalutComplaintNew.Count();
                 MonitorResponse.VehiclePlateNumber = catnum.First().VehiclePlateNumber;
+
 
 
                 return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "The response is ") , MonitorResponse));
