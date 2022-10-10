@@ -142,7 +142,55 @@ namespace JepcoBackEndSystemProject.Models.Models
             });
 
 
+            modelBuilder.Entity<TbSmsstatusLookup>(entity =>
+            {
+                entity.HasKey(e => e.StatusId);
 
+                entity.ToTable("tb_SMSStatusLookup");
+
+                entity.Property(e => e.StatusId)
+                    .HasColumnName("StatusID")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.StatusName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<TbSmsverification>(entity =>
+            {
+                entity.ToTable("tb_SMSVerification");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
+
+                entity.Property(e => e.ExpiryDate).HasColumnType("datetime");
+
+                entity.Property(e => e.MobileNumber)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Smscode)
+                    .IsRequired()
+                    .HasColumnName("SMSCode")
+                    .HasMaxLength(4);
+
+                entity.Property(e => e.Smsstatus).HasColumnName("SMSStatus");
+
+                entity.Property(e => e.SMSTry).HasColumnName("SMSTry");
+
+                entity.Property(e => e.UsedDate).HasColumnType("datetime");
+                entity.Property(e => e.EmployeeNumber).HasColumnName("EmployeeNumber");
+
+                
+
+                entity.HasOne(d => d.SmsstatusNavigation)
+                    .WithMany(p => p.TbSmsverification)
+                    .HasForeignKey(d => d.Smsstatus)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tb_SMSVerification_tb_SMSStatusLookup");
+            });
 
 
 

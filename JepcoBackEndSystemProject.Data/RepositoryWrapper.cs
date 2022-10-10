@@ -24,8 +24,10 @@ namespace JepcoBackEndSystemProject.Data
         private Technical.ITechnicalRepository _technicalRepository;
         private Governorate.IGovernorateRepository _governorateRepository;
         private EmergancyGroups.IEmergancyGroupsRepository _emergancyGroupsRepository;
+        private Smsverifications.ISmsverificationRepository _smsverification;
 
- 
+
+
 
 
 
@@ -195,13 +197,18 @@ namespace JepcoBackEndSystemProject.Data
             }
         }
 
+        public Smsverifications.ISmsverificationRepository SmsVerification
+        {
+            get
+            {
+                if (_smsverification == null)
+                {
+                    _smsverification = new Smsverifications.SmsverificationRepository(_repoContext, _logger);
+                }
 
-
-
-
-
-
-
+                return _smsverification;
+            }
+        }
 
 
 

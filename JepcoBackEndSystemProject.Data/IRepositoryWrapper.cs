@@ -19,8 +19,10 @@ EngineersAccessRegister.IEngineersAccessRegisterRepository EngineersAccessRegist
 Technical.ITechnicalRepository TechnicalRepository { get; }
  Governorate.IGovernorateRepository GovernorateRepository { get; }
         EmergancyGroups.IEmergancyGroupsRepository EmergancyGroupsRepository { get; }
+        Smsverifications.ISmsverificationRepository SmsVerification { get; }
 
-        
+
+
 
         Task SaveAsync();
     }
