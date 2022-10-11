@@ -423,10 +423,10 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 MonitorResponse.TechnicianName = technical.FullName;
                 MonitorResponse.TechnicianStatus = technical.SystemActive;
 
-                MonitorResponse.LastTechnicianPlace = LastArrivecompliant != null ? LastArrivecompliant.DistrictName + "/ " + LastArrivecompliant.ZoneName : "no place ";
-                MonitorResponse.ComplaintRefNumberisworking = LastArrivecompliant != null ? LastArrivecompliant.ComplaintRefNumber : "he didnt arrive for any location";
+                MonitorResponse.LastTechnicianPlace = LastArrivecompliant != null ? LastArrivecompliant.DistrictName + " / " + LastArrivecompliant.ZoneName : "He didnt arrive for Complaint location ";
+                MonitorResponse.ComplaintRefNumberisworking = LastArrivecompliant != null ? LastArrivecompliant.ComplaintRefNumber : "He didnt arrive for Complaint location";
 
-                MonitorResponse.NewComplaintNum = lstFalutComplaintNew == null ? 0 : lstFalutComplaintNew.Count();
+                MonitorResponse.NewComplaintNum = lstFalutComplaintNew == null && lstFalutComplaintNew.Count()==0 ? 0 : lstFalutComplaintNew.Count();
                 MonitorResponse.VehiclePlateNumber = catnum.First().VehiclePlateNumber;
 
 

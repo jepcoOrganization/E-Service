@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.HttpSys;
 using Microsoft.Extensions.Localization;
 using System;
-
 using System.Threading.Tasks;
 
 namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
@@ -61,16 +60,30 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 if (LoginEngineerAccessRegisterRequest == null)
                 {
 
-                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "The user name or password is incorrect")));
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, " Complaint object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "Invalid Complaint object sent from client")));
+
                 }
 
 
+
                 tb_EngineersAccessRegister EngineersAccessRegisterUser = await _repository.EngineersAccessRegisterRepository.GetSingleEngineersAccessRegister(engineer => engineer.UserName == LoginEngineerAccessRegisterRequest.UserName).ConfigureAwait(false);
-                EngineersAccessRegisterUser.LoginDateTime = DateTime.Now;
 
-                _repository.EngineersAccessRegisterRepository.UpdateEngineersAccessRegister(null, EngineersAccessRegisterUser);
-                await _repository.SaveAsync().ConfigureAwait(false);
+                if (EngineersAccessRegisterUser == null || EngineersAccessRegisterUser.Password != LoginEngineerAccessRegisterRequest.Password)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "The user name or password is incorrect")));
+                }
 
+              
+                    EngineersAccessRegisterUser.LoginDateTime = DateTime.Now;
+
+                    _repository.EngineersAccessRegisterRepository.UpdateEngineersAccessRegister(null, EngineersAccessRegisterUser);
+                    await _repository.SaveAsync().ConfigureAwait(false);
+
+                
                 return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LoginEngineerAccessRegisterRequest.LanguageId, "You are successfully logged in"), EngineersAccessRegisterUser));
 
             }
