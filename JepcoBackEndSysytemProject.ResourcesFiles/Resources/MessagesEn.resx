@@ -141,6 +141,9 @@
   <data name="Error In Integration With MenaTrack System to Reassign Tieckt" xml:space="preserve">
     <value>Error In Integration With MenaTrack System to Reassign Tieckt</value>
   </data>
+  <data name="Incorrect Employee Number" xml:space="preserve">
+    <value>Incorrect Employee Number</value>
+  </data>
   <data name="Internal Error" xml:space="preserve">
     <value>Internal Error</value>
   </data>
@@ -192,14 +195,29 @@
   <data name="Returned Branch with id" xml:space="preserve">
     <value>Returned Branch with id</value>
   </data>
+  <data name="SMS Code didn't send" xml:space="preserve">
+    <value>SMS Code didn't send</value>
+  </data>
+  <data name="SMS Code is incorrect" xml:space="preserve">
+    <value>SMS Code is incorrect</value>
+  </data>
   <data name="Someting Wrong in  LogOut" xml:space="preserve">
     <value>Someting Wrong in  LogOut</value>
+  </data>
+  <data name="successfully send sms code" xml:space="preserve">
+    <value>successfully send sms code</value>
+  </data>
+  <data name="The Mobile Number is incorrect" xml:space="preserve">
+    <value>The Mobile Number is incorrect</value>
   </data>
   <data name="The user name or password is incorrect" xml:space="preserve">
     <value>The user name or password is incorrect</value>
   </data>
   <data name="This User not Active" xml:space="preserve">
     <value>This User not Active</value>
+  </data>
+  <data name="Unsuccessfully send sms code" xml:space="preserve">
+    <value>Unsuccessfully send sms code</value>
   </data>
   <data name="Update all User data in database" xml:space="preserve">
     <value>Update all User data in database</value>
@@ -227,6 +245,9 @@
   </data>
   <data name="You are successfully logged Out" xml:space="preserve">
     <value>You are successfully logged Out</value>
+  </data>
+  <data name="You can send sms code message after 24 hourse" xml:space="preserve">
+    <value>You can send sms code message after 24 hourse</value>
   </data>
   <data name="You must Close or ReAssinged all Compliants before you logout" xml:space="preserve">
     <value>You must Close or ReAssinged all Compliants before you logout</value>

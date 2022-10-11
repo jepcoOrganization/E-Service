@@ -24,10 +24,14 @@ namespace JepcoBackEndSystemProject.Data
         private Technical.ITechnicalRepository _technicalRepository;
         private Governorate.IGovernorateRepository _governorateRepository;
         private EmergancyGroups.IEmergancyGroupsRepository _emergancyGroupsRepository;
+        private Smsverifications.ISmsverificationRepository _smsverification;
         private TechnicalGroups.ITechnicalGroupsRepository _technicalGroupsRepository;
 
 
-     
+
+
+
+
 
 
         public RepositoryWrapper(DBJEPCOBackEndContext repositoryContext, ILoggerManager logger)
@@ -196,10 +200,6 @@ namespace JepcoBackEndSystemProject.Data
             }
         }
 
-
-
-
-
         public TechnicalGroups.ITechnicalGroupsRepository TechnicalGroupsRepository
         {
             get
@@ -215,13 +215,21 @@ namespace JepcoBackEndSystemProject.Data
 
 
 
+        public Smsverifications.ISmsverificationRepository SmsVerification
+        {
+            get
+            {
+                if (_smsverification == null)
+                {
+                    _smsverification = new Smsverifications.SmsverificationRepository(_repoContext, _logger);
+                }
 
-
-
-
-
-
-
+                return _smsverification;
+            }
+        }
 
     }
 }
+
+    
+

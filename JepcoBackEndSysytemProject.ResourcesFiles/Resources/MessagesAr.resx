@@ -150,6 +150,9 @@
   <data name="Error In Integration With MenaTrack System to Reassign Tieckt" xml:space="preserve">
     <value>حدث خطا بالاتصال مع نظام (Mean track) لاعادة توجيه الابلاغ</value>
   </data>
+  <data name="Incorrect Employee Number" xml:space="preserve">
+    <value>الرقم الوظيفي المدخل غير صحيح أو غير مسجل بالتطبيق</value>
+  </data>
   <data name="Internal Error" xml:space="preserve">
     <value>Internal Error</value>
   </data>
@@ -204,14 +207,29 @@
   <data name="Returned User with id" xml:space="preserve">
     <value>تم اعادة معلومات المستخدم للاسم</value>
   </data>
+  <data name="SMS Code didn't send" xml:space="preserve">
+    <value>رمز التحقق لم يرسل</value>
+  </data>
+  <data name="SMS Code is incorrect" xml:space="preserve">
+    <value>رقم التحقق غير صحيح</value>
+  </data>
   <data name="Someting Wrong in  LogOut" xml:space="preserve">
     <value>هناك خطا بالخروج من التطبيق</value>
+  </data>
+  <data name="successfully send sms code" xml:space="preserve">
+    <value>تم ارسال رمز التحقق بنجاح</value>
+  </data>
+  <data name="The Mobile Number is incorrect" xml:space="preserve">
+    <value>رقم الهاتف غير صحيح</value>
   </data>
   <data name="The user name or password is incorrect" xml:space="preserve">
     <value>اسم المستخدم أو كلمة السر غير صحيحة</value>
   </data>
   <data name="This User not Active" xml:space="preserve">
     <value>لا يوجد لديك صلاحية للدخول للتطبيق ، الرجاء مراجعة المسؤول عنك لتفعيل صلاحية الدخول الى التطبيق لديك </value>
+  </data>
+  <data name="Unsuccessfully send sms code" xml:space="preserve">
+    <value>لم يتم ارسال رمز التحقق بنجاح</value>
   </data>
   <data name="Update all Branch fields in database" xml:space="preserve">
     <value>تم تعديل جميع معلومات الفرع</value>
@@ -242,6 +260,9 @@
   </data>
   <data name="You are successfully logged Out" xml:space="preserve">
     <value>تمت عملية الخروج من التطبيق بنجاح </value>
+  </data>
+  <data name="You can send sms code message after 24 hourse" xml:space="preserve">
+    <value>لقد تجاوزت الحد الاقصى لارسال رمز التحقق ، نرجو المحاولة بعد 24 ساعة</value>
   </data>
   <data name="You must Close or ReAssinged all Compliants before you logout" xml:space="preserve">
     <value>يجب اغلاق أو اعادة توجيه جميع البلاغات الموجودة لديك قبل عمل تسجيل خروج من التطبيق</value>

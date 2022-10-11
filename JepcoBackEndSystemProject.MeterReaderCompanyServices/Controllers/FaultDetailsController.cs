@@ -896,6 +896,19 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
+                    if (string.IsNullOrEmpty(ReassignCompliantDto.ReassigningImage ) == false)
+                    {
+                        string Status2 = await objCallCenterNewClient.JEPCO_NewAttachmentAsync(Fault_Compliants.BranchID, Fault_Compliants.UserID, long.Parse(Fault_Compliants.IssueID.ToString()), "صورة_اعادةالتوجيه.jpg", ReassignCompliantDto.ReassigningImage).ConfigureAwait(false);
+
+                        if (Status2 != "Success")
+                        {
+
+                            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ReassignCompliantDto.LanguageId, "Error In Integration With MenaTrack System" + "  صورة_اعادةالتوجيه")));
+
+                        }
+
+                    }
+
 
                     ComplaintFaultDetails.ReassignDate = DateTime.Now;
                     ComplaintFaultDetails.ReassignClassficationID = ReassignCompliantDto.ReassignClassficationID;
