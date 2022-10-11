@@ -79,9 +79,14 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 {
                     DateTime dtScheduleDateFrom = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateStart, "yyyy-MM-dd",
                     System.Globalization.CultureInfo.InvariantCulture);
-
-                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date == dtScheduleDateFrom && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
-
+                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.EmployeeNumber) == false)
+                    {
+                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date == dtScheduleDateFrom && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.UserName == GeneralTechnicianInfRequest.EmployeeNumber).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date == dtScheduleDateFrom && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
+                    }
 
                 }
                 else if ((string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintDateEnd) == true) && string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintTimeStart) == false)
@@ -92,8 +97,15 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     DateTime HourTo = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateStart + " " + GeneralTechnicianInfRequest.ComplaintTimeEnd, "yyyy-MM-dd HH:mm",
                                           System.Globalization.CultureInfo.InvariantCulture);
 
-                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= HourFrom.AddMinutes(-1) && x.CompliantDateTime <= HourTo.AddMinutes(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
+                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.EmployeeNumber) == false)
+                    {
+                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= HourFrom.AddMinutes(-1) && x.CompliantDateTime <= HourTo.AddMinutes(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.UserName == GeneralTechnicianInfRequest.EmployeeNumber).ConfigureAwait(false);
+                    }
+                    else
+                    {
 
+                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= HourFrom.AddMinutes(-1) && x.CompliantDateTime <= HourTo.AddMinutes(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
+                    }
                 }
                 else
                 {
@@ -103,7 +115,14 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     DateTime dtScheduleDateEnd = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateEnd, "yyyy-MM-dd",
                                           System.Globalization.CultureInfo.InvariantCulture);
 
-                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= dtScheduleDateFrom.Date && x.CompliantDateTime <= dtScheduleDateEnd.Date && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
+                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.EmployeeNumber) == false)
+                    {
+                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date > dtScheduleDateFrom.Date.AddDays(-1) && x.CompliantDateTime.Date < dtScheduleDateEnd.Date.AddDays(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.UserName == GeneralTechnicianInfRequest.EmployeeNumber).ConfigureAwait(false);
+                    }
+                    else { 
+
+                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date > dtScheduleDateFrom.Date.AddDays(-1) && x.CompliantDateTime.Date < dtScheduleDateEnd.Date.AddDays(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
+                }
                 }
 
 
@@ -113,15 +132,6 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 }
                 else
                 {
-
-
-
-                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.EmployeeNumber) == false)
-                    {
-                        lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.UserName == GeneralTechnicianInfRequest.EmployeeNumber);
-                    }
-
-                    //tb_ElectricalFaultStatus statusDto = await _repository.ElectricalFaultStatusRepository.GetSingleElectricalFaultStatus(x => x.FaultStatusNameAR == GeneralTechnicianInfRequest.FaultStatus ).ConfigureAwait(false);
 
                     if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityID) == false)
                     {
