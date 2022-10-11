@@ -17,7 +17,8 @@ namespace JepcoBackEndSystemProject.Models.Models
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int GroupId { get; set; }
-   
+
+        //public int ID { get; set; }
 
         [Key]
         [Column(Order = 1)]

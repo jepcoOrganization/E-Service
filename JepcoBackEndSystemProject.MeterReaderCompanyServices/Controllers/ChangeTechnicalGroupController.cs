@@ -5,15 +5,20 @@ using JepcoBackEndSystemProject.EmergancyAppApis.DataTransferObject.ChangeTechni
 using JepcoBackEndSystemProject.EMRCServices.DataTransferObject;
 using JepcoBackEndSystemProject.Models;
 using JepcoBackEndSystemProject.Models.Models;
+
 using JepcoBackEndSysytemProject.LoggerService;
 using JepcoBackEndSysytemProject.ResourcesFiles.Resources;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 {
@@ -188,26 +193,39 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, AddTechnicianForGroupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, AddTechnicianForGroupRequest.LanguageId, "Invalid Complaint object sent from client")));
                 }
 
-                IEnumerable<tb_TechnicalGroups> lstTechnicianUserIdGroupData = await _repository.TechnicalGroupsRepository.GetListOfTechnicalGroups(x => x.GroupId == AddTechnicianForGroupRequest.GroupID).ConfigureAwait(false);
-                if (lstTechnicianUserIdGroupData != null)
+                //REMOVE GROUP
+                IEnumerable<tb_TechnicalGroups> lstTechnicianUserIdGroup = await _repository.TechnicalGroupsRepository.GetListOfTechnicalGroups(x => x.GroupId == AddTechnicianForGroupRequest.GroupID).ConfigureAwait(false);
+
+
+
+                if (lstTechnicianUserIdGroup != null && lstTechnicianUserIdGroup.ToList().Count > 0)
                 {
-                    foreach (var techbical in lstTechnicianUserIdGroupData)
+                    foreach (var techbical in lstTechnicianUserIdGroup)
                     {
                         _repository.TechnicalGroupsRepository.RemoveTechnicalGroups(techbical);
                         await _repository.SaveAsync().ConfigureAwait(false);
                     }
+
                 }
 
 
-
+                // REMOVE TEC AND ADD TEC TO GROUP
                 foreach (var techbical in AddTechnicianForGroupRequest.UserIDList)
                 {
+                    tb_TechnicalGroups lstTechnicianUser = await _repository.TechnicalGroupsRepository.GetSingleTechnicalGroups(x => x.UserID == techbical).ConfigureAwait(false);
+                    if (lstTechnicianUser != null)
+                    {
+                        _repository.TechnicalGroupsRepository.RemoveTechnicalGroups(lstTechnicianUser);
+                        await _repository.SaveAsync().ConfigureAwait(false);
+                    }
+                
+
                     tb_TechnicalGroups TechnicalGroups = new tb_TechnicalGroups();
                     TechnicalGroups.CREATION_DATE = DateTime.Now;
                     TechnicalGroups.Update_DATE = DateTime.Now;
                     TechnicalGroups.UserID = techbical;
                     TechnicalGroups.GroupId = AddTechnicianForGroupRequest.GroupID;
-
+           
 
 
                     _repository.TechnicalGroupsRepository.AddTechnicalGroups(TechnicalGroups);
