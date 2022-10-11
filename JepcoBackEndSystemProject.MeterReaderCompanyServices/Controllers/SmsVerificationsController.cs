@@ -180,8 +180,8 @@ namespace JepcoBackEndSystemProject.Services.Controllers
                         SendSuccess = _repository.SmsVerification.SendSmsChangePassword(response.MobileNumber, code);
                         if (SendSuccess)
                         {
-                            smsVerificationReturnDto = _mapper.Map<SmsVerificationReturnDto>(response);
-                            return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, smsVerifModel.LanguageId, "successfully send sms code"), smsVerificationReturnDto));
+                           // smsVerificationReturnDto = _mapper.Map<SmsVerificationReturnDto>(response);
+                            return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, smsVerifModel.LanguageId, "successfully send sms code"), response));
                         }
                         else
                         {
@@ -216,8 +216,8 @@ namespace JepcoBackEndSystemProject.Services.Controllers
                         SendSuccess = _repository.SmsVerification.SendSmsChangePassword(response.MobileNumber, code);
                         if (SendSuccess)
                         {
-                            smsVerificationReturnDto = _mapper.Map<SmsVerificationReturnDto>(response);
-                            return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, smsVerifModel.LanguageId, "successfully send sms code"), smsVerificationReturnDto));
+                           // smsVerificationReturnDto = _mapper.Map<SmsVerificationReturnDto>(response);
+                            return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, smsVerifModel.LanguageId, "successfully send sms code"), response));
                         }
                         else
                         {
@@ -249,10 +249,10 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
 
 
-        [HttpPost(Name = "SmsVerificationandChangPassword")]
-        [Route("SmsVerificationandChangPassword")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<ActionResult<CommonReturnResult>> SmsVerificationandChangPassword([FromBody] SmsVerificationCommonDto smsVerifModel)
+        [HttpPost(Name = "SmsVerificationAndChangPassword")]
+        [Route("SmsVerificationAndChangPassword")]
+       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult<CommonReturnResult>> SmsVerificationAndChangPassword([FromBody] SmsVerificationCommonDto smsVerifModel)
         {
             SmsVerificationReturnDto smsVerificationReturnDto = new SmsVerificationReturnDto();
 
@@ -284,14 +284,6 @@ namespace JepcoBackEndSystemProject.Services.Controllers
                 {
                     //TbSmsverification respAfterAdd = await _repository.SmsVerification.GetSingleSmsVerif(value => smsVerifModel.MobileNumber == value.MobileNumber && value.Smscode == smsVerifModel.Smscode);
 
-                    response.UsedDate = DateTime.Now;
-                    response.Smsstatus = 1;
-
-
-                    _repository.SmsVerification.UpdateSmsVerification(excludeProp, response);
-                    await _repository.SaveAsync().ConfigureAwait(false);
-                    smsVerificationReturnDto = _mapper.Map<SmsVerificationReturnDto>(response);
-
 
                     tb_Technical objtb_Technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == smsVerifModel.EmployeeNumber).ConfigureAwait(false);
 
@@ -303,10 +295,30 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
                     }
 
+                    response.UsedDate = DateTime.Now;
+                    response.Smsstatus = 1;
 
                     objtb_Technical.EmployeePassword = smsVerifModel.NewPassword;
 
-                    return Ok(_common.ReturnOkData("1", new { CustomerStatus = "1", smsVerificationReturn = smsVerificationReturnDto }));
+                    _repository.SmsVerification.UpdateSmsVerification(excludeProp, response);
+                    _repository.TechnicalRepository.UpdateTechnical (null, objtb_Technical);
+
+                    await _repository.SaveAsync().ConfigureAwait(false);
+                    //smsVerificationReturnDto = _mapper.Map<SmsVerificationReturnDto>(response);
+
+
+                   
+
+
+
+
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, smsVerifModel.LanguageId, "Password Changed successfully"), response));
+
+
+                 //   return Ok(_common.ReturnOkData("1", new { CustomerStatus = "1", smsVerificationReturn = smsVerificationReturnDto }));
+
+
+
 
 
                     //TbCustomerInformation customerdata = await _repository.CustomerInformation.GetSingleCusomerInfo(cust => cust.MobileNumber == response.MobileNumber, details => details.CustomerInformationDetails);

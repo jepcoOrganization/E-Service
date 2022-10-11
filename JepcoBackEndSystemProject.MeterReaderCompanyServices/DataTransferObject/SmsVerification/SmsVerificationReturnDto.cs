@@ -12,6 +12,7 @@ namespace JepcoBackEndSystemProject.Services.DataTransferObject.SmsVerification
         public DateTime? UsedDate { get; set; }
         public long Smsstatus { get; set; }
         public int Smstry { get; set; }
+        public string EmployeeNumber { get; set; }
     }
 
     public class ValidatePhoneDto
