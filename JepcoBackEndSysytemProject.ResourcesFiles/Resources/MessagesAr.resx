@@ -195,6 +195,9 @@
   <data name="Parsing Error" xml:space="preserve">
     <value>Parsing Error</value>
   </data>
+  <data name="Password Changed successfully" xml:space="preserve">
+    <value>تم تغير كلمة السر بنجاح</value>
+  </data>
   <data name="Requsted User is Inactive , please conatct Adminstrator" xml:space="preserve">
     <value>المستخدم غير فعال على النظام الرجاء مراجعة مسؤول النظام</value>
   </data>

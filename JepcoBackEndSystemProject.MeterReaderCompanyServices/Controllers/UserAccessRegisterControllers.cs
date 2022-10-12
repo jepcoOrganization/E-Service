@@ -50,6 +50,49 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
         #endregion
 
+
+
+        [HttpPost(Name = "GetUserAccessRegisterBYID")]
+        [Route("GetUserAccessRegisterBYID")]
+      //  [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        // CityId from CitiesModelResource in Resource project to hide value
+        public async Task<ActionResult<CommonReturnResult>> GetUserAccessRegisterBYID([FromBody] UserAccessRegisterRequestDto UserAccessRegisterRequestDto)
+        {
+
+            try
+            {
+                if (UserAccessRegisterRequestDto == null)
+                {
+                    _logger.LogError($"{0}:UserAccessRegisterRequestDto object sent from client is null.");
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, UserAccessRegisterRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, UserAccessRegisterRequestDto.LanguageId, "UserAccessRegisterRequestDto object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogError($"{0}:Invalid UserAccessRegisterRequestDto object sent from client.");
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, UserAccessRegisterRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, UserAccessRegisterRequestDto.LanguageId, "Invalid UserAccessRegisterRequestDto object sent from client")));
+                }
+
+                tb_UserAccessRegister  objUserAccessRegister = await _repository.UserAccessRegisterLookupRepository .GetSingleUserAccessRegister (cty => cty.ID == UserAccessRegisterRequestDto.ID).ConfigureAwait(false);
+
+                if (objUserAccessRegister == null)
+                {
+                    _logger.LogError($"UserAccessRegister with id: {UserAccessRegisterRequestDto.ID}, hasn't been found in db.");
+                    return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, UserAccessRegisterRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, UserAccessRegisterRequestDto.LanguageId, "UserAccessRegister with id hasn't been found in db") + UserAccessRegisterRequestDto.ID));
+                }
+                else
+                {
+                    return Ok(_common.ReturnOkData("Returned UserRegister with id " + objUserAccessRegister.ID + ".", objUserAccessRegister));
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetUserAccessRegisterBYID action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+
+
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, UserAccessRegisterRequestDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, UserAccessRegisterRequestDto.LanguageId, "Internal server error")));
+            }
+        }
+
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "TechnicianLogin")]
         [Route("TechnicianLogin")]
@@ -98,6 +141,9 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 objtbUserAccessRegister.LoginLong  = LoginUserAccessRegisterDto.LoginLong  ;
                 objtbUserAccessRegister.UserName = LoginUserAccessRegisterDto.UserName;
                 objtbUserAccessRegister.VehiclePlateNumber = LoginUserAccessRegisterDto.VehiclePlateNumber ;
+                objtbUserAccessRegister.TechnicationEmployeeNumber2 = LoginUserAccessRegisterDto.TechnicationEmployeeNumber2;
+                objtbUserAccessRegister.TechnicationFullName2  = LoginUserAccessRegisterDto.TechnicationFullName2;
+
                 _repository.UserAccessRegisterLookupRepository.Add(objtbUserAccessRegister);
                 await _repository.SaveAsync().ConfigureAwait(false);
 

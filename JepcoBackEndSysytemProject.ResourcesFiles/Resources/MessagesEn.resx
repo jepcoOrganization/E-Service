@@ -183,6 +183,9 @@
   <data name="Parsing Error" xml:space="preserve">
     <value>Parsing Error</value>
   </data>
+  <data name="Password Changed successfully" xml:space="preserve">
+    <value>Password Changed successfully</value>
+  </data>
   <data name="Required parameters missing to access data" xml:space="preserve">
     <value>Required parameters missing to access data</value>
   </data>

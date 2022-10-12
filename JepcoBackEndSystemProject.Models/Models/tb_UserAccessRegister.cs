@@ -42,7 +42,14 @@ namespace JepcoBackEndSystemProject.Models.Models
 
         [StringLength(50)]
         public string VehiclePlateNumber { get; set; }
-   
+
+        [StringLength(500)]
+        public string TechnicationFullName2 { get; set; }
+
+
+        [StringLength(50)]
+        public string TechnicationEmployeeNumber2 { get; set; }
+
     }
 }
 
