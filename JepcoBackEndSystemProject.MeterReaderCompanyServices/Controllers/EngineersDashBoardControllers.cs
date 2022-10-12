@@ -495,23 +495,31 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-
-                IEnumerable<tb_UserAccessRegister> catnum = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.UserName == MonitorRequest.EmployeeNumber).ConfigureAwait(false);
-                DateTime timelog = catnum.Max(ss => ss.LoginDateTime);
-                catnum = catnum.Where(ss => ss.LoginDateTime == timelog);
-
                 MonitorResponseDto MonitorResponse = new MonitorResponseDto();
 
+                IEnumerable<tb_UserAccessRegister> catnum = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.UserName == MonitorRequest.EmployeeNumber).ConfigureAwait(false);
 
-                MonitorResponse.TechnicianName = technical.FullName;
-                MonitorResponse.TechnicianStatus = technical.SystemActive;
+                if (catnum != null && catnum.ToList().Count() > 0)
+                {
+                    DateTime timelog = catnum.Max(ss => ss.LoginDateTime);
+                    catnum = catnum.Where(ss => ss.LoginDateTime == timelog);
 
-                MonitorResponse.LastTechnicianPlace = LastArrivecompliant != null ? LastArrivecompliant.DistrictName + " / " + LastArrivecompliant.ZoneName : "He didnt arrive for Complaint location ";
-                MonitorResponse.ComplaintRefNumberisworking = LastArrivecompliant != null ? LastArrivecompliant.ComplaintRefNumber : "He didnt arrive for Complaint location";
 
-                MonitorResponse.NewComplaintNum = lstFalutComplaintNew == null && lstFalutComplaintNew.Count()==0 ? 0 : lstFalutComplaintNew.Count();
-                MonitorResponse.VehiclePlateNumber = catnum.First().VehiclePlateNumber;
 
+                    MonitorResponse.TechnicianName = technical.FullName;
+                    MonitorResponse.TechnicianStatus = technical.SystemActive;
+
+                    MonitorResponse.LastTechnicianPlace = LastArrivecompliant != null ? LastArrivecompliant.DistrictName + " / " + LastArrivecompliant.ZoneName : "-";
+                    MonitorResponse.ComplaintRefNumberisworking = LastArrivecompliant != null ? LastArrivecompliant.ComplaintRefNumber : "لا يوجد";
+
+                    MonitorResponse.NewComplaintNum = lstFalutComplaintNew == null && lstFalutComplaintNew.Count() == 0 ? 0 : lstFalutComplaintNew.Count();
+                    MonitorResponse.VehiclePlateNumber = catnum.First().VehiclePlateNumber;
+                }
+                else
+                {
+                    MonitorResponse = null;
+                    
+                }
 
 
                 return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MonitorRequest.LanguageId, "The response is ") , MonitorResponse));
