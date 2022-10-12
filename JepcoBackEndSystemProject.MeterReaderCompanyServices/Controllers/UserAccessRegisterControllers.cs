@@ -140,9 +140,9 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 objtbUserAccessRegister.LoginLatt = LoginUserAccessRegisterDto.LoginLatt;
                 objtbUserAccessRegister.LoginLong  = LoginUserAccessRegisterDto.LoginLong  ;
                 objtbUserAccessRegister.UserName = LoginUserAccessRegisterDto.UserName;
-                objtbUserAccessRegister.VehiclePlateNumber = LoginUserAccessRegisterDto.VehiclePlateNumber ;
-                objtbUserAccessRegister.TechnicationEmployeeNumber2 = LoginUserAccessRegisterDto.TechnicationEmployeeNumber2;
-                objtbUserAccessRegister.TechnicationFullName2  = LoginUserAccessRegisterDto.TechnicationFullName2;
+                //objtbUserAccessRegister.VehiclePlateNumber = LoginUserAccessRegisterDto.VehiclePlateNumber ;
+                //objtbUserAccessRegister.TechnicationEmployeeNumber2 = LoginUserAccessRegisterDto.TechnicationEmployeeNumber2;
+                //objtbUserAccessRegister.TechnicationFullName2  = LoginUserAccessRegisterDto.TechnicationFullName2;
 
                 _repository.UserAccessRegisterLookupRepository.Add(objtbUserAccessRegister);
                 await _repository.SaveAsync().ConfigureAwait(false);
@@ -159,7 +159,51 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
         }
         //------------------------------------------------------------------------------------------------
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "UpdateTechnicianLogin")]
+        [Route("UpdateTechnicianLogin")]
+        public async Task<ActionResult<CommonReturnResult>> UpdateTechnicianLogin ([FromBody] UpdateLoginUserAccessRegisterDto UpdateLoginUserAccessRegister)
+        {
 
+
+            try
+            {
+
+
+
+                tb_UserAccessRegister UserAccessRegisterRec = await _repository.UserAccessRegisterLookupRepository.GetSingleUserAccessRegister(x => x.ID == UpdateLoginUserAccessRegister.UserRegisterID ).ConfigureAwait(false);
+
+                if (UserAccessRegisterRec == null)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, UpdateLoginUserAccessRegister.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, UpdateLoginUserAccessRegister.LanguageId, "you have error at your User ID")));
+                }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, UpdateLoginUserAccessRegister.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, UpdateLoginUserAccessRegister.LanguageId, "Invalid  object sent from client")));
+
+                }
+
+
+
+
+                UserAccessRegisterRec.VehiclePlateNumber = UpdateLoginUserAccessRegister.VehiclePlateNumber;
+                UserAccessRegisterRec.TechnicationEmployeeNumber2 = UpdateLoginUserAccessRegister.TechnicationEmployeeNumber2;
+                UserAccessRegisterRec.TechnicationFullName2 = UpdateLoginUserAccessRegister.TechnicationFullName2;
+
+                _repository.UserAccessRegisterLookupRepository.Update(null, UserAccessRegisterRec);
+                await _repository.SaveAsync().ConfigureAwait(false);
+
+
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, UpdateLoginUserAccessRegister.LanguageId, "You are successfully update in"), UserAccessRegisterRec));
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside TechnicianLogin action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, UpdateLoginUserAccessRegister.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, UpdateLoginUserAccessRegister.LanguageId, "Internal server error")));
+            }
+
+        }
 
 
 
