@@ -46,7 +46,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
         [HttpPost(Name = "SendSmsCodeForChangePassword")]
         [Route("SendSmsCodeForChangePassword")]
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<CommonReturnResult>> SendSmsCodeForChangePassword([FromBody] SmsVerificationAddDto smsVerifModel)
         {
             SmsVerificationReturnDto smsVerificationReturnDto = new SmsVerificationReturnDto();
@@ -251,7 +251,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
         [HttpPost(Name = "SmsVerificationAndChangPassword")]
         [Route("SmsVerificationAndChangPassword")]
-       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<CommonReturnResult>> SmsVerificationAndChangPassword([FromBody] SmsVerificationCommonDto smsVerifModel)
         {
             SmsVerificationReturnDto smsVerificationReturnDto = new SmsVerificationReturnDto();

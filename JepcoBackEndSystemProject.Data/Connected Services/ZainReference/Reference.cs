@@ -110,7 +110,7 @@ namespace ZainReference
             }
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding_IZainApi))
             {
-                return new System.ServiceModel.EndpointAddress("https://portal.jepco.com.jo:8080/SAPIntegration/ZainApi.svc");
+                return new System.ServiceModel.EndpointAddress("https://mobile.jepco.com.jo:8443/SAPIntegration/ZainApi.svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
