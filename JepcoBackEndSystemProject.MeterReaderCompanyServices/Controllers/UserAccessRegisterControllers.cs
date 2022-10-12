@@ -158,7 +158,14 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
 
         }
+        //------------------------------------------------------------------------------------------------
 
+
+
+
+
+
+        //----------------------------------------------------------------------------------
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "TechnicianLogOut")]
         [Route("TechnicianLogOut")]
@@ -268,6 +275,33 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 _logger.LogError($"Something went wrong inside TechnicianLogin action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
                 return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, ResetPasswordRequst.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, ResetPasswordRequst.LanguageId, "Internal server error")));
             }
+
+//------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         }
 
