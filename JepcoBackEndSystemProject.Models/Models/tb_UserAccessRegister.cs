@@ -50,6 +50,8 @@ namespace JepcoBackEndSystemProject.Models.Models
         [StringLength(50)]
         public string TechnicationEmployeeNumber2 { get; set; }
 
+        //// New Version
+
     }
 }
 
