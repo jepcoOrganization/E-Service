@@ -81,12 +81,36 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     System.Globalization.CultureInfo.InvariantCulture);
                     if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.EmployeeNumber) == false)
                     {
-                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date == dtScheduleDateFrom && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.UserName == GeneralTechnicianInfRequest.EmployeeNumber).ConfigureAwait(false);
+
+
+                        if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityID) == false)
+                        {
+
+                            lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date == dtScheduleDateFrom && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.PiorityID == int.Parse(GeneralTechnicianInfRequest.PiorityID) && x.UserName == GeneralTechnicianInfRequest.EmployeeNumber).ConfigureAwait(false);
+                        }
+                        else
+                        {
+                            lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date == dtScheduleDateFrom && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.UserName == GeneralTechnicianInfRequest.EmployeeNumber).ConfigureAwait(false);
+                        }
+
+
+
+
+                    } else if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityID) == false) {
+
+                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date == dtScheduleDateFrom && x.PiorityID == int.Parse(GeneralTechnicianInfRequest.PiorityID) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
+
+
+
+
+
                     }
                     else
                     {
                         lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date == dtScheduleDateFrom && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
                     }
+
+
 
                 }
                 else if ((string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintDateEnd) == true) && string.IsNullOrEmpty(GeneralTechnicianInfRequest.ComplaintTimeStart) == false)
@@ -99,14 +123,45 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.EmployeeNumber) == false)
                     {
-                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= HourFrom.AddMinutes(-1) && x.CompliantDateTime <= HourTo.AddMinutes(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.UserName == GeneralTechnicianInfRequest.EmployeeNumber).ConfigureAwait(false);
+
+                        if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityID) == false) {
+
+                            lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= HourFrom.AddMinutes(-1) && x.CompliantDateTime <= HourTo.AddMinutes(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.PiorityID == int.Parse(GeneralTechnicianInfRequest.PiorityID) && x.UserName == GeneralTechnicianInfRequest.EmployeeNumber).ConfigureAwait(false);
+
+                        }
+                        else {
+
+                            lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= HourFrom.AddMinutes(-1) && x.CompliantDateTime <= HourTo.AddMinutes(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.UserName == GeneralTechnicianInfRequest.EmployeeNumber).ConfigureAwait(false);
+                        }
+
+
+
+
+
+
+
+                    }
+                    else if(string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityID) == false) {
+
+
+
+                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= HourFrom.AddMinutes(-1) && x.CompliantDateTime <= HourTo.AddMinutes(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.PiorityID == int.Parse(GeneralTechnicianInfRequest.PiorityID)).ConfigureAwait(false);
+
+
+
                     }
                     else
                     {
 
-                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= HourFrom.AddMinutes(-1) && x.CompliantDateTime <= HourTo.AddMinutes(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
+                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime >= HourFrom.AddMinutes(-1) && x.CompliantDateTime <= HourTo.AddMinutes(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
                     }
                 }
+
+
+
+
+
+
                 else
                 {
                     DateTime dtScheduleDateFrom = DateTime.ParseExact(GeneralTechnicianInfRequest.ComplaintDateStart, "yyyy-MM-dd",
@@ -117,38 +172,56 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
                     if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.EmployeeNumber) == false)
                     {
-                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date > dtScheduleDateFrom.Date.AddDays(-1) && x.CompliantDateTime.Date < dtScheduleDateEnd.Date.AddDays(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.UserName == GeneralTechnicianInfRequest.EmployeeNumber).ConfigureAwait(false);
+
+
+                        if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityID) == false)
+                        {
+                            lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date > dtScheduleDateFrom.Date.AddDays(-1) && x.CompliantDateTime.Date < dtScheduleDateEnd.Date.AddDays(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.PiorityID == int.Parse(GeneralTechnicianInfRequest.PiorityID) && x.UserName == GeneralTechnicianInfRequest.EmployeeNumber).ConfigureAwait(false);
+
+                        }
+                        else
+                        {
+                            lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date > dtScheduleDateFrom.Date.AddDays(-1) && x.CompliantDateTime.Date < dtScheduleDateEnd.Date.AddDays(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true && x.UserName == GeneralTechnicianInfRequest.EmployeeNumber).ConfigureAwait(false);
+
+                        }
+
+
+
+
+
                     }
-                    else { 
+                    else if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityID) == false) {
+                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date > dtScheduleDateFrom.Date.AddDays(-1) && x.CompliantDateTime.Date < dtScheduleDateEnd.Date.AddDays(1)&& x.PiorityID == int.Parse(GeneralTechnicianInfRequest.PiorityID) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
 
-                    lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date > dtScheduleDateFrom.Date.AddDays(-1) && x.CompliantDateTime.Date < dtScheduleDateEnd.Date.AddDays(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
-                }
-                }
-
-
-                if (lstFalutComplaintData == null)
-                {
-                    return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Complaint with this date hasn't been found in db")));
-                }
-                else
-                {
-
-                    if (string.IsNullOrEmpty(GeneralTechnicianInfRequest.PiorityID) == false)
-                    {
-
-                        lstFalutComplaintData = lstFalutComplaintData.Where(ss => ss.PiorityID == int.Parse(GeneralTechnicianInfRequest.PiorityID));
-                    }
-
-
-
-
-
-                    if (lstFalutComplaintData == null)
-                    {
-                        return NotFound(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Complaint with this filter hasn't been found in db")));
 
                     }
                     else
+                    {
+
+                        lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.CompliantDateTime.Date > dtScheduleDateFrom.Date.AddDays(-1) && x.CompliantDateTime.Date < dtScheduleDateEnd.Date.AddDays(1) && string.IsNullOrEmpty(x.CompliantParentRefNumber) == true).ConfigureAwait(false);
+                    }
+                }
+
+
+
+
+
+
+
+
+
+                if (lstFalutComplaintData == null && lstFalutComplaintData.ToList().Count == 0)
+                {
+                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, GeneralTechnicianInfRequest.LanguageId, "Returned NO Complaint IN List"), lstFalutComplaintData));
+                }
+
+
+
+
+
+
+
+                else
                     {
 
                         List<GroupCountResponseDto> final = new List<GroupCountResponseDto>();
@@ -192,7 +265,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-                }
+                
 
             }
             catch (Exception ex)
