@@ -325,11 +325,16 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     lstUserAccessRegisterData = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.LoginDateTime.Date >= dtScheduleDateFrom && x.LoginDateTime.Date <= dtScheduleDateEnd && x.UserName== TechnicianLoginHistoryRequest.EmployeeNumber).ConfigureAwait(false);
                 }
 
+            
 
-    
-                
-              
+                foreach (var group in lstUserAccessRegisterData)
 
+                {
+                    char[] spearator = { '-' };
+                    String[] strlist = group.FullName.Split(spearator);
+                    group.FullName= strlist[1];
+                    
+                }
 
 
                     return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Returned History List "), lstUserAccessRegisterData));
