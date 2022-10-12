@@ -380,6 +380,40 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
 
         }
+        //-----------------------------------------------------------------------------------
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "SingleTechnical")]
+        [Route("SingleTechnical")]
+        public async Task<ActionResult<CommonReturnResult>> SingleTechnical([FromBody] SingleTechnicalRequestDto SingleTechnicalRequest)
+        {
+
+
+            try
+            {
+                if (SingleTechnicalRequest == null)
+                {
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, SingleTechnicalRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, SingleTechnicalRequest.LanguageId, "  object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, SingleTechnicalRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, SingleTechnicalRequest.LanguageId, "Invalid  object sent from client")));
+
+                }
+                tb_Technical technical = await _repository.TechnicalRepository.GetSingleTechnical(x => x.EmployeeNumber == SingleTechnicalRequest.EmployeeNumber).ConfigureAwait(false);
+
+
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, SingleTechnicalRequest.LanguageId, "Returned AllTechnical data from database"), technical));
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside TechnicalLookup action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, SingleTechnicalRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, SingleTechnicalRequest.LanguageId, "Internal server error")));
+            }
+
+        }
         //---------------------------------------------------------------------------------------------------------
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "ActiveTechnical")]
