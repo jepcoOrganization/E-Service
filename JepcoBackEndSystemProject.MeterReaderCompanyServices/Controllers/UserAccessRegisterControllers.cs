@@ -117,7 +117,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 }
 
 
-                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew );
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew );
 
                 MenaTrackService.CallLoginResponses objCallLoginResponses = await objCallCenterNewClient.JepcoLoginAsync(LoginUserAccessRegisterDto.UserName, technical.MenaTrackPassword).ConfigureAwait(false);
 
@@ -224,7 +224,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserID == LogOutUserAccessRegisterDto.UserID && x.FaultStatusID ==1 || x.FaultStatusID == 2 || x.FaultStatusID == 3).ConfigureAwait(false);
 
 
-                if (lstFalutComplaintData != null)
+                if (lstFalutComplaintData != null && lstFalutComplaintData.ToList().Count > 0)
                 {
 
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LogOutUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LogOutUserAccessRegisterDto.LanguageId, "You must Close or ReAssinged all Compliants before you logout")));
@@ -244,7 +244,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
 
                 bool objLogOut = await objCallCenterNewClient.JepcoLogoutAsync(LogOutUserAccessRegisterDto.UserID, LogOutUserAccessRegisterDto.BranchID).ConfigureAwait(false);
 
@@ -290,7 +290,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-                //MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
+                //MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
 
                 //MenaTrackService.CallLoginResponses objCallLoginResponses = await objCallCenterNewClient.JepcoLoginAsync(LoginUserAccessRegisterDto.UserName, technical.MenaTrackPassword).ConfigureAwait(false);
 
