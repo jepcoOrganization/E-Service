@@ -25,14 +25,13 @@ namespace JepcoBackEndSystemProject.Services.DataTransferObject.FaultComplaint
         /// <summary>
         /// VehiclePlateNumber
         /// </summary>
-      //  [Required]
-      //  public string VehiclePlateNumber { get; set; }
+        public string VehiclePlateNumber { get; set; }
 
-      ////  [Required]
-      //  public string TechnicationFullName2 { get; set; }
+     
+        public string TechnicationFullName2 { get; set; }
 
-      //  //[Required]
-      //  public string TechnicationEmployeeNumber2 { get; set; }
+
+        public string TechnicationEmployeeNumber2 { get; set; }
 
 
     }

@@ -140,7 +140,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 objtbUserAccessRegister.LoginLatt = LoginUserAccessRegisterDto.LoginLatt;
                 objtbUserAccessRegister.LoginLong  = LoginUserAccessRegisterDto.LoginLong  ;
                 objtbUserAccessRegister.UserName = LoginUserAccessRegisterDto.UserName;
-                //objtbUserAccessRegister.VehiclePlateNumber = LoginUserAccessRegisterDto.VehiclePlateNumber ;
+                objtbUserAccessRegister.VehiclePlateNumber = LoginUserAccessRegisterDto.VehiclePlateNumber ;
                 //objtbUserAccessRegister.TechnicationEmployeeNumber2 = LoginUserAccessRegisterDto.TechnicationEmployeeNumber2;
                 //objtbUserAccessRegister.TechnicationFullName2  = LoginUserAccessRegisterDto.TechnicationFullName2;
 
@@ -199,7 +199,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong inside TechnicianLogin action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                _logger.LogError($"Something went wrong inside UpdateTechnicianLogin action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
                 return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, UpdateLoginUserAccessRegister.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, UpdateLoginUserAccessRegister.LanguageId, "Internal server error")));
             }
 

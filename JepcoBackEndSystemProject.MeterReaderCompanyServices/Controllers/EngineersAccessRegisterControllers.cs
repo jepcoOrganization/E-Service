@@ -47,7 +47,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
         #endregion
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "EngineerLogin")]
         [Route("EngineerLogin")]
         public async Task<ActionResult<CommonReturnResult>> EngineerLogin([FromBody] LoginEngineerAccessRegisterRequestDto LoginEngineerAccessRegisterRequest)
@@ -99,7 +99,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
 
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "EngineerLogOut")]
         [Route("EngineerLogOut")]
         public async Task<ActionResult<CommonReturnResult>> EngineerLogOut([FromBody] LogoutEngineerAccessRegisterRequestDto LogoutEngineerAccessRegisterRequest)

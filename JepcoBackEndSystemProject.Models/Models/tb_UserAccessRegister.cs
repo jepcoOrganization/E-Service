@@ -19,7 +19,7 @@ namespace JepcoBackEndSystemProject.Models.Models
         public int UserID { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(500)]
         public string FullName { get; set; }
 
         public DateTime LoginDateTime { get; set; }

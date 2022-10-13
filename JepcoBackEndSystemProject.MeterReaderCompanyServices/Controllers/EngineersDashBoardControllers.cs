@@ -51,7 +51,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             _environment = environment;
         }
         #endregion
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GeneralTechnicianInf")]
         [Route("GeneralTechnicianInf")]
 
@@ -279,7 +279,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         //----------------------------------------------------------------------------------------------------------------------------
 
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "TechnicianLoginHistory")]
         [Route("TechnicianLoginHistory")]
 
@@ -352,7 +352,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
         //-------------------------------------------------------------------------------------------------------
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "TechnicalLookup")]
         [Route("TechnicalLookup")]
         public async Task<ActionResult<CommonReturnResult>> GetAllAllTechnical([FromBody] LanguageDto languageDto)
@@ -386,7 +386,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
         }
         //-----------------------------------------------------------------------------------
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+      //  [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "SingleTechnical")]
         [Route("SingleTechnical")]
         public async Task<ActionResult<CommonReturnResult>> SingleTechnical([FromBody] SingleTechnicalRequestDto SingleTechnicalRequest)
@@ -420,7 +420,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
 
         }
         //---------------------------------------------------------------------------------------------------------
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "ActiveTechnical")]
         [Route("ActiveTechnical")]
         public async Task<ActionResult<CommonReturnResult>> ActiveTechnical([FromBody] ActiveTechnicalRequestDto ActiveTechnicalRequest)
@@ -471,7 +471,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
 
         //----------------------------------------------------------------------------------------------------------------
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+      //  [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "Monitor")]
         [Route("Monitor")]
         public async Task<ActionResult<CommonReturnResult>> Monitor([FromBody] MonitorRequestDto MonitorRequest)

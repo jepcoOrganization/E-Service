@@ -34,7 +34,7 @@ namespace JepcoBackEndSystemProject.Data.Smsverifications
         {
 
             string MsgText = "رمز التحقق الخاص بتغير كلمة السر على تطبيق طوارى شركة الكهرباء الاردنية هو:  " + smsCode;
-            ZainReference.ZainApiClient client = new ZainReference.ZainApiClient(ZainReference.ZainApiClient.EndpointConfiguration.BasicHttpsBinding_IZainApi    );
+            ZainReference.ZainApiClient client = new ZainReference.ZainApiClient(ZainReference.ZainApiClient.EndpointConfiguration.BasicHttpsBinding_IZainApi  );
             Task<bool> sended =  client.SendSMSAsync(MobileNumber, MsgText);
             if (sended.Result == true)
             {

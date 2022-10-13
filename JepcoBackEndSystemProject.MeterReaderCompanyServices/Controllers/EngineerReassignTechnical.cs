@@ -48,7 +48,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
         }
         #endregion
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GetFaultCompliantToReassign")]
         [Route("GetFaultCompliantToReassign")]
         // BranchId from BranchesModelResource in Resource project to hide value
