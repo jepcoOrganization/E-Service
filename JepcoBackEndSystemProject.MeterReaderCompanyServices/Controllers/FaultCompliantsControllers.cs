@@ -63,7 +63,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             try
             {
 
-                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                 List < MenaTrackService.JEPCOViewRequestsParentsResponse > lstJEPCOViewRequestsParentsResponse =   await objCallCenterNewClient.JEPCO_ViewRequests_ParentsAsync(FaultComplaintDto.UserID, FaultComplaintDto.BranchID).ConfigureAwait(false ) ;
 
@@ -301,7 +301,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                             await _repository.SaveAsync().ConfigureAwait(false);
 
                             //----------------------getChild-------------------------
-                            //MenaTrackService.CallCenterNewClient objCallCenterNewClientChild = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                            //MenaTrackService.CallCenterNewClient objCallCenterNewClientChild = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                             //List<MenaTrackService.JEPCOViewRequestsParentsResponse> lstJEPCOViewRequestsChildsResponse = await objCallCenterNewClientChild.JEPCO_ViewRequests_ChildsAsync(long.Parse(tb_Fault_Compliants.IssueID.ToString()), tb_Fault_Compliants.BranchID).ConfigureAwait(false);
 
@@ -452,7 +452,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             try
             {
 
-                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpBinding_ICallCenterNew);
+                MenaTrackService.CallCenterNewClient objCallCenterNewClient = new MenaTrackService.CallCenterNewClient(MenaTrackService.CallCenterNewClient.EndpointConfiguration.BasicHttpsBinding_ICallCenterNew);
 
                 List<MenaTrackService.JEPCOViewRequestsParentsResponse > lstJEPCOViewRequestsChildsResponse = await objCallCenterNewClient.JEPCO_ViewRequests_ChildsAsync(FaultComplaintDto.IssueID , FaultComplaintDto.BranchID).ConfigureAwait(false);
 
