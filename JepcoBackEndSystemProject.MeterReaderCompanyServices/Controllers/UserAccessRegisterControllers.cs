@@ -221,7 +221,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             try
             {
 
-                IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserID == LogOutUserAccessRegisterDto.UserID && x.FaultStatusID ==1 || x.FaultStatusID == 2 || x.FaultStatusID == 3).ConfigureAwait(false);
+                IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserID == LogOutUserAccessRegisterDto.UserID && (x.FaultStatusID ==1 || x.FaultStatusID == 2 || x.FaultStatusID == 3)).ConfigureAwait(false);
 
 
                 if (lstFalutComplaintData != null && lstFalutComplaintData.ToList().Count > 0)
