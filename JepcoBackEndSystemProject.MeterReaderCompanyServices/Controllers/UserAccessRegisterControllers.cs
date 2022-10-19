@@ -221,10 +221,10 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
             try
             {
 
-                IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserID == LogOutUserAccessRegisterDto.UserID && x.FaultStatusID ==1 || x.FaultStatusID == 2 || x.FaultStatusID == 3).ConfigureAwait(false);
+                IEnumerable<tb_Fault_Compliants> lstFalutComplaintData = await _repository.FaultCompliantsLookupRepository.GetListOfFaultCompliants(x => x.UserID == LogOutUserAccessRegisterDto.UserID && (x.FaultStatusID ==1 || x.FaultStatusID == 2 || x.FaultStatusID == 3)).ConfigureAwait(false);
 
 
-                if (lstFalutComplaintData != null)
+                if (lstFalutComplaintData != null && lstFalutComplaintData.ToList().Count > 0)
                 {
 
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, LogOutUserAccessRegisterDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, LogOutUserAccessRegisterDto.LanguageId, "You must Close or ReAssinged all Compliants before you logout")));

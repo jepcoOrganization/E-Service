@@ -9,6 +9,9 @@ namespace JepcoBackEndSystemProject.Models.Models
 {
     public partial class tb_UserAccessRegister
     {
+
+        DateTime _LoginDateTime;
+
         [Key]
         public long ID { get; set; }
 

@@ -563,7 +563,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 }
                 else
                 {
-                    MonitorResponse = null;
+                    //MonitorResponse = null;
                     
                 }
 
