@@ -308,7 +308,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 if ((string.IsNullOrEmpty(TechnicianLoginHistoryRequest.HistoryDateEnd) == true))
                 {
                     DateTime dtScheduleDateFrom = DateTime.ParseExact(TechnicianLoginHistoryRequest.HistoryDateStart, "yyyy-MM-dd",
-                    System.Globalization.CultureInfo.InvariantCulture);
+                  CultureInfo.InvariantCulture);
 
                     lstUserAccessRegisterData = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.LoginDateTime.Date == dtScheduleDateFrom && x.UserName == TechnicianLoginHistoryRequest.EmployeeNumber).ConfigureAwait(false);
 
@@ -317,10 +317,10 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 else
                 {
                     DateTime dtScheduleDateFrom = DateTime.ParseExact(TechnicianLoginHistoryRequest.HistoryDateStart, "yyyy-MM-dd",
-                               System.Globalization.CultureInfo.InvariantCulture);
+                             CultureInfo.InvariantCulture);
 
                     DateTime dtScheduleDateEnd = DateTime.ParseExact(TechnicianLoginHistoryRequest.HistoryDateEnd, "yyyy-MM-dd",
-                                          System.Globalization.CultureInfo.InvariantCulture);
+                                       CultureInfo.InvariantCulture);
 
                     lstUserAccessRegisterData = await _repository.UserAccessRegisterLookupRepository.GetListOfUserAccessRegister(x => x.LoginDateTime.Date >= dtScheduleDateFrom && x.LoginDateTime.Date <= dtScheduleDateEnd && x.UserName== TechnicianLoginHistoryRequest.EmployeeNumber).ConfigureAwait(false);
                 }
@@ -330,14 +330,21 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 foreach (var group in lstUserAccessRegisterData)
 
                 {
+
+
+                    
                     char[] spearator = { '-' };
                     String[] strlist = group.FullName.Split(spearator);
                     group.FullName= strlist[1];
-                    
+
+
+               
+
+
                 }
 
 
-                    return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Returned History List "), lstUserAccessRegisterData));
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, TechnicianLoginHistoryRequest.LanguageId, "Returned History List "), lstUserAccessRegisterData));
                 
 
 

@@ -37,5 +37,13 @@ namespace JepcoBackEndSystemProject.MeterReaderCompanyServices.Extensions
             return unMaskStart + mask + unMaskEnd;
 
         }
+
+        //public static string FormatDate(string Date )
+        //{
+
+
+
+        //    return ();
+        //}
     }
 }
