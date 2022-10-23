@@ -134,7 +134,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                 tb_UserAccessRegister objtbUserAccessRegister = new tb_UserAccessRegister();
 
                 objtbUserAccessRegister.UserID = objCallLoginResponses.UserID;
-                objtbUserAccessRegister.FullName = objCallLoginResponses.FullName;
+                objtbUserAccessRegister.FullName = technical.FullName;
                 objtbUserAccessRegister.BranchId = objCallLoginResponses.BranchID;
                 objtbUserAccessRegister.LoginDateTime = DateTime.Now;
                 objtbUserAccessRegister.LoginLatt = LoginUserAccessRegisterDto.LoginLatt;

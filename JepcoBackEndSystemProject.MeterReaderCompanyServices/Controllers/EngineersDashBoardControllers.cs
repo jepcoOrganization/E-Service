@@ -559,7 +559,7 @@ namespace JepcoBackEndSystemProject.EmergancyAppApis.Controllers
                     MonitorResponse.ComplaintRefNumberisworking = LastArrivecompliant != null ? LastArrivecompliant.ComplaintRefNumber : "لا يوجد";
 
                     MonitorResponse.NewComplaintNum = lstFalutComplaintNew == null && lstFalutComplaintNew.Count() == 0 ? 0 : lstFalutComplaintNew.Count();
-                    MonitorResponse.VehiclePlateNumber = catnum.First().VehiclePlateNumber;
+                    MonitorResponse.VehiclePlateNumber = LastArrivecompliant != null ? catnum.First().VehiclePlateNumber: "-";
                 }
                 else
                 {
