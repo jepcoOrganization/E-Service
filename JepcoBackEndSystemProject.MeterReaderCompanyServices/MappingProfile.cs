@@ -9,7 +9,6 @@ using SAPReference;
 
 //using JepcoBackEndSystemProject.Services.DataTransferObject.ErrorLogs;
 
-using JepcoBackEndSystemProject.Services.DataTransferObject;
 //using JepcoBackEndSystemProject.Services.DataTransferObject.MeterReaderCompaniesReports;
 
 namespace JepcoBackEndSystemProject.Services

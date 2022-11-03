@@ -13,24 +13,18 @@ namespace JepcoBackEndSystemProject.Data
     {
         private readonly DBJEPCOBackEndContext _repoContext;
         private readonly ILoggerManager _logger;
-       
-     
-        private RepairingStatus.IRepairingStatusRepository _status;
-        private FaultCompliants.IFaultCompliantsLookupRepository _FaultCompliantsLookupRepository;
-        private UserAccessRegister.IUserAccessRegisterLookupRepository _UserAccessRegisterLookupRepository;
-        private FaultDetails.IFaultDetailsRepository _faultDetailsRepository;
-        private ElectricalFaultStatus.IElectricalFaultStatusRepository _electricalFaultStatusRepository;
-        private EngineersAccessRegister.IEngineersAccessRegisterRepository _engineersAccessRegisterRepository;
-        private Technical.ITechnicalRepository _technicalRepository;
-        private Governorate.IGovernorateRepository _governorateRepository;
-        private EmergancyGroups.IEmergancyGroupsRepository _emergancyGroupsRepository;
-        private Smsverifications.ISmsverificationRepository _smsverification;
-        private TechnicalGroups.ITechnicalGroupsRepository _technicalGroupsRepository;
 
 
 
 
 
+
+        private District.IDistrictRepository _districtRepository;
+        private FazPowerCapacity.IFazPowerCapacityRepository _fazPowerCapacityRepository;
+        private Governate.IGovernateRepository _governateRepository;
+        private MaintenanceRequest.IMaintenanceRequestRepository _maintenanceRequestRepository;
+        private MaintenanceRequestType.IMaintenanceRequestTypeRepository _maintenanceRequestTypeRepository;
+ 
 
 
 
@@ -39,6 +33,7 @@ namespace JepcoBackEndSystemProject.Data
             _repoContext = repositoryContext;
             _logger = logger;
         }
+
 
         public async Task SaveAsync()
         {
@@ -65,168 +60,90 @@ namespace JepcoBackEndSystemProject.Data
         }
 
 
-      
 
-        
-     
-        public RepairingStatus.IRepairingStatusRepository Status
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public District.IDistrictRepository DistrictRepository
         {
             get
             {
-                if (_status == null)
+                if (_districtRepository == null)
                 {
-                    _status = new RepairingStatus.RepairingStatusRepository(_repoContext, _logger);
+                    _districtRepository = new District.DistrictRepository(_repoContext, _logger);
                 }
 
-                return _status;
+                return _districtRepository;
             }
         }
 
 
-
-        public FaultCompliants.IFaultCompliantsLookupRepository FaultCompliantsLookupRepository
+        public FazPowerCapacity.IFazPowerCapacityRepository FazPowerCapacityRepository
         {
             get
             {
-                if (_FaultCompliantsLookupRepository == null)
+                if (_fazPowerCapacityRepository == null)
                 {
-                    _FaultCompliantsLookupRepository = new FaultCompliants.FaultCompliantsLookupRepository(_repoContext, _logger);
+                    _fazPowerCapacityRepository = new FazPowerCapacity.FazPowerCapacityRepository(_repoContext, _logger);
                 }
 
-                return _FaultCompliantsLookupRepository;
+                return _fazPowerCapacityRepository;
+            }
+        }
+
+        public Governate.IGovernateRepository GovernateRepository
+        {
+            get
+            {
+                if (_governateRepository == null)
+                {
+                    _governateRepository = new Governate.GovernateRepository(_repoContext, _logger);
+                }
+
+                return _governateRepository;
+            }
+        }
+
+        public MaintenanceRequest.IMaintenanceRequestRepository MaintenanceRequestRepository
+        {
+            get
+            {
+                if (_maintenanceRequestRepository == null)
+                {
+                    _maintenanceRequestRepository = new MaintenanceRequest.MaintenanceRequestRepository(_repoContext, _logger);
+                }
+
+                return _maintenanceRequestRepository;
+            }
+        }
+
+        public MaintenanceRequestType.IMaintenanceRequestTypeRepository MaintenanceRequestTypeRepository
+        {
+            get
+            {
+                if (_maintenanceRequestTypeRepository == null)
+                {
+                    _maintenanceRequestTypeRepository = new MaintenanceRequestType.MaintenanceRequestTypeRepository(_repoContext, _logger);
+                }
+
+                return _maintenanceRequestTypeRepository;
             }
         }
 
 
-        public UserAccessRegister .IUserAccessRegisterLookupRepository  UserAccessRegisterLookupRepository
-        {
-            get
-            {
-                if (_UserAccessRegisterLookupRepository == null)
-                {
-                    _UserAccessRegisterLookupRepository = new UserAccessRegister.UserAccessRegisterLookupRepository (_repoContext, _logger);
-                }
-
-                return _UserAccessRegisterLookupRepository;
-            }
-        }
-
-
-        public FaultDetails.IFaultDetailsRepository FaultDetailsRepository
-        {
-            get
-            {
-                if (_faultDetailsRepository == null)
-                {
-                    _faultDetailsRepository = new FaultDetails.FaultDetailsRepository(_repoContext, _logger);
-                }
-
-                return _faultDetailsRepository;
-            }
-        }
-
-
-        public ElectricalFaultStatus.IElectricalFaultStatusRepository ElectricalFaultStatusRepository
-        {
-            get
-            {
-                if (_electricalFaultStatusRepository == null)
-                {
-                    _electricalFaultStatusRepository = new ElectricalFaultStatus.ElectricalFaultStatusRepository(_repoContext, _logger);
-                }
-
-                return _electricalFaultStatusRepository;
-            }
-        }
-
-       
-
-        public EngineersAccessRegister.IEngineersAccessRegisterRepository EngineersAccessRegisterRepository
-        {
-            get
-            {
-                if (_engineersAccessRegisterRepository == null)
-                {
-                    _engineersAccessRegisterRepository = new EngineersAccessRegister.EngineersAccessRegisterRepository(_repoContext, _logger);
-                }
-
-                return _engineersAccessRegisterRepository;
-            }
-        }
-
-
-        public Technical.ITechnicalRepository TechnicalRepository
-        {
-            get
-            {
-                if (_technicalRepository == null)
-                {
-                    _technicalRepository = new Technical.TechnicalRepository(_repoContext, _logger);
-                }
-
-                return _technicalRepository;
-            }
-        }
-
-
-
-
-        public Governorate.IGovernorateRepository GovernorateRepository
-        {
-            get
-            {
-                if (_governorateRepository == null)
-                {
-                    _governorateRepository = new Governorate.GovernorateRepository(_repoContext, _logger);
-                }
-
-                return _governorateRepository;
-            }
-        }
-
-
-
-
-        public EmergancyGroups.IEmergancyGroupsRepository EmergancyGroupsRepository
-        {
-            get
-            {
-                if (_emergancyGroupsRepository == null)
-                {
-                    _emergancyGroupsRepository = new EmergancyGroups.EmergancyGroupsRepository(_repoContext, _logger);
-                }
-
-                return _emergancyGroupsRepository;
-            }
-        }
-
-        public TechnicalGroups.ITechnicalGroupsRepository TechnicalGroupsRepository
-        {
-            get
-            {
-                if (_technicalGroupsRepository == null)
-                {
-                    _technicalGroupsRepository = new TechnicalGroups.TechnicalGroupsRepository(_repoContext, _logger);
-                }
-
-                return _technicalGroupsRepository;
-            }
-        }
-
-
-
-        public Smsverifications.ISmsverificationRepository SmsVerification
-        {
-            get
-            {
-                if (_smsverification == null)
-                {
-                    _smsverification = new Smsverifications.SmsverificationRepository(_repoContext, _logger);
-                }
-
-                return _smsverification;
-            }
-        }
 
     }
 }

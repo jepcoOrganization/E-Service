@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using JepcoBackEndSystemProject.EMRCServices.DataTransferObject;
-using JepcoBackEndSystemProject.EMRCServices.DataTransferObject.UserModel;
+
 using JepcoBackEndSystemProject.Data;
 using JepcoBackEndSystemProject.Models.Models;
 using JepcoBackEndSysytemProject.LoggerService;
@@ -17,6 +17,7 @@ using AutoMapper;
 using JepcoBackEndSystemProject.Data.CommonReturn;
 using JepcoBackEndSysytemProject.ResourcesFiles.Resources;
 using Microsoft.Extensions.Localization;
+using JepcoBackEndSystemProject.EService.DataTransferObject.UserModel;
 
 namespace JWTAuthentication.Controllers
 {
@@ -75,9 +76,9 @@ namespace JWTAuthentication.Controllers
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             double expiredinMIuntes = 0;
-            if (userInfo.username == _config["Jwt:EmergancyAppUserName"]) {
+            if (userInfo.username == _config["Jwt:ServiceAppUserName"]) {
 
-                expiredinMIuntes = double.Parse(_config["Jwt:EmergancyAppTokenExpirtioninMinutes"].ToString());
+                expiredinMIuntes = double.Parse(_config["Jwt:ServiceAppTokenExpirtioninMinutes"].ToString());
 
             }
             
@@ -98,9 +99,9 @@ namespace JWTAuthentication.Controllers
 
             //Validate the User Credentials    
             
-            if (login.username == _config["Jwt:EmergancyAppUserName"] && login.password == _config["Jwt:EmergancyAppPassword"])
+            if (login.username == _config["Jwt:E-ServiceAppUserName"] && login.password == _config["Jwt:E-ServiceAppPassword"])
             {
-                user = new UserModel { username = "Emergancy App Integration User", Emails = "EmergancyApp@JEPCO.com.jo" };
+                user = new UserModel { username = "E-Service App Integration User", Emails = "E-Service@JEPCO.com.jo" };
             }
            
             return user;

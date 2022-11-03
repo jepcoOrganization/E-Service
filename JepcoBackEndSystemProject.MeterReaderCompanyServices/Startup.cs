@@ -89,7 +89,7 @@ namespace JepcoBackEndSystemProject.Services
 
 
 
-            services.AddTransient<JepcoBackEndSystemProject.EmergancyAppApis.Controllers.FaultDetailsController , JepcoBackEndSystemProject.EmergancyAppApis.Controllers.FaultDetailsController>();
+            //services.AddTransient<JepcoBackEndSystemProject.EmergancyAppApis.Controllers.FaultDetailsController , JepcoBackEndSystemProject.EmergancyAppApis.Controllers.FaultDetailsController>();
 
         }
 

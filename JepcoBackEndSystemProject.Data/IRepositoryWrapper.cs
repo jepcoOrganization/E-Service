@@ -9,21 +9,14 @@ namespace JepcoBackEndSystemProject.Data
 {
     public interface IRepositoryWrapper
     {
-   
-RepairingStatus.IRepairingStatusRepository Status { get; }
-FaultCompliants.IFaultCompliantsLookupRepository FaultCompliantsLookupRepository { get; }
-UserAccessRegister.IUserAccessRegisterLookupRepository UserAccessRegisterLookupRepository { get; }
-FaultDetails.IFaultDetailsRepository FaultDetailsRepository { get; }
-ElectricalFaultStatus.IElectricalFaultStatusRepository ElectricalFaultStatusRepository { get; }
-EngineersAccessRegister.IEngineersAccessRegisterRepository EngineersAccessRegisterRepository { get; }
-Technical.ITechnicalRepository TechnicalRepository { get; }
- Governorate.IGovernorateRepository GovernorateRepository { get; }
-        EmergancyGroups.IEmergancyGroupsRepository EmergancyGroupsRepository { get; }
-        Smsverifications.ISmsverificationRepository SmsVerification { get; }
+    
+        District.IDistrictRepository DistrictRepository { get; }
+        FazPowerCapacity.IFazPowerCapacityRepository FazPowerCapacityRepository { get; }
+        Governate.IGovernateRepository GovernateRepository { get; }
+        MaintenanceRequest.IMaintenanceRequestRepository MaintenanceRequestRepository { get; }
 
-
-TechnicalGroups.ITechnicalGroupsRepository TechnicalGroupsRepository { get; }
-
+        MaintenanceRequestType.IMaintenanceRequestTypeRepository MaintenanceRequestTypeRepository { get; }
+            
 
 
         Task SaveAsync();
