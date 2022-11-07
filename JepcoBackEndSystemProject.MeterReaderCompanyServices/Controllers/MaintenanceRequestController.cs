@@ -12,8 +12,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
+using Newtonsoft.Json;
+using RestSharp;
+using RestSharp.Authenticators;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace JepcoBackEndSystemProject.Services.Controllers
@@ -225,6 +230,130 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
 
 
+        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "SearchByContractAndGroupNo")]
+        [Route("SearchByContractAndGroupNo")]
+        public async Task<ActionResult<CommonReturnResult>> SearchByContractAndGroupNo([FromBody] MaintenanceSearchRequestDto MaintenanceRequest)
+        {
+
+
+            try
+            {
+                if (MaintenanceRequest == null)
+                {
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MaintenanceRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, MaintenanceRequest.LanguageId, "  object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MaintenanceRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, MaintenanceRequest.LanguageId, "Invalid  object sent from client")));
+
+
+                }
+
+
+
+                string SapURL = _config["SAPAPIData:SAPServiceURL"];
+                string serviceName = "/Z_CREATE_SRV_N_GOV_SRV/SrvN_GOVSet";
+
+
+
+                string ServiceCURLGetCSRF = SapURL + serviceName + "(Vertrag='" + MaintenanceRequest.ContractNumber  + "',ApiTyp='G',BuSort1='" + MaintenanceRequest.GroupNumber  + "')?$format=json";
+
+
+
+
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+                ServicePointManager.DefaultConnectionLimit = 1000;
+
+                var options = new RestClientOptions(ServiceCURLGetCSRF)
+                {
+                    ThrowOnAnyError = false
+
+                };
+
+
+                var client1 = new RestClient(options);
+
+                var request1 = new RestRequest();
+
+                IEnumerable<string> cookies = new List<string>();
+
+                CookieContainer cookieJar = new CookieContainer();
+
+                request1.AddHeader("x-csrf-token", "fetch");
+                var username = _config["SAPAPIData:SAP_UserName"];
+                var password = _config["SAPAPIData:SAP_Pass"];
+
+
+
+                client1.Authenticator = new HttpBasicAuthenticator(username, password);
+
+                var response1 = new RestSharp.RestResponse();
+
+                response1 = await client1.ExecuteGetAsync(request1, System.Threading.CancellationToken.None);
+
+
+
+                if (response1.StatusCode == HttpStatusCode.BadRequest)
+                {
+
+                   // SAPExceptionRoot objSAPExceptionRoot = null;
+                   // objSAPExceptionRoot = JsonConvert.DeserializeObject<SAPExceptionRoot>(response1.Content);
+
+                    return BadRequest(_common.ReturnCustomErrorData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "EN", "SAPServiceReturnExepction"), "SAP Exepection "));
+
+
+
+                }
+
+
+                MaintenanceSearchSAPResponseDto objSApInqueryResponse = new MaintenanceSearchSAPResponseDto();
+
+                if (response1.StatusCode.ToString().ToLower() == "ok")
+                {
+
+                  
+
+                    string xCsrfToken = response1.Headers.ToList().Find(x => x.Name == "x-csrf-token").Value.ToString();
+
+
+                        objSApInqueryResponse = JsonConvert.DeserializeObject<MaintenanceSearchSAPResponseDto>(response1.Content);
+
+                }
+
+                else
+                {
+
+                    _logger.LogError("ErrorCode 1: " + response1.StatusCode.ToString().ToLower());
+
+                }
+
+
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "EN", " informtions Returned  sussfully "), objSApInqueryResponse));
+
+
+
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside MaintenanceRequestGov action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MaintenanceRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, MaintenanceRequest.LanguageId, "Internal server error")));
+            }
+
+        }
+
+
+
+
+       
 
 
 
@@ -248,5 +377,5 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
 
 
-    } 
+    }
 }
