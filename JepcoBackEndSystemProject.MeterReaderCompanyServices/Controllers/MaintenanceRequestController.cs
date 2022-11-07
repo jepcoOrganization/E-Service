@@ -66,33 +66,33 @@ namespace JepcoBackEndSystemProject.Services.Controllers
         // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "DistrictLookup")]
         [Route("DistrictLookup")]
-        public async Task<ActionResult<CommonReturnResult>> DistrictLookup([FromBody] LanguageDto languageDto)
+        public async Task<ActionResult<CommonReturnResult>> DistrictLookup([FromBody] DistrictLookupRequestDto DistrictLookupRequest)
         {
 
 
             try
             {
-                if (languageDto == null)
+                if (DistrictLookupRequest == null)
                 {
 
 
-                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "  object sent from client is null")));
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, DistrictLookupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, DistrictLookupRequest.LanguageId, "  object sent from client is null")));
                 }
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Invalid  object sent from client")));
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, DistrictLookupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, DistrictLookupRequest.LanguageId, "Invalid  object sent from client")));
 
                 }
-                IEnumerable<tb_District> AllDistrict = await _repository.DistrictRepository.GetAllDistrict().ConfigureAwait(false);
+                IEnumerable<tb_District> AllDistrict = await _repository.DistrictRepository.GetListOfDistrict(D => D.ID == DistrictLookupRequest.GovernateId).ConfigureAwait(false);
 
 
-                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Returned All District data from database"), AllDistrict));
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, DistrictLookupRequest.LanguageId, "Returned All District data from database"), AllDistrict));
 
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Something went wrong inside DistrictLookup action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
-                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Internal server error")));
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, DistrictLookupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, DistrictLookupRequest.LanguageId, "Internal server error")));
             }
 
         }
