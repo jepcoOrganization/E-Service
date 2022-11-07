@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceRequest
+namespace JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceInsertSAPResponse
 {
 
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
@@ -91,10 +91,13 @@ namespace JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceReque
         public string type { get; set; }
     }
 
-    public class MaintenanceInsertSAPRequestDto
+    public class MaintenanceInsertSAPResponseDto
     {
         public D d { get; set; }
     }
+
+
+
 
 
 

@@ -4,6 +4,7 @@ using JepcoBackEndSystemProject.Data;
 using JepcoBackEndSystemProject.Data.CommonReturn;
 using JepcoBackEndSystemProject.EMRCServices.DataTransferObject;
 using JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceRequest;
+using JepcoBackEndSystemProject.EService.SAPException;
 using JepcoBackEndSystemProject.Models;
 using JepcoBackEndSystemProject.Models.Models;
 using JepcoBackEndSysytemProject.LoggerService;
@@ -195,28 +196,277 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
 
 
+                string SapURL = _config["SAPAPIData:SAPServiceURL"];
+                string serviceName = "/Z_CREATE_SRV_N_GOV_SRV/SrvN_GOVSet";
+
+
+
+                string ServiceCURLGetCSRF = SapURL + serviceName + "(Vertrag='" + MaintenanceRequest.ContractNumber + "',ApiTyp='G',BuSort1='" + MaintenanceRequest.GroupNumber + "')?$format=json";
 
 
 
 
-                tb_MaintenanceRequest MaintenanceRequestObj = new tb_MaintenanceRequest();
-                MaintenanceRequestObj.MaintenanceTypeId = MaintenanceRequest.MaintenanceTypeId;
-                MaintenanceRequestObj.ContractNumber = MaintenanceRequest.ContractNumber;
-                MaintenanceRequestObj.GroupNumber = MaintenanceRequest.GroupNumber;
-                MaintenanceRequestObj.MobileNumber = MaintenanceRequest.MobileNumber;
-                MaintenanceRequestObj.GroupNumber = MaintenanceRequest.GroupNumber;
-                MaintenanceRequestObj.DistrictID = MaintenanceRequest.DistrictID;
-                MaintenanceRequestObj.StreetName = MaintenanceRequest.StreetName;
-                MaintenanceRequestObj.BuildingNumber = MaintenanceRequest.BuildingNumber;
-                MaintenanceRequestObj.PowerCapacityId = MaintenanceRequest.PowerCapacityId;
-                MaintenanceRequestObj.Attachment_gov = MaintenanceRequest.Attachment_gov;
-                MaintenanceRequestObj.CreatedDate = DateTime.Now;
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+                ServicePointManager.DefaultConnectionLimit = 1000;
+
+                var options = new RestClientOptions(ServiceCURLGetCSRF)
+                {
+                    ThrowOnAnyError = false
+
+                };
 
 
-                _repository.MaintenanceRequestRepository.AddMaintenanceRequest(MaintenanceRequestObj);
-                await _repository.SaveAsync().ConfigureAwait(false);
+                var client1 = new RestClient(options);
 
-                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MaintenanceRequest.LanguageId, "insert Maintenance Request to  database"), MaintenanceRequestObj));
+                var request1 = new RestRequest();
+
+                IEnumerable<string> cookies = new List<string>();
+
+                CookieContainer cookieJar = new CookieContainer();
+
+                request1.AddHeader("x-csrf-token", "fetch");
+                var username = _config["SAPAPIData:SAP_UserName"];
+                var password = _config["SAPAPIData:SAP_Pass"];
+
+
+
+                client1.Authenticator = new HttpBasicAuthenticator(username, password);
+
+                var response1 = new RestSharp.RestResponse();
+
+                response1 = await client1.ExecuteGetAsync(request1, System.Threading.CancellationToken.None);
+
+
+
+                if (response1.StatusCode == HttpStatusCode.BadRequest)
+                {
+
+                    SAPExceptionRoot objSAPExceptionRoot = null;
+                     objSAPExceptionRoot = JsonConvert.DeserializeObject<SAPExceptionRoot>(response1.Content);
+
+                    return BadRequest(_common.ReturnCustomErrorData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "EN", "SAPServiceReturnExepction"), objSAPExceptionRoot));
+
+
+
+                }
+
+
+                EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto objSApInqueryResponse = new EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto();
+
+                if (response1.StatusCode.ToString().ToLower() == "ok")
+                {
+
+
+
+                    string xCsrfToken = response1.Headers.ToList().Find(x => x.Name == "x-csrf-token").Value.ToString();
+                    var cookies1 = response1.Headers.ToList().FindAll(x => x.Name == "Set-Cookie");
+
+
+                    var SAPHOst = _config["SAPAPIData:SAPHost"];
+
+                    string serviceName2 = "/sap/opu/odata/SAP/Z_CREATE_SRV_N_GOV_SRV/SrvN_GOVSet";
+
+
+                    var username1 = _config["SAPAPIData:SAP_UserName"];
+                    var password1 = _config["SAPAPIData:SAP_Pass"];
+
+
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+                    ServicePointManager.DefaultConnectionLimit = 1000;
+
+
+
+                    var client2 = new RestClient(SAPHOst);
+
+                    var request2 = new RestRequest(serviceName2);
+
+
+
+                    request2.AddHeader("x-csrf-token", xCsrfToken);
+
+                    string CookieData = "";
+
+                    int count = 0;
+
+
+                    foreach (HeaderParameter item in cookies1)
+                    {
+
+                        if (count == cookies1.Count - 1)
+                        {
+                            CookieData = CookieData + item.Value;
+
+
+                        }
+                        else
+                        {
+                            CookieData = CookieData + item.Value + ";";
+
+                        }
+                        count++;
+                    }
+
+
+
+                    request2.AddHeader("Cookie", CookieData);
+
+                    JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto objMaintenanceSearchSAPResponseDto = new JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto();
+
+                    JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.D objD = new JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.D();
+                    objD.Vertrag = MaintenanceRequest.ContractNumber.ToString();
+                    objD.ApiTyp = "C";
+                    objD.BuSort1 = MaintenanceRequest.GroupNumber.ToString();
+
+                    JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.ImBp objImBp = new JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.ImBp();
+                    objImBp.MobileNumber = MaintenanceRequest.MobileNumber.ToString();
+                    objD.ImBp = objImBp;
+
+                    JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.ImAtt objImAtt = new JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.ImAtt();
+                    objImAtt.Des1 = MaintenanceRequest.Attachment_gov_Name;
+                    objImAtt.Image1 = MaintenanceRequest.Attachment_gov.ToString();
+                    objD.ImAtt = objImAtt;
+
+                    JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.ImSrvN objImSrvN = new JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.ImSrvN();
+                    objImSrvN.Priority = "1";
+                    objImSrvN.NotifAddr = MaintenanceRequest.StreetName + "-" + MaintenanceRequest.BuildingNumber;
+                    objImSrvN.PlntLocCode = MaintenanceRequest.DistrictID .ToString();
+                    objImSrvN.TextHeader = MaintenanceRequest.PowerCapacityName;
+
+                    objD.ImSrvN = objImSrvN;
+
+
+                    objMaintenanceSearchSAPResponseDto.d = objD;
+
+                    client2.Authenticator = new HttpBasicAuthenticator(username1, password1);
+
+                    string requestJson = JsonConvert.SerializeObject(objMaintenanceSearchSAPResponseDto);
+                    string datareq = requestJson;
+                    request2.AddJsonBody(datareq);
+
+
+                    try
+                    {
+                        var response2 = await client2.ExecutePostAsync(request2, System.Threading.CancellationToken.None);
+
+                        // _logger.LogError("SAP Status After Insert: " + response2.StatusCode.ToString().ToLower());
+
+                        if (response2.StatusCode == HttpStatusCode.BadRequest)
+                        {
+
+                            SAPExceptionRoot objSAPExceptionRoot = null;
+                            objSAPExceptionRoot = JsonConvert.DeserializeObject<SAPExceptionRoot>(response2.Content);
+
+                            return BadRequest(_common.ReturnCustomErrorData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "EN", "SAPServiceReturnExepction"), objSAPExceptionRoot));
+
+
+
+                        }
+
+
+                        if (response2.StatusCode.ToString().ToLower() == "created")
+                        {
+                            //return Ok("Data inserted Successfully");
+
+                            EService.DataTransferObject.MaintenanceInsertSAPResponse.MaintenanceInsertSAPResponseDto objMaintenanceInsertSAPResponseDto = new EService.DataTransferObject.MaintenanceInsertSAPResponse .MaintenanceInsertSAPResponseDto();
+
+                            objMaintenanceInsertSAPResponseDto = JsonConvert.DeserializeObject<EService.DataTransferObject.MaintenanceInsertSAPResponse.MaintenanceInsertSAPResponseDto>(response2.Content);
+
+
+
+
+
+
+                            tb_MaintenanceRequest MaintenanceRequestObj = new tb_MaintenanceRequest();
+                            MaintenanceRequestObj.MaintenanceTypeId = MaintenanceRequest.MaintenanceTypeId;
+                            MaintenanceRequestObj.ContractNumber = MaintenanceRequest.ContractNumber;
+                            MaintenanceRequestObj.GroupNumber = MaintenanceRequest.GroupNumber;
+                            MaintenanceRequestObj.MobileNumber = MaintenanceRequest.MobileNumber;
+                            MaintenanceRequestObj.GroupNumber = MaintenanceRequest.GroupNumber;
+                            MaintenanceRequestObj.GovernateId  = MaintenanceRequest.GovernateId ;
+                            MaintenanceRequestObj.DistrictID = MaintenanceRequest.DistrictID;
+                            MaintenanceRequestObj.StreetName = MaintenanceRequest.StreetName;
+                            MaintenanceRequestObj.BuildingNumber = MaintenanceRequest.BuildingNumber;
+                            MaintenanceRequestObj.PowerCapacityId = MaintenanceRequest.PowerCapacityId;
+                            MaintenanceRequestObj.Attachment_gov = MaintenanceRequest.Attachment_gov;
+                            MaintenanceRequestObj.Attachment_gov_Name  = MaintenanceRequest.Attachment_gov_Name ;
+                            MaintenanceRequestObj.SAPNotificationNo = objMaintenanceInsertSAPResponseDto.d.MsgNotifNo;
+                            MaintenanceRequestObj.SAP_BP  = objMaintenanceInsertSAPResponseDto.d.MsgSapBpNo ;
+                            MaintenanceRequestObj.SAPMsg  = objMaintenanceInsertSAPResponseDto.d.MsgPassFail ;
+
+
+                            MaintenanceRequestObj.CreatedDate = DateTime.Now;
+
+
+                            _repository.MaintenanceRequestRepository.AddMaintenanceRequest(MaintenanceRequestObj);
+                            await _repository.SaveAsync().ConfigureAwait(false);
+
+                            return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, MaintenanceRequest.LanguageId, "insert Maintenance Request to  database"), MaintenanceRequestObj));
+
+
+                        }
+                        else
+                        {
+
+
+
+
+                            return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "EN", "SAPServiceReturnExepction"), "SAPServiceReturnExepction"));
+
+
+
+
+
+
+                        }
+
+
+                    }
+                    catch (WebException ex)
+                    {
+                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "EN", "SAPServiceReturnExepction"), ex.Message));
+
+                    }
+
+
+
+
+
+
+
+
+                }
+
+                else
+                {
+
+                    _logger.LogError("ErrorCode 1: " + response1.StatusCode.ToString().ToLower());
+
+                    return BadRequest(_common.ReturnCustomErrorData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "EN", "SAPServiceReturnExepction"), "SAP Exepection"));
+
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             }
             catch (Exception ex)
@@ -300,17 +550,17 @@ namespace JepcoBackEndSystemProject.Services.Controllers
                 if (response1.StatusCode == HttpStatusCode.BadRequest)
                 {
 
-                   // SAPExceptionRoot objSAPExceptionRoot = null;
-                   // objSAPExceptionRoot = JsonConvert.DeserializeObject<SAPExceptionRoot>(response1.Content);
+                   SAPExceptionRoot objSAPExceptionRoot = null;
+                   objSAPExceptionRoot = JsonConvert.DeserializeObject<SAPExceptionRoot>(response1.Content);
 
-                    return BadRequest(_common.ReturnCustomErrorData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "EN", "SAPServiceReturnExepction"), "SAP Exepection "));
+                    return BadRequest(_common.ReturnCustomErrorData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "EN", "SAPServiceReturnExepction"), objSAPExceptionRoot));
 
 
 
                 }
 
 
-                MaintenanceSearchSAPResponseDto objSApInqueryResponse = new MaintenanceSearchSAPResponseDto();
+                EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto objSApInqueryResponse = new EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto();
 
                 if (response1.StatusCode.ToString().ToLower() == "ok")
                 {
@@ -320,7 +570,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
                     string xCsrfToken = response1.Headers.ToList().Find(x => x.Name == "x-csrf-token").Value.ToString();
 
 
-                        objSApInqueryResponse = JsonConvert.DeserializeObject<MaintenanceSearchSAPResponseDto>(response1.Content);
+                        objSApInqueryResponse = JsonConvert.DeserializeObject<EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto>(response1.Content);
 
                 }
 

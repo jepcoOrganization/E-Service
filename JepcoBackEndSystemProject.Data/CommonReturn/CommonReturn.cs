@@ -38,7 +38,7 @@ namespace JepcoBackEndSystemProject.Data.CommonReturn
         }
 
 
-        public ErrorDetails ReturnCustomErrorData(string Title, string Error)
+        public ErrorDetails ReturnCustomErrorData(string Title, object Error)
         {
             ErrorDetails commontRetrunDto = new ErrorDetails
             {
