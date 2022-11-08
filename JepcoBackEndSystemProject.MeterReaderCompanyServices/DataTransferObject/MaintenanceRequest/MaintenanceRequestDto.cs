@@ -23,6 +23,7 @@ namespace JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceReque
         [Required]
         public long DistrictID { get; set; }
 
+        
         [Required]
         [StringLength(100)]
         public string StreetName { get; set; }
@@ -30,10 +31,20 @@ namespace JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceReque
         public int BuildingNumber { get; set; }
         [Required]
         public int PowerCapacityId { get; set; }
+        public string PowerCapacityName { get; set; }
+
 
         [Required]
         public string Attachment_gov { get; set; }
-   
+
+        public string Attachment_gov_Name { get; set; }
+
+
+
+
+
+        
+
     }
 }
 

@@ -43,6 +43,16 @@ namespace JepcoBackEndSystemProject.Models.Models
 
         [Required]
         public string Attachment_gov { get; set; }
+        [Required]
+        public string Attachment_gov_Name { get; set; }
+
+        [Required]
+        public string SAPNotificationNo { get; set; }
+        [Required]
+        public string SAPMsg { get; set; }
+
+        [Required]
+        public string SAP_BP { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 

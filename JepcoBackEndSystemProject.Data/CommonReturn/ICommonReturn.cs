@@ -13,7 +13,7 @@ namespace JepcoBackEndSystemProject.Data.CommonReturn
     {
         CommonReturnResult ReturnOkData(string Message, object body);
         ErrorDetails ReturnBadData(string Title, string Error);
-        ErrorDetails ReturnCustomErrorData(string Title, string Error);
+        ErrorDetails ReturnCustomErrorData(string Title, object Error);
         void AddErrorLog(IRepositoryWrapper _repository, string ControllerName, string MethodName, string ErrorMsg, string ErrorStackTrace, string ErrorInnerException, string ErrorCode);
         public string ReturnResourceValue(IStringLocalizer<MessagesAr> _localizerAR, IStringLocalizer<MessagesEn> _localizerEN, string Language, string Value);
         
