@@ -252,7 +252,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
                 }
 
 
-                EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto objSApInqueryResponse = new EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto();
+                EService.DataTransferObject.MaintenanceRequest.MaintenanceSearchSAPResponseDto objSApInqueryResponse = new EService.DataTransferObject.MaintenanceRequest.MaintenanceSearchSAPResponseDto();
 
                 if (response1.StatusCode.ToString().ToLower() == "ok")
                 {
@@ -312,7 +312,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
                     request2.AddHeader("Cookie", CookieData);
 
-                    JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto objMaintenanceSearchSAPResponseDto = new JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto();
+                    JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceInsertSAPRequestDto  objMaintenanceSearchSAPResponseDto = new JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceInsertSAPRequestDto();
 
                     JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.D objD = new JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.D();
                     objD.Vertrag = MaintenanceRequest.ContractNumber.ToString();
@@ -560,7 +560,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
                 }
 
 
-                EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto objSApInqueryResponse = new EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto();
+                EService.DataTransferObject.MaintenanceRequest.MaintenanceSearchSAPResponseDto  objSApInqueryResponse = new EService.DataTransferObject.MaintenanceRequest.MaintenanceSearchSAPResponseDto();
 
                 if (response1.StatusCode.ToString().ToLower() == "ok")
                 {
@@ -570,7 +570,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
                     string xCsrfToken = response1.Headers.ToList().Find(x => x.Name == "x-csrf-token").Value.ToString();
 
 
-                        objSApInqueryResponse = JsonConvert.DeserializeObject<EService.DataTransferObject.MaintenanceSAPInsertRequest.MaintenanceSearchSAPResponseDto>(response1.Content);
+                        objSApInqueryResponse = JsonConvert.DeserializeObject<EService.DataTransferObject.MaintenanceRequest.MaintenanceSearchSAPResponseDto>(response1.Content);
 
                 }
 

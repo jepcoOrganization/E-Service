@@ -91,7 +91,7 @@ namespace JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceReque
         public string type { get; set; }
     }
 
-    public class MaintenanceInsertSAPRequestDto
+    public class MaintenanceSearchSAPResponseDto
     {
         public D d { get; set; }
     }

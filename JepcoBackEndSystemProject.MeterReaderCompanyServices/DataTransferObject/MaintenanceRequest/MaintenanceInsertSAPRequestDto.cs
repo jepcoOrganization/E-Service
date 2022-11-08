@@ -33,7 +33,7 @@ namespace JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPIn
         public string TextHeader { get; set; }
     }
 
-    public class MaintenanceSearchSAPResponseDto
+    public class MaintenanceInsertSAPRequestDto
     {
         public D d { get; set; }
     }
