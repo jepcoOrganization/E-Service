@@ -9,6 +9,8 @@ using JepcoBackEndSystemProject.Models;
 using JepcoBackEndSystemProject.Models.Models;
 using JepcoBackEndSysytemProject.LoggerService;
 using JepcoBackEndSysytemProject.ResourcesFiles.Resources;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -64,7 +66,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
 
 
-        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "DistrictLookup")]
         [Route("DistrictLookup")]
         public async Task<ActionResult<CommonReturnResult>> DistrictLookup([FromBody] DistrictLookupRequestDto DistrictLookupRequest)
@@ -101,7 +103,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
 
 
-        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GovernateLookup")]
         [Route("GovernateLookup")]
         public async Task<ActionResult<CommonReturnResult>> GovernateLookup([FromBody] LanguageDto languageDto)
@@ -137,7 +139,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
 
  
-        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "FazPowerCapacityLookup")]
         [Route("FazPowerCapacityLookup")]
         public async Task<ActionResult<CommonReturnResult>> FazPowerCapacityLookup([FromBody] LanguageDto languageDto)
@@ -173,7 +175,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
 
 
-        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "Gov")]
         [Route("Gov")]
         public async Task<ActionResult<CommonReturnResult>> Gov([FromBody] MaintenanceRequestDto MaintenanceRequest)
@@ -328,13 +330,28 @@ namespace JepcoBackEndSystemProject.Services.Controllers
                     objImAtt.Image1 = MaintenanceRequest.Attachment_gov.ToString();
                     objD.ImAtt = objImAtt;
 
-                    JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.ImSrvN objImSrvN = new JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.ImSrvN();
-                    objImSrvN.Priority = "1";
-                    objImSrvN.NotifAddr = MaintenanceRequest.StreetName + "-" + MaintenanceRequest.BuildingNumber;
-                    objImSrvN.PlntLocCode = MaintenanceRequest.DistrictID .ToString();
-                    objImSrvN.TextHeader = MaintenanceRequest.PowerCapacityName;
 
-                    objD.ImSrvN = objImSrvN;
+                    tb_District objtb_District = await _repository.DistrictRepository.GetSingleDistrict(x => x.ID == MaintenanceRequest.DistrictID).ConfigureAwait(false);
+
+                    if (objtb_District != null)
+                    {
+                        JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.ImSrvN objImSrvN = new JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceSAPInsertRequest.ImSrvN();
+                        objImSrvN.Priority = "1";
+                        objImSrvN.NotifAddr = MaintenanceRequest.StreetName + "-" + MaintenanceRequest.BuildingNumber;
+                        objImSrvN.PlntLocCode = objtb_District.Code.ToString()  ;
+                        objImSrvN.TextHeader = MaintenanceRequest.PowerCapacityName;
+
+                        objD.ImSrvN = objImSrvN;
+                    }
+                    else
+                    {
+
+                        return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, "EN", "DistrictIdNotCorrect"), "DistrictIdNotCorrect"));
+
+
+                    }
+
+
 
 
                     objMaintenanceSearchSAPResponseDto.d = objD;
@@ -372,7 +389,6 @@ namespace JepcoBackEndSystemProject.Services.Controllers
                             EService.DataTransferObject.MaintenanceInsertSAPResponse.MaintenanceInsertSAPResponseDto objMaintenanceInsertSAPResponseDto = new EService.DataTransferObject.MaintenanceInsertSAPResponse .MaintenanceInsertSAPResponseDto();
 
                             objMaintenanceInsertSAPResponseDto = JsonConvert.DeserializeObject<EService.DataTransferObject.MaintenanceInsertSAPResponse.MaintenanceInsertSAPResponseDto>(response2.Content);
-
 
 
 
@@ -480,7 +496,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
 
 
-        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "SearchByContractAndGroupNo")]
         [Route("SearchByContractAndGroupNo")]
         public async Task<ActionResult<CommonReturnResult>> SearchByContractAndGroupNo([FromBody] MaintenanceSearchRequestDto MaintenanceRequest)
