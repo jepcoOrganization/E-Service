@@ -11,6 +11,7 @@ namespace JepcoBackEndSystemProject.Models.Models
     //internal class tb_MaintenanceRequest
     //{
     //}
+    // new model
 
     public partial class tb_MaintenanceRequest
     {
