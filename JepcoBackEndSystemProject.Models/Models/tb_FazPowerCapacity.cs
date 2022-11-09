@@ -16,6 +16,6 @@ namespace JepcoBackEndSystemProject.Models.Models
         [Required]
         public long ID { get; set; }
         [Required]
-        public int PowerCapacity { get; set; }
+        public string PowerCapacity { get; set; }
     }
 }

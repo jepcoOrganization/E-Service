@@ -86,7 +86,7 @@ namespace JepcoBackEndSystemProject.Services.Controllers
                     return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, DistrictLookupRequest.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, DistrictLookupRequest.LanguageId, "Invalid  object sent from client")));
 
                 }
-                IEnumerable<tb_District> AllDistrict = await _repository.DistrictRepository.GetListOfDistrict(D => D.ID == DistrictLookupRequest.GovernateId).ConfigureAwait(false);
+                IEnumerable<tb_District> AllDistrict = await _repository.DistrictRepository.GetListOfDistrict(D => D.GovernateId == DistrictLookupRequest.GovernateId).ConfigureAwait(false);
 
 
                 return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, DistrictLookupRequest.LanguageId, "Returned All District data from database"), AllDistrict));
@@ -101,7 +101,39 @@ namespace JepcoBackEndSystemProject.Services.Controllers
         }
 
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(Name = "MaintenanceType")]
+        [Route("MaintenanceType")]
+        public async Task<ActionResult<CommonReturnResult>> MaintenanceType([FromBody] LanguageDto languageDto)
+        {
 
+
+            try
+            {
+                if (languageDto == null)
+                {
+
+
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "  object sent from client is null")));
+                }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Invalid  object sent from client")));
+
+                }
+                IEnumerable<tb_MaintenanceRequestType> AllMaintenanceTypeId = await _repository.MaintenanceRequestTypeRepository.GetAllMaintenanceRequestType().ConfigureAwait(false);
+
+
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Returned All Governate data from database"), AllMaintenanceTypeId));
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GovernateLookup action: {ex.Message + System.Environment.NewLine + ex.InnerException + ex.StackTrace}");
+                return BadRequest(_common.ReturnBadData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Error"), _common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Internal server error")));
+            }
+
+        }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(Name = "GovernateLookup")]

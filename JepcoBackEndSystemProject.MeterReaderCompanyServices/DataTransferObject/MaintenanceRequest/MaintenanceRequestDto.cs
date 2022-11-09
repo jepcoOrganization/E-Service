@@ -28,13 +28,14 @@ namespace JepcoBackEndSystemProject.EService.DataTransferObject.MaintenanceReque
         [StringLength(100)]
         public string StreetName { get; set; }
         [Required]
-        public int BuildingNumber { get; set; }
+        public string BuildingNumber { get; set; }
         [Required]
         public int PowerCapacityId { get; set; }
         public string PowerCapacityName { get; set; }
 
 
         [Required]
+
         public string Attachment_gov { get; set; }
 
         public string Attachment_gov_Name { get; set; }

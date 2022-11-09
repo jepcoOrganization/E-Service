@@ -19,8 +19,10 @@ namespace JepcoBackEndSystemProject.Models.Models
         [Required]
         public int Code { get; set; }
 
+     
+
         [Required]
-        [StringLength(50)]
+        public long GovernateId { get; set; }
         public string DistrictName { get; set; }
         [Required]
         public bool Active { get; set; }
