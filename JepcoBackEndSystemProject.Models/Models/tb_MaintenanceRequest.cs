@@ -43,7 +43,7 @@ namespace JepcoBackEndSystemProject.Models.Models
         public int PowerCapacityId { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(MAX)")]
+        [Column(TypeName = "varchar(MAX)")]
         [MaxLength(int.MaxValue)]
 
         public string Attachment_gov { get; set; }
