@@ -156,9 +156,10 @@ namespace JepcoBackEndSystemProject.Services.Controllers
 
                 }
                 IEnumerable<tb_Governate> AllGovernate = await _repository.GovernateRepository.GetAllGovernate().ConfigureAwait(false);
+                IEnumerable<tb_MaintenanceRequest> AllDistrict = await _repository.MaintenanceRequestRepository.GetListOfMaintenanceRequest(D => D.ID == 30).ConfigureAwait(false);
 
 
-                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Returned All Governate data from database"), AllGovernate));
+                return Ok(_common.ReturnOkData(_common.ReturnResourceValue(_localizerAR, _localizerEN, languageDto.LanguageId, "Returned All Governate data from database"), AllDistrict));
 
             }
             catch (Exception ex)

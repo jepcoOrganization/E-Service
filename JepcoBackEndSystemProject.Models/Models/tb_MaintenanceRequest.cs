@@ -40,10 +40,10 @@ namespace JepcoBackEndSystemProject.Models.Models
         [Required]
         public string BuildingNumber { get; set; }
         [Required]
-        public int PowerCapacityId { get; set; }
+        public long PowerCapacityId { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(MAX)")]
+        [Column(TypeName = "nvarchar(MAX)")]
         [MaxLength(int.MaxValue)]
 
         public string Attachment_gov { get; set; }
